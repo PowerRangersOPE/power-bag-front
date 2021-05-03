@@ -40,7 +40,7 @@ export default {
       const url = "https://power-bag.herokuapp.com/login";
 
       axios.post(url, data, {
-        headers: {Authorization: `Basic ${token}`}
+        headers: {Authorization: `${token}`}
         }).then(response => {
           localStorage.setItem('token', response.data.token);
           localStorage.setItem('clienteId', response.data.clienteId);

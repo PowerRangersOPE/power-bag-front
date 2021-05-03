@@ -66,13 +66,14 @@
       </div>
     </div>
     <div class="col q-mt-xl">
-      <q-btn class="q-mr-md" color="black" label="Editar" />
       <q-btn color="black" label="Salvar" @click="salvarEndereco()" />
     </div>
   </div>
 </template>
 
 <script>
+import axios from "axios";
+
 const ENDERECO = {
   rua: "",
   numero: "",
@@ -88,16 +89,22 @@ export default {
   data() {
     return {
       cadastroEndereco: ENDERECO,
-
+      baseUrl: "https://power-bag.herokuapp.com",
     };
+  },
+  mounted() {
+    setTimeout(() => { 
+      const data = JSON.parse(localStorage.getItem('dataEndereco'))
+      const buscaEndereco = Object.assign(this.cadastroEndereco, data);
+      this.cadastroEndereco = buscaEndereco
+    }, 1500);
   },
   methods: {
     salvarEndereco() {
       let token = localStorage.getItem("token");
-      let id = localStorage.getItem("clienteId");
       axios({
-        method: "PUT",
-        url: `${this.baseUrl}/endereco/${id}`,
+        method: localStorage.getItem('endereco') !== 'null' ? 'PUT' : 'POST',
+        url: `${this.baseUrl}/endereco`,
         headers: {
           Authorization: `${token}`
         },
@@ -109,8 +116,7 @@ export default {
           uf: this.cadastroEndereco.uf,
           cep: this.cadastroEndereco.cep,
           complemento: this.cadastroEndereco.complemento,
-          observacoes: this.cadastroEndereco.observacoes,
-          cliente_id: localStorage.getItem("clienteId")
+          observacoes: this.cadastroEndereco.observacoes
         }
       });
       this.$router.push("/index");
@@ -132,6 +138,11 @@ export default {
         }
       }
     },
+    buscarEndereco() {
+      const data  = localStorage.getItem('dataEndereco') 
+      console.log(data.rua)
+    }
+    
   }
 };
 </script>

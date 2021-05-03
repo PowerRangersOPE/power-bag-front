@@ -5,6 +5,7 @@ import ComponentDadosPessoais from "src/components/Index/ComponentDadosPessoais.
 import ComponentPersonalizarBag from "src/components/Index/ComponentPersonalizarBag.vue";
 import ComponentEndereco from "src/components/Index/ComponentEndereco.vue";
 import ComponentCartao from "src/components/Index/ComponentCartao.vue"
+import { setTimeout } from "core-js";
 
 export default {
   name: "Index",
@@ -18,52 +19,56 @@ export default {
   },
   data() {
     return {
-      name: "home",
+      name: "Index",
       baseUrl: "https://power-bag.herokuapp.com",
       acaoCadastroPerfil: "",
+      token: localStorage.getItem("token"),
+      dadosCliente: {
+        nome: "",
+        email: "",
+        cpf: "",
+        identificacao: "",
+        tel_cel1: "",
+        tel_cel2: "",
+        dat_nasc: ""
+      }
     };
   },
+  async mounted() {
+    const clienteId = localStorage.getItem("clienteId")
+    const { data }  = await axios.get(`${this.baseUrl}/cliente/${clienteId}`, {
+      headers: {
+          'authorization': `${this.token}`
+      }
+    });
+    localStorage.setItem('dataCliente', JSON.stringify(data)) 
+    localStorage.setItem('endereco', response.JSON.stringify(data.endereco));
+    localStorage.setItem('perfil', response.JSON.stringify(data.perfil));
+    localStorage.setItem('carta', response.JSON.stringify(data.cartao));
+    
+    setTimeout(() => {
+      window.location.reload()
+    }, 1000);
+  },
+  mounted() {
+   
+  },
   methods: {
-    menuPerfil(acao) {
+    async menuPerfil(acao) {
       this.acaoCadastroPerfil = acao;
       if (acao == "endereco") {
-        let token = localStorage.getItem("token");
-        let id = localStorage.getItem("clienteId");
-        const { data } = axios({
-          method: "get",
-          url: `${this.baseUrl}/endereco/${id}`,
+        const { data }  = await axios.get(`${this.baseUrl}/endereco/`, {
           headers: {
-            Authorization: `${token}`
+              'authorization': `${this.token}`
           }
         });
-        console.log(data);
-        this.cadastroEndereco = Object.assign(this.cadastroEndereco, data);
+        localStorage.setItem('dataEndereco', JSON.stringify(data))     
       }
     },
     textToUpper(val) {
       this.cadastroCartao.nome = val.toUpperCase();
-    },
-    salvarPerfilProduto() {
-      const data = {
-        necessidade: this.cadastroProduto.necessidade,
-        genero: this.cadastroProduto.genero,
-        cor: this.cadastroProduto.cor,
-        tipo_estampa: this.cadastroProduto.tipo_estampa,
-        tipo_tenis: this.cadastroProduto.tipo_tenis,
-        tipo_estilo: this.cadastroProduto.tipo_estilo,
-        tamanho_sapato: this.cadastroProduto.tamanho_sapato,
-        tamanho_calca: this.cadastroProduto.tamanho_calca,
-        tamanho_camisa: this.cadastroProduto.tamanho_camisa,
-        tamanho_tenis: this.cadastroProduto.tamanho_tenis,
-        estacao_ano: this.cadastroProduto.estacao_ano,
-        frequencia: this.cadastroProduto.frequencia,
-        n_quero: this.cadastroProduto.n_quero,
-        fx_taria: this.cadastroProduto.fx_taria,
-        observacoes: this.cadastroProduto.observacoes,
-        cliente_id: "91e1fd0c-bbec-4f46-a694-e177f11b9a7f"
-      };
-
-      console.log(data);
     }
   }
 };
+
+

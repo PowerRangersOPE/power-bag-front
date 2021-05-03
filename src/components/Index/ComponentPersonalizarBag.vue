@@ -133,7 +133,6 @@
     </div>
 
     <div class="col q-mt-xl">
-      <q-btn class="q-mr-md" color="black" label="Editar" />
       <q-btn color="black" label="Salvar" @click="salvar()" />
     </div>
   </div>
@@ -272,7 +271,23 @@ export default {
   },
   methods: {
     salvar() {
-      console.log(teste);
+      const data = {
+        necessidade: this.cadastroProduto.necessidade,
+        genero: this.cadastroProduto.genero,
+        cor: this.cadastroProduto.cor,
+        tipo_estampa: this.cadastroProduto.tipo_estampa,
+        tipo_tenis: this.cadastroProduto.tipo_tenis,
+        tipo_estilo: this.cadastroProduto.tipo_estilo,
+        tamanho_sapato: this.cadastroProduto.tamanho_sapato,
+        tamanho_calca: this.cadastroProduto.tamanho_calca,
+        tamanho_camisa: this.cadastroProduto.tamanho_camisa,
+        tamanho_tenis: this.cadastroProduto.tamanho_tenis,
+        estacao_ano: this.cadastroProduto.estacao_ano,
+        frequencia: this.cadastroProduto.frequencia,
+        n_quero: this.cadastroProduto.n_quero,
+        fx_taria: this.cadastroProduto.fx_taria,
+        observacoes: this.cadastroProduto.observacoes
+      };
     }
   }
 };

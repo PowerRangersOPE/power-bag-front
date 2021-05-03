@@ -70,7 +70,6 @@
     </div>
 
     <div class="col q-mt-xl">
-      <q-btn class="q-mr-md" color="black" label="Editar" />
       <q-btn color="black" label="Salvar" @click="salvarDadosPessoais" />
     </div>
   </div>
