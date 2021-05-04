@@ -29,7 +29,7 @@ export default {
       const emailPattern = /^(?=[a-zA-Z0-9@._%+-]{6,254}$)[a-zA-Z0-9._%+-]{1,64}@(?:[a-zA-Z0-9-]{1,63}\.){1,8}[a-zA-Z]{2,63}$/;
       return emailPattern.test(val) || "Por favor digite e-mail válido";
     },
-    login() {
+    async login() {
       const data = {
         email: this.email,
         senha: this.password
@@ -39,13 +39,9 @@ export default {
       );
       const url = "https://power-bag.herokuapp.com";
 
-      axios.post(`${url}/login`, data, {
-        headers: {Authorization: `${token}`}
-        }).then(response => {
-          localStorage.setItem('token', response.data.token);
-          localStorage.setItem('clienteId', response.data.clienteId)
-      });
-      this.$router.push('/index')
+      const { data: response } = await axios.post(`${url}/login`, data);
+
+      this.$router.push({ name: 'index', params: { cliente: response } })
     }
   }
 };

@@ -20,13 +20,22 @@ export default {
     ComponentCartao,
     ComponentMinhasBags
   },
+  props: {
+    cliente: Object,
+  },
+  created(){
+    if(this.cliente) {
+      localStorage.setItem('token', this.cliente.token);
+      localStorage.setItem('clienteId', this.cliente.clienteId);
+    }
+  },
   data() {
     return {
       name: "Index",
       baseUrl: "https://power-bag.herokuapp.com",
       acaoCadastroPerfil: "",
-      token: localStorage.getItem("token"),
-      clienteId: localStorage.getItem("clienteId"),
+      token: this.cliente ? this.cliente.token : localStorage.getItem("token"),
+      clienteId: this.cliente ? this.cliente.clienteId : localStorage.getItem("clienteId"),
       dadosCliente: {
         nome: "",
         email: "",
@@ -58,16 +67,16 @@ export default {
               'authorization': `${this.token}`
           }
         });
-        localStorage.setItem('dataEndereco', JSON.stringify(data))     
+        localStorage.setItem('dataEndereco', JSON.stringify(data))
       }
-      
+
       if (acao == "dadosPessoais") {
         const { data }  = await axios.get(`${this.baseUrl}/cliente/${this.clienteId}`, {
           headers: {
               'authorization': `${this.token}`
           }
         });
-        localStorage.setItem('dadosPessoais', JSON.stringify(data))     
+        localStorage.setItem('dadosPessoais', JSON.stringify(data))
       }
     },
     textToUpper(val) {
