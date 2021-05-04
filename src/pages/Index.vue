@@ -3,28 +3,30 @@
     <div class="col">
       <div
         class="row"
-        style="height: 150px"
+        style="height:100px"
       >
-      <component-header-index />
+        <component-header-index />
       </div>
       <div class="row-10">
         <div class="row">
           <!-- Nav perfil -->
-          <div class="col-3" />
+          <div class="col-1" />
             <q-slide-item class="q-ma-md col-2">
-              <q-item>
-                <q-item-section avatar>
-                  <q-avatar>
-                    <q-icon
-                      name="work"
-                      color="primary"
-                      size="lg"
-                    />
-                  </q-avatar>
-                </q-item-section>
-                <q-item-section>Minhas Bags</q-item-section>
-              </q-item>
               <div>
+                <a @click="menuPerfil('minhasBags')">
+                  <q-item>
+                    <q-item-section avatar>
+                      <q-avatar>
+                        <q-icon
+                          name="work"
+                          color="primary"
+                          size="lg"
+                        />
+                      </q-avatar>
+                    </q-item-section>
+                    <q-item-section>Minhas Bags</q-item-section>
+                  </q-item>
+                </a>
                 <a @click="menuPerfil('dadosPessoais')">
                   <q-item>
                     <q-item-section avatar>
@@ -88,42 +90,50 @@
             name="fade-cadastro"
             mode="out-in"
           >
-            <div class="col-4">
+            <div class="col-6">
+              <!-- Cadastro Minhas Bags -->
+              <div
+                  v-if="acaoCadastroPerfil == 'minhasBags'"
+                  key="minhasBags"
+                  class="minhasBags"
+                >
+                <component-minhas-bags />
+              </div>
               <!-- Cadastro Dados Pessoais -->
               <div
-                v-if="acaoCadastroPerfil == 'dadosPessoais'"
-                key="dadosPessoais"
-                class="dadosPessoais"
-              >
-              <component-dados-pessoais />
+                  v-if="acaoCadastroPerfil == 'dadosPessoais'"
+                  key="dadosPessoais"
+                  class="dadosPessoais"
+                >
+                <component-dados-pessoais />
               </div>
               <!-- Cadastro Endereço -->
               <div
-                v-if="acaoCadastroPerfil == 'endereco'"
-                key="endereco"
-                class="endereco"
-              >
-              <component-endereco />
+                  v-if="acaoCadastroPerfil == 'endereco'"
+                  key="endereco"
+                  class="endereco"
+                >
+                <component-endereco />
               </div>
               <!-- Cadastro Cartão -->
               <div
-                v-if="acaoCadastroPerfil == 'cartao'"
-                key="cartao"
-                class="cartao"
-              >
-              <component-cartao />
+                  v-if="acaoCadastroPerfil == 'cartao'"
+                  key="cartao"
+                  class="cartao"
+                >
+                <component-cartao />
               </div>
               <!-- Cadastro Perfil Produto -->
               <div
-                v-if="acaoCadastroPerfil == 'perfilProduto'"
-                key="perfilProduto"
-                class="perfilProduto"
-              >
+                  v-if="acaoCadastroPerfil == 'perfilProduto'"
+                  key="perfilProduto"
+                  class="perfilProduto"
+                >
                 <component-personalizar-bag />
               </div>
             </div>
           </transition>
-          <div class="col-3" />
+          <div class="col-1" />
         </div>
       </div>
       <div class="row">

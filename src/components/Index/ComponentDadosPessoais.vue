@@ -13,10 +13,9 @@
         />
       </div>
       <div class="col">
-        <q-input v-model="cadastroPerfil.email" filled label="E-mail" />
+        <q-input v-model="cadastroPerfil.email" filled disable label="E-mail" />
       </div>
     </div>
-
     <div class="row q-mt-lg">
       <div class="col">
         <q-input
@@ -76,6 +75,8 @@
 </template>
 
 <script>
+import axios from 'axios'
+
 const DADOS_PERFIL = {
   nome: "",
   email: "",
@@ -92,14 +93,13 @@ export default {
   name: "ComponentDadosPessoais",
   data() {
     return {
+      baseUrl: "https://power-bag.herokuapp.com",
       cadastroPerfil: DADOS_PERFIL,
       mostrarDadosPessoais: true,
-      identificacao: ["Sra", "Sr"]
-    };
-  },
-  methods: {
-    salvarDadosPessoais() {
-      const data = {
+      identificacao: ["Sra", "Sr"],
+      tokent: localStorage.getItem("token"),
+      clienteId: localStorage.getItem('clienteId'),
+      data: {
         nome: this.cadastroPerfil.nome,
         email: this.cadastroPerfil.email,
         cpf: this.cadastroPerfil.cpf,
@@ -109,7 +109,30 @@ export default {
         dat_nasc: this.cadastroPerfil.dat_nasc,
         status: this.cadastroPerfil.status,
         pontuacao: this.cadastroPerfil.pontuacao
-      };
+      }
+    };
+  },
+  mounted() {
+    this.cadastroPerfil.nome = localStorage.getItem('nome')
+    this.cadastroPerfil.email = localStorage.getItem('email')
+  },
+  methods: {
+    salvarDadosPessoais() {
+      axios({
+        method: 'PUT',
+        url: `${this.baseUrl}/cliente/${this.clienteId}`,
+        data: {
+          nome: this.cadastroPerfil.nome,
+          email: this.cadastroPerfil.email,
+          cpf: this.cadastroPerfil.cpf,
+          identificacao: this.cadastroPerfil.identificacao,
+          tel_cel1: this.cadastroPerfil.tel_cel1,
+          tel_cel2: this.cadastroPerfil.tel_cel2,
+          dat_nasc: this.cadastroPerfil.dat_nasc,
+          status: this.cadastroPerfil.status,
+          pontuacao: this.cadastroPerfil.pontuacao
+        }
+      });
     }
   }
 };

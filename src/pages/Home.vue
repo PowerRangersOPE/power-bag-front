@@ -6,7 +6,7 @@
         style="height: 150px"
       >
         <q-header elevated>
-          <q-toolbar class="q-pa-md">
+          <q-toolbar class="q-pa-sm">
             <q-btn-group flat>
               <q-btn
                 to="/"
@@ -58,7 +58,7 @@
               padding
               arrows
               height="300px"
-              class="bg-purple-7 text-yellow-12 shadow-1 rounded-borders q-mt-xl"
+              class="bg-purple-4 text-yellow-12 shadow-1 rounded-borders q-mt-xl"
             >
               <template #navigation-icon="{ active, btnProps, onClick }">
                 <q-btn

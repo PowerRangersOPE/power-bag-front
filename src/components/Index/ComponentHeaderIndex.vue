@@ -14,7 +14,7 @@
         />
       </div>
       <q-btn-group flat>
-        <q-btn disable label="Colocar nome usuario" color="primary" icon-right="account_circle" />
+        <q-btn color="primary" icon-right="account_circle">{{nome}}</q-btn>
         <q-btn to="/" label="Sair" color="primary" icon-right="logout" @click="limparLocalStorage()" />
       </q-btn-group>
     </q-toolbar>
@@ -26,7 +26,7 @@ export default {
   name: "ComponentHeader",
   data() {
     return {
-      nomeUsuario: ''
+      nome: localStorage.getItem("nome"),
     };
   },
   methods: {
@@ -35,7 +35,6 @@ export default {
     }
   },
   mounted(){
-
   },
 };
 </script>

@@ -37,13 +37,13 @@ export default {
       const token = Buffer.from(`${this.email}:${this.password}`, "utf8").toString(
         "base64"
       );
-      const url = "https://power-bag.herokuapp.com/login";
+      const url = "https://power-bag.herokuapp.com";
 
-      axios.post(url, data, {
+      axios.post(`${url}/login`, data, {
         headers: {Authorization: `${token}`}
         }).then(response => {
           localStorage.setItem('token', response.data.token);
-          localStorage.setItem('clienteId', response.data.clienteId);
+          localStorage.setItem('clienteId', response.data.clienteId)
       });
       this.$router.push('/index')
     }

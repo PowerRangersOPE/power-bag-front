@@ -114,7 +114,7 @@
       </div>
       <div class="col">
         <q-select
-          v-model="cadastroProduto.fx_taria"
+          v-model="cadastroProduto.fx_etaria"
           filled
           :options="listaProdutoFaixaEtaria"
           label="Faixa etária"
@@ -139,6 +139,8 @@
 </template>
 
 <script>
+import axios from 'axios'
+
 const PRODUTOS_NECESSIDADE = [
   "Escola",
   "Passear",
@@ -266,28 +268,37 @@ export default {
       listaProdutoEstacaoAno: PRODUTO_ESTACAO_ANO,
       listaProdutoNaoQuero: PRODUTO_NAO_QUERO,
       listaProdutoFaixaEtaria: PRODUTO_FAIXA_ETARIA,
-      cadastroProduto: PRODUTOS
+      cadastroProduto: PRODUTOS,
+      baseUrl: "https://power-bag.herokuapp.com",
+      clienteId: localStorage.getItem('clienteId'),
+      token: localStorage.getItem("token")
     };
   },
   methods: {
     salvar() {
-      const data = {
-        necessidade: this.cadastroProduto.necessidade,
-        genero: this.cadastroProduto.genero,
-        cor: this.cadastroProduto.cor,
-        tipo_estampa: this.cadastroProduto.tipo_estampa,
-        tipo_tenis: this.cadastroProduto.tipo_tenis,
-        tipo_estilo: this.cadastroProduto.tipo_estilo,
-        tamanho_sapato: this.cadastroProduto.tamanho_sapato,
-        tamanho_calca: this.cadastroProduto.tamanho_calca,
-        tamanho_camisa: this.cadastroProduto.tamanho_camisa,
-        tamanho_tenis: this.cadastroProduto.tamanho_tenis,
-        estacao_ano: this.cadastroProduto.estacao_ano,
-        frequencia: this.cadastroProduto.frequencia,
-        n_quero: this.cadastroProduto.n_quero,
-        fx_taria: this.cadastroProduto.fx_taria,
-        observacoes: this.cadastroProduto.observacoes
-      };
+      axios({
+        method: 'POST',
+        url: `${this.baseUrl}/perfil`,
+        headers: {
+          Authorization: `${this.token}`
+        },
+        data: {
+          necessidade: this.cadastroProduto.necessidade,
+          genero: this.cadastroProduto.genero,
+          cor: this.cadastroProduto.cor,
+          tipo_estampa: this.cadastroProduto.tipo_estampa,
+          tipo_tenis: this.cadastroProduto.tipo_tenis,
+          tipo_estilo: this.cadastroProduto.tipo_estilo,
+          tamanho_sapato: this.cadastroProduto.tamanho_sapato,
+          tamanho_calca: this.cadastroProduto.tamanho_calca,
+          tamanho_camisa: this.cadastroProduto.tamanho_camisa,
+          estacao_ano: this.cadastroProduto.estacao_ano,
+          frequencia: this.cadastroProduto.frequencia,
+          n_quero: this.cadastroProduto.n_quero,
+          fx_etaria: this.cadastroProduto.fx_etaria,
+          observacoes: this.cadastroProduto.observacoes
+        }
+      });
     }
   }
 };

@@ -103,7 +103,7 @@ export default {
     salvarEndereco() {
       let token = localStorage.getItem("token");
       axios({
-        method: localStorage.getItem('endereco') !== 'null' ? 'PUT' : 'POST',
+        method: 'POST',
         url: `${this.baseUrl}/endereco`,
         headers: {
           Authorization: `${token}`

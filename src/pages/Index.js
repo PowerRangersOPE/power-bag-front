@@ -1,21 +1,24 @@
 import axios from "axios";
+import ComponentTimeline from "src/components/Index/ComponentTimeline.vue"
 import ComponentFooter from "src/components/ComponentFooter.vue";
 import ComponentHeaderIndex from "src/components/Index/ComponentHeaderIndex.vue";
 import ComponentDadosPessoais from "src/components/Index/ComponentDadosPessoais.vue";
 import ComponentPersonalizarBag from "src/components/Index/ComponentPersonalizarBag.vue";
 import ComponentEndereco from "src/components/Index/ComponentEndereco.vue";
 import ComponentCartao from "src/components/Index/ComponentCartao.vue"
-import { setTimeout } from "core-js";
+import ComponentMinhasBags from "src/components/Index/ComponentMinhasBags.vue"
 
 export default {
   name: "Index",
   components: {
+    ComponentTimeline,
     ComponentFooter,
     ComponentHeaderIndex,
     ComponentDadosPessoais,
     ComponentPersonalizarBag,
     ComponentEndereco,
-    ComponentCartao
+    ComponentCartao,
+    ComponentMinhasBags
   },
   data() {
     return {
@@ -23,6 +26,7 @@ export default {
       baseUrl: "https://power-bag.herokuapp.com",
       acaoCadastroPerfil: "",
       token: localStorage.getItem("token"),
+      clienteId: localStorage.getItem("clienteId"),
       dadosCliente: {
         nome: "",
         email: "",
@@ -34,35 +38,36 @@ export default {
       }
     };
   },
-  async mounted() {
-    const clienteId = localStorage.getItem("clienteId")
-    const { data }  = await axios.get(`${this.baseUrl}/cliente/${clienteId}`, {
-      headers: {
-          'authorization': `${this.token}`
-      }
-    });
-    localStorage.setItem('dataCliente', JSON.stringify(data)) 
-    localStorage.setItem('endereco', response.JSON.stringify(data.endereco));
-    localStorage.setItem('perfil', response.JSON.stringify(data.perfil));
-    localStorage.setItem('carta', response.JSON.stringify(data.cartao));
-    
-    setTimeout(() => {
-      window.location.reload()
-    }, 1000);
-  },
   mounted() {
-   
+    axios.get(`${this.baseUrl}/cliente/${this.clienteId}`, {
+    headers: {Authorization: `${this.token}`
+  }
+    }).then(response => {
+      localStorage.setItem('nome', response.data.nome);
+      localStorage.setItem('email', response.data.email);
+    });
   },
   methods: {
     async menuPerfil(acao) {
+
       this.acaoCadastroPerfil = acao;
+
       if (acao == "endereco") {
-        const { data }  = await axios.get(`${this.baseUrl}/endereco/`, {
+        const { data }  = await axios.get(`${this.baseUrl}/endereco`, {
           headers: {
               'authorization': `${this.token}`
           }
         });
         localStorage.setItem('dataEndereco', JSON.stringify(data))     
+      }
+      
+      if (acao == "dadosPessoais") {
+        const { data }  = await axios.get(`${this.baseUrl}/cliente/${this.clienteId}`, {
+          headers: {
+              'authorization': `${this.token}`
+          }
+        });
+        localStorage.setItem('dadosPessoais', JSON.stringify(data))     
       }
     },
     textToUpper(val) {
