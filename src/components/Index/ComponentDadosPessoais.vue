@@ -99,17 +99,6 @@ export default {
       identificacao: ["Sra", "Sr"],
       tokent: localStorage.getItem("token"),
       clienteId: localStorage.getItem('clienteId'),
-      data: {
-        nome: this.cadastroPerfil.nome,
-        email: this.cadastroPerfil.email,
-        cpf: this.cadastroPerfil.cpf,
-        identificacao: this.cadastroPerfil.identificacao,
-        tel_cel1: this.cadastroPerfil.tel_cel1,
-        tel_cel2: this.cadastroPerfil.tel_cel2,
-        dat_nasc: this.cadastroPerfil.dat_nasc,
-        status: this.cadastroPerfil.status,
-        pontuacao: this.cadastroPerfil.pontuacao
-      }
     };
   },
   mounted() {

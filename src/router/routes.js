@@ -1,55 +1,62 @@
 const routes = [
-  // {
-  //   // path: "/",
-  //   // component: () => import("layouts/MainLayout.vue"),
-  //   // children: [
-  //   //   {
-  //   //     path: "/",
-  //   //     component: () => import("src/pages/Home.vue")
-  //   //   },
-  //   //   {
-  //   //     path: "/login",
-  //   //     component: () => import("src/pages/Login.vue")
-  //   //   },
-  //   //   {
-  //   //     path: "/cadastro",
-  //   //     component: () => import("src/pages/Cadastro.vue")
-  //   //   },
-  //   //   {
-  //   //     path: "/index",
-  //   //     component: localStorage.getItem('token') ? () => import("src/pages/Index.vue") : () => import("src/pages/Error404.vue")
-  //   //   }
-  //   // ]
-  // },
-
   {
     path: '/',
-    name: 'main',
     component: () => import("layouts/MainLayout.vue"),
-    redirect: { name: 'home' }
-  },
-  {
-    path: '/home',
-    name: 'home',
-    component: () => import("src/pages/Home.vue")
-  },
-  {
-    path: '/login',
-    name: 'login',
-    component: () => import("src/pages/Login.vue"),
-  },
-  {
-    path: '/cadastro',
-    name: 'cadastro',
-    component: () => import("src/pages/Cadastro.vue")
+    children: [
+      {
+        path: '/',
+        name: 'home',
+        component: () => import("src/pages/home/Home.vue")
+      },
+      {
+        path: '/login',
+        name: 'login',
+        component: () => import("src/pages/home/Login.vue"),
+      },
+      {
+        path: '/cadastro',
+        name: 'cadastro',
+        component: () => import("src/pages/home/Cadastro.vue")
+      }
+    ]
   },
   {
     path: '/index',
     name: 'index',
-    component: () => import("src/pages/Index.vue"),
-    props: true,
+    component: () => import("layouts/Index.vue"),
+    children: [
+      {
+        path: '/index',
+        name: 'home',
+        component: () => import("src/pages/index/Home.vue")
+      },
+      {
+        path: '/index/minhas-bags',
+        name: 'minhasBags',
+        component: () => import("src/pages/index/MinhasBags.vue")
+      },
+      {
+        path: '/index/dados-pessoais',
+        name: 'dadosPessoais',
+        component: () => import("src/pages/index/DadosPessoais.vue")
+      },
+      {
+        path: '/index/endereco',
+        name: 'endereco',
+        component: () => import("src/pages/index/Endereco.vue")
+      },
+      {
+        path: '/index/cartao',
+        name: 'cartao',
+        component: () => import("src/pages/index/Cartao.vue")
+      },
+      {
+        path: '/index/personalizar-bag',
+        name: 'personalizarBag',
+        component: () => import("src/pages/index/PersonalizarBag.vue")
+      }
+    ]
   },
-
   // Always leave this as last one,
   // but you can also remove it
   {

@@ -1,24 +1,11 @@
 import axios from "axios";
-import ComponentTimeline from "src/components/Index/ComponentTimeline.vue"
+import ComponentNav from "src/components/ComponentNav.vue"
 import ComponentFooter from "src/components/ComponentFooter.vue";
-import ComponentHeaderIndex from "src/components/Index/ComponentHeaderIndex.vue";
-import ComponentDadosPessoais from "src/components/Index/ComponentDadosPessoais.vue";
-import ComponentPersonalizarBag from "src/components/Index/ComponentPersonalizarBag.vue";
-import ComponentEndereco from "src/components/Index/ComponentEndereco.vue";
-import ComponentCartao from "src/components/Index/ComponentCartao.vue"
-import ComponentMinhasBags from "src/components/Index/ComponentMinhasBags.vue"
 
 export default {
   name: "Index",
   components: {
-    ComponentTimeline,
-    ComponentFooter,
-    ComponentHeaderIndex,
-    ComponentDadosPessoais,
-    ComponentPersonalizarBag,
-    ComponentEndereco,
-    ComponentCartao,
-    ComponentMinhasBags
+    ComponentFooter, ComponentNav
   },
   props: {
     cliente: Object,
@@ -32,6 +19,7 @@ export default {
   data() {
     return {
       name: "Index",
+      leftDrawerOpen: false,
       baseUrl: "https://power-bag.herokuapp.com",
       acaoCadastroPerfil: "",
       token: this.cliente ? this.cliente.token : localStorage.getItem("token"),
@@ -57,6 +45,9 @@ export default {
     });
   },
   methods: {
+    limparLocalStorage() {
+      localStorage.clear();
+    },
     async menuPerfil(acao) {
 
       this.acaoCadastroPerfil = acao;

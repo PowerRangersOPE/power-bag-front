@@ -5,18 +5,6 @@
         class="row"
         style="height: 150px"
       >
-        <q-header elevated>
-          <q-toolbar class="q-pa-md">
-            <q-btn-group flat>
-              <q-btn
-                to="/"
-                size="lg"
-                label="powerbag"
-                color="primary"
-              />
-            </q-btn-group>
-          </q-toolbar>
-        </q-header>
       </div>
       <div class="row-10">
         <div class="text-center text-h4">
@@ -86,9 +74,6 @@
             </q-page>
           </q-page-container>
         </div>
-      </div>
-      <div class="row">
-        <component-footer />
       </div>
     </div>
   </q-layout>
