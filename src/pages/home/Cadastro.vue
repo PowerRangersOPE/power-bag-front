@@ -2,8 +2,7 @@
   <q-layout view="lHh Lpr lFf">
     <div class="col">
       <div
-        class="row"
-        style="height: 150px"
+        class="row q-mt-xl"
       >
       </div>
       <div class="row-10">
@@ -13,7 +12,7 @@
         <div>
           <q-page-container>
             <q-page
-              class="row justify-center items-center"
+              class="row justify-center items-center q-mt-md"
               style="min-height: 300px;"
             >
               <div class="column">

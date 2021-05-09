@@ -55,7 +55,7 @@
       </div>
       <div class="col">
         <q-select
-          v-model="cadastroProduto.sapato"
+          v-model="cadastroProduto.tamanho_sapato"
           filled
           :options="listaProdutoTamanhoSapato"
           label="Tamanho do sapato"
@@ -66,7 +66,7 @@
     <div class="row q-mt-lg">
       <div class="col">
         <q-select
-          v-model="cadastroProduto.calca"
+          v-model="cadastroProduto.tamanho_calca"
           filled
           class="q-mr-lg"
           :options="listaProdutoTamanhoCalca"
@@ -86,30 +86,11 @@
     <div class="row q-mt-lg">
       <div class="col">
         <q-select
-          v-model="cadastroProduto.tamanho_tenis"
-          filled
-          class="q-mr-lg"
-          :options="listaProdutoTamanhoTenis"
-          label="Tamanho do tênis"
-        />
-      </div>
-      <div class="col">
-        <q-select
           v-model="cadastroProduto.estacao_ano"
           filled
+          class="q-mr-lg"
           :options="listaProdutoEstacaoAno"
           label="Estação do ano"
-        />
-      </div>
-    </div>
-
-    <div class="row q-mt-lg">
-      <div class="col">
-        <q-input
-          v-model="cadastroProduto.n_quero"
-          filled
-          class="q-mr-lg"
-          label="Não quero"
         />
       </div>
       <div class="col">
@@ -125,6 +106,14 @@
     <div class="row q-mt-lg">
       <div class="col">
         <q-input
+          v-model="cadastroProduto.n_quero"
+          filled
+          class="q-mr-lg"
+          label="Não quero"
+        />
+      </div>
+      <div class="col">
+        <q-input
           v-model="cadastroProduto.observacoes"
           filled
           label="Observações"
@@ -133,8 +122,20 @@
     </div>
 
     <div class="col q-mt-xl">
-      <q-btn color="black" label="Salvar" @click="salvar()" />
+      <q-btn color="black" label="Salvar" @click="confirmaSalvar()" />
     </div>
+      <q-dialog v-model="confirm" persistent>
+        <q-card>
+            <q-card-section class="row items-center">
+                <q-avatar icon="announcement" color="primary" text-color="white" />
+                <span class="q-ml-sm">Deseja salvar os dados?</span>
+            </q-card-section>
+            <q-card-actions align="right">
+                <q-btn flat label="Sim" color="primary" @click="salvar()" v-close-popup />
+                <q-btn flat label="Não" color="primary" v-close-popup />
+            </q-card-actions>
+        </q-card>
+    </q-dialog>
   </div>
 </template>
 
@@ -269,12 +270,19 @@ export default {
       listaProdutoNaoQuero: PRODUTO_NAO_QUERO,
       listaProdutoFaixaEtaria: PRODUTO_FAIXA_ETARIA,
       cadastroProduto: PRODUTOS,
+      confirm: false,
       baseUrl: "https://power-bag.herokuapp.com",
-      clienteId: localStorage.getItem('clienteId'),
-      token: localStorage.getItem("token")
+      token: localStorage.getItem("token"),
+      clienteId: localStorage.getItem("clienteId")
     };
   },
+  mounted() {
+    this.buscarDados()
+  },
   methods: {
+    confirmaSalvar() {
+      this.confirm = true
+    },
     salvar() {
       axios({
         method: 'POST',
@@ -299,6 +307,24 @@ export default {
           observacoes: this.cadastroProduto.observacoes
         }
       });
+      this.buscarDados()
+      setTimeout(() => {
+          this.$q.dialog({
+              title: 'Parabéns!',
+              message: 'Dados salvo com sucesso!'
+          })
+      }, 500); 
+    },
+    async buscarDados() {
+      const response = await axios({
+        method: "GET",
+        url: `${this.baseUrl}/perfil`,
+        headers: {
+          Authorization: `${this.token}`,
+        }
+      });
+      const busca = Object.assign(this.cadastroProduto, response.data)
+      this.cadastroProduto = busca
     }
   }
 };

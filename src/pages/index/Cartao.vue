@@ -17,9 +17,7 @@
     <div class="row q-mt-lg">
       <div class="col">
         <q-input
-          id="inputNome"
           v-model="cadastroCartao.nome"
-          :value="cadastroCartao.nome"
           filled
           type="text"
           label="Nome"
@@ -54,7 +52,6 @@
 </template>
 
 <script>
-
 const CARTAO = {
   numero: "",
   nome: "",
@@ -67,7 +64,7 @@ export default {
   name: "cartao",
   data() {
     return {
-      cadastroCartao: CARTAO,
+      cadastroCartao: CARTAO
     };
   },
   methods: {
@@ -82,7 +79,7 @@ export default {
         data: {}
       });
       this.$router.push("/index");
-    },
+    }
   }
 };
 </script>

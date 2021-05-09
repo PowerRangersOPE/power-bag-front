@@ -66,8 +66,20 @@
       </div>
     </div>
     <div class="col q-mt-xl">
-      <q-btn color="black" label="Salvar" @click="salvarEndereco()" />
+      <q-btn color="black" label="Salvar" @click="confirmaSalvar()" />
     </div>
+      <q-dialog v-model="confirm" persistent>
+        <q-card>
+            <q-card-section class="row items-center">
+                <q-avatar icon="announcement" color="primary" text-color="white" />
+                <span class="q-ml-sm">Deseja salvar os dados?</span>
+            </q-card-section>
+            <q-card-actions align="right">
+                <q-btn flat label="Sim" color="primary" @click="salvar()" v-close-popup />
+                <q-btn flat label="Não" color="primary" v-close-popup />
+            </q-card-actions>
+        </q-card>
+    </q-dialog>
   </div>
 </template>
 
@@ -90,17 +102,19 @@ export default {
     return {
       cadastroEndereco: ENDERECO,
       baseUrl: "https://power-bag.herokuapp.com",
+      token: localStorage.getItem("token"),
+      clienteId: localStorage.getItem("clienteId"),
+      confirm: false,
     };
   },
   mounted() {
-    setTimeout(() => { 
-      const data = JSON.parse(localStorage.getItem('dataEndereco'))
-      const buscaEndereco = Object.assign(this.cadastroEndereco, data);
-      this.cadastroEndereco = buscaEndereco
-    }, 1500);
+    this.buscarDados()  
   },
   methods: {
-    salvarEndereco() {
+    confirmaSalvar() {
+      this.confirm = true
+    },
+    salvar() {
       let token = localStorage.getItem("token");
       axios({
         method: 'POST',
@@ -118,8 +132,25 @@ export default {
           complemento: this.cadastroEndereco.complemento,
           observacoes: this.cadastroEndereco.observacoes
         }
+      })
+      this.buscarDados();
+      setTimeout(() => {
+        this.$q.dialog({
+            title: 'Parabéns!',
+            message: 'Dados salvo com sucesso!'
+        })
+        }, 500); 
+    },
+    async buscarDados() {
+      const response = await axios({
+        method: "GET",
+        url: `${this.baseUrl}/endereco`,
+        headers: {
+          Authorization: `${this.token}`,
+        }
       });
-      this.$router.push("/index");
+      const busca = Object.assign(this.cadastroEndereco, response.data)
+      this.cadastroEndereco = busca
     },
     async searchCep() {
       if (this.cadastroEndereco.cep.length === 9) {
@@ -137,12 +168,7 @@ export default {
           console.log(error);
         }
       }
-    },
-    buscarEndereco() {
-      const data  = localStorage.getItem('dataEndereco') 
-      console.log(data.rua)
-    }
-    
+    }    
   }
 };
 </script>

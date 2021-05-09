@@ -7,16 +7,9 @@ export default {
   data() {
     return {
       email: "",
-      password: ""
+      password: "",
+      baseUrl: "https://power-bag.herokuapp.com",
     };
-  },
-  mounted() {
-    if (localStorage.name) {
-      this.name = localStorage.name;
-    }
-    if (localStorage.age) {
-      this.age = localStorage.age;
-    }
   },
   methods: {
     required(val) {
@@ -30,18 +23,54 @@ export default {
       return emailPattern.test(val) || "Por favor digite e-mail válido";
     },
     async login() {
-      const data = {
-        email: this.email,
-        senha: this.password
-      };
-      const token = Buffer.from(`${this.email}:${this.password}`, "utf8").toString(
-        "base64"
-      );
-      const url = "https://power-bag.herokuapp.com";
+      try {
+        const responseLogin = await axios({
+          method: "POST",
+          url: "https://power-bag.herokuapp.com/login",
+          data: {
+            email: this.email,
+            senha: this.password
+          }
+        })
 
-      const { data: response } = await axios.post(`${url}/login`, data);
+        localStorage.setItem("token", responseLogin.data.token);
+        localStorage.setItem("clienteId", responseLogin.data.clienteId); 
 
-      this.$router.push({ name: 'index', params: { cliente: response } })
+        let clienteId = localStorage.getItem("clienteId")
+        let token = localStorage.getItem("token")  
+  
+        const responseCliente = await axios
+          .get(`${this.baseUrl}/cliente/${clienteId}`, {
+            headers: { Authorization: `${token}` }
+          })
+  
+          localStorage.setItem("nome", responseCliente.data.nome);
+          localStorage.setItem("email", responseCliente.data.email);
+          
+        setTimeout(() => {
+          this.$router.push({ name: "index" });
+        }, 500);  
+        
+      } catch (error) {
+        if(error.response.data.error === "Senha didnt match") {
+          console.log(error.response.data.error);
+          this.$q.dialog({
+            title: 'Atenção',
+            message: 'Login ou Senha incorreta. Tente novamente.'
+          })
+          this.email = ''
+          this.password = ''
+        }
+        if(error.response.data.error === "Cliente not found") {
+          console.log(error.response.data.error);
+          this.$q.dialog({
+            title: 'Atenção',
+            message: 'Login não localizado. Faça seu cadastro!'
+          })
+          this.email = ''
+          this.password = ''
+        }
+      }
     }
   }
 };

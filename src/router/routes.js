@@ -32,12 +32,12 @@ const routes = [
       },
       {
         path: '/index/minhas-bags',
-        name: 'minhasBags',
+        name: 'minhas-bags',
         component: () => import("src/pages/index/MinhasBags.vue")
       },
       {
         path: '/index/dados-pessoais',
-        name: 'dadosPessoais',
+        name: 'dados-pessoais',
         component: () => import("src/pages/index/DadosPessoais.vue")
       },
       {
@@ -52,7 +52,7 @@ const routes = [
       },
       {
         path: '/index/personalizar-bag',
-        name: 'personalizarBag',
+        name: 'personalizar-bag',
         component: () => import("src/pages/index/PersonalizarBag.vue")
       }
     ]
