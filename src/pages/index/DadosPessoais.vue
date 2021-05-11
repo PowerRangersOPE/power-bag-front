@@ -104,12 +104,12 @@ export default {
                 pontuacao: this.cadastroPerfil.pontuacao
             }
         });
-        this.buscardados();
         setTimeout(() => {
             this.$q.dialog({
                 title: 'Parabéns!',
                 message: 'Dados salvo com sucesso!'
             })
+            this.buscardados()
             }, 500); 
     },
     async buscardados() {

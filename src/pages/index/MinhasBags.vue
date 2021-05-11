@@ -65,7 +65,23 @@ export default {
         confirmarPedido() {
             this.confirm = true
         },
-        solicitarBag() {
+        async solicitarBag() {
+            const cadastroPreenchido = await axios({
+                method: "GET",
+                url: `${this.baseUrl}/cliente/validate`,
+                headers: {
+                    Authorization: `${this.token}`
+                }
+            });
+
+            if(!cadastroPreenchido.data.available) {
+                this.$q.dialog({
+                    title: 'Atenção!',
+                    message: 'Para solicitar a Bag é necessário ter todos os cadastros preenchidos.'
+                })
+                return false
+            }
+
             axios({
                 method: "POST",
                 url: `${this.baseUrl}/bag`,
@@ -75,18 +91,19 @@ export default {
             }).then(response => {
                 localStorage.setItem("bag", JSON.stringify(response.data));
             });
-            this.buscarBags();
+
             setTimeout(() => {
-            this.$q.dialog({
-                title: 'Parabéns!!!',
-                message: 'Sua bag foi solicitada com sucesso!'
-            })
+                this.$q.dialog({
+                    title: 'Parabéns!!!',
+                    message: 'Sua bag foi solicitada com sucesso!'
+                })
+                this.buscarBags();
             }, 500); 
         },
         async buscarBags() {
             const response = await axios({
                 method: "GET",
-                url: `${this.baseUrl}/bag`,
+                url: `${this.baseUrl}/bag/detail`,
                 headers: {
                     Authorization: `${this.token}`
                 }

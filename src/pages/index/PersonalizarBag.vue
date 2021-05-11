@@ -307,12 +307,13 @@ export default {
           observacoes: this.cadastroProduto.observacoes
         }
       });
-      this.buscarDados()
+      
       setTimeout(() => {
           this.$q.dialog({
               title: 'Parabéns!',
               message: 'Dados salvo com sucesso!'
           })
+          this.buscarDados()
       }, 500); 
     },
     async buscarDados() {

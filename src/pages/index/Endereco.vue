@@ -133,13 +133,13 @@ export default {
           observacoes: this.cadastroEndereco.observacoes
         }
       })
-      this.buscarDados();
       setTimeout(() => {
         this.$q.dialog({
             title: 'Parabéns!',
             message: 'Dados salvo com sucesso!'
         })
-        }, 500); 
+        this.buscarDados();
+      }, 500);
     },
     async buscarDados() {
       const response = await axios({
