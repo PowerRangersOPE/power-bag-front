@@ -10,4 +10,4 @@
 </q-layout>
 </template>
 
-<script src="./index.js">
+<script src="./Index.js">
