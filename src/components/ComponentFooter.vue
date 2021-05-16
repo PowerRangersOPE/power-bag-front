@@ -5,11 +5,17 @@
       <p class="text-caption absolute-center">
         Todos Direitos Reservados, Bags PowerBag
       </p>
-      <div class="q-pa-md">
+      <div class="q-mt-md q-mr-md">
         <div class="q-gutter-md">
-          <q-icon size="md" name="call" />
-          <q-icon size="md" name="email" />
-          <q-icon size="md" name="facebook" />
+          <a href="tel:+5511942692333">
+            <q-icon size="md" name="call"/>
+          </a>
+          <a href="mailto:powerbag.contato@hotmail.com">
+            <q-icon size="md" name="email"/>
+          </a>
+          <a href="https://www.instagram.com/powerbagcontato/" target="_blank">
+            <q-icon size="md" name="fab fa-instagram"/>
+          </a>
         </div>
       </div>
     </q-toolbar>
@@ -20,9 +26,14 @@
 export default {
   name: "ComponentFooter",
   data() {
-    return {
-      tab: "images"
-    };
+    return {};
   }
 };
 </script>
+
+<style scoped>
+div a {
+color: #ffffff;
+text-decoration: none;
+}
+</style>
