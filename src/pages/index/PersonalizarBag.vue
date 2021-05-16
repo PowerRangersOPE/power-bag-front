@@ -50,7 +50,7 @@
           filled
           class="q-mr-lg"
           :options="listaProdutoTipoTenis"
-          label="Tipo de tênis"
+          label="Tipo de calçado"
         />
       </div>
       <div class="col">
@@ -296,7 +296,6 @@ export default {
           cor: this.cadastroProduto.cor,
           tipo_estampa: this.cadastroProduto.tipo_estampa,
           tipo_tenis: this.cadastroProduto.tipo_tenis,
-          tipo_estilo: this.cadastroProduto.tipo_estilo,
           tamanho_sapato: this.cadastroProduto.tamanho_sapato,
           tamanho_calca: this.cadastroProduto.tamanho_calca,
           tamanho_camisa: this.cadastroProduto.tamanho_camisa,

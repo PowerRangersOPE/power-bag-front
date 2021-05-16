@@ -14,11 +14,11 @@
     <q-drawer v-model="leftDrawerOpen" show-if-above content-class="bg-blue-1" class="q-mt-xl">
         <q-list>
 
-            <q-item clickable tag="a" rel="" to="/index" class="q-mb-sm">
+            <div clickable tag="a" rel="" class="q-ma-md">
                  <q-btn flat class="q-mt-xl q-mb-md" color="primary" icon="account_circle">
                     {{ nome }}
                 </q-btn>
-            </q-item>
+            </div>
 
             <q-item clickable tag="a" rel="" to="/index/minhas-bags" class="q-mb-sm">
                 <q-item-section avatar>

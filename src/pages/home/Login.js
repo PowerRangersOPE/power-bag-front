@@ -48,7 +48,7 @@ export default {
           localStorage.setItem("email", responseCliente.data.email);
           
         setTimeout(() => {
-          this.$router.push({ name: "index" });
+          this.$router.push({ name: "minhas-bags" });
         }, 500);  
         
       } catch (error) {

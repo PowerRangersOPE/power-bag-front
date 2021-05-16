@@ -2,8 +2,7 @@
   <q-layout view="lHh Lpr lFf">
     <div class="col">
       <div
-        class="row"
-        style="height: 150px"
+        class="row q-mt-xl"
       >
       </div>
       <div class="row-10">
