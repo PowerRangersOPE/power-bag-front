@@ -26,11 +26,6 @@ const routes = [
     component: () => import("layouts/Index.vue"),
     children: [
       {
-        path: '/index',
-        name: 'home',
-        component: () => import("src/pages/index/Home.vue")
-      },
-      {
         path: '/index/minhas-bags',
         name: 'minhas-bags',
         component: () => import("src/pages/index/MinhasBags.vue")

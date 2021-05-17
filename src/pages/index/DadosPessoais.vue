@@ -16,7 +16,7 @@
             <q-input v-model="cadastroPerfil.cpf" filled class="q-mr-lg" label="CPF" mask="###.###.###-##" />
         </div>
         <div class="col">
-            <q-select v-model="cadastroPerfil.identificacao" filled :options="identificacao" label="Identificação" />
+            <q-input v-model="cadastroPerfil.dat_nasc" filled class="" label="Data de nascimento" mask="##/##/####" />
         </div>
     </div>
 
@@ -26,12 +26,6 @@
         </div>
         <div class="col">
             <q-input v-model="cadastroPerfil.tel_cel2" filled label="Celular secundário" mask="(##) ##### - ####" />
-        </div>
-    </div>
-
-    <div class="row q-mt-lg">
-        <div class="col">
-            <q-input v-model="cadastroPerfil.dat_nasc" filled class="" label="Data de nascimento" mask="##/##/####" />
         </div>
     </div>
 
@@ -60,7 +54,7 @@ const DADOS_PERFIL = {
     nome: "",
     email: "",
     cpf: "",
-    identificacao: "",
+    identificacao: "null",
     tel_cel1: "",
     tel_cel2: "",
     dat_nasc: "",

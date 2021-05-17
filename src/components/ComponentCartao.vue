@@ -1,6 +1,4 @@
 <template>
-  <div class="q-ma-md col-7">
-
   <div class="wrapper" id="app">
     <div class="card-form">
       <div class="card-list">
@@ -75,7 +73,7 @@
                         <span class="card-item__nameItem" v-for="(n, $index) in cardName.replace(/\s\s+/g, ' ')" v-bind:key="$index + 1">{{n}}</span>
                       </transition-group>
                     </div>
-                    <div class="card-item__name" v-else key="2">Nome Completo</div>
+                    <div class="card-item__name" v-else key="2">Full Name</div>
                   </transition>
                 </label>
                 <div class="card-item__date" ref="cardDate">
@@ -121,7 +119,7 @@
       <div class="card-form__inner">
         <div class="card-input">
           <label for="cardNumber" class="card-input__label">Número do cartão</label>
-          <input type="text" id="cardNumber" class="card-input__input"  v-model="cardNumber" v-on:focus="focusInput" v-on:blur="blurInput" data-ref="cardNumber" autocomplete="off">
+          <input type="text" id="cardNumber" class="card-input__input" v-mask="generateCardNumberMask" v-model="cardNumber" v-on:focus="focusInput" v-on:blur="blurInput" data-ref="cardNumber" autocomplete="off">
         </div>
         <div class="card-input">
           <label for="cardName" class="card-input__label">Nome impresso no Cartão</label>
@@ -148,29 +146,16 @@
           <div class="card-form__col -cvv">
             <div class="card-input">
               <label for="cardCvv" class="card-input__label">CVV</label>
-              <input type="text" class="card-input__input" id="cardCvv" maxlength="4" v-model="cardCvv" v-on:focus="flipCard(true)" v-on:blur="flipCard(false)" autocomplete="off">
+              <input type="text" class="card-input__input" id="cardCvv" v-mask="'####'" maxlength="4" v-model="cardCvv" v-on:focus="flipCard(true)" v-on:blur="flipCard(false)" autocomplete="off">
             </div>
           </div>
         </div>
 
-        <button class="card-form__button" @click="card_hash()">
+        <button class="card-form__button" @click="card_ash()">
           Salvar
         </button>
       </div>
     </div>
-  </div>
-    <q-dialog v-model="confirm" persistent>
-      <q-card>
-          <q-card-section class="row items-center">
-              <q-avatar icon="announcement" color="primary" text-color="white" />
-              <span class="q-ml-sm">Deseja salvar os dados?</span>
-          </q-card-section>
-          <q-card-actions align="right">
-              <q-btn flat label="Sim" color="primary" @click="salvarCartao()" v-close-popup />
-              <q-btn flat label="Não" color="primary" v-close-popup />
-          </q-card-actions>
-      </q-card>
-    </q-dialog>
   </div>
 </template>
 
@@ -808,4 +793,5 @@ body {
 }
 </style>
 
-<script src="./Cartao.js">
+<script src="./ComponentCartao.js">
+
