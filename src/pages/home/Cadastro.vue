@@ -49,7 +49,7 @@
                           clearable
                           type="user"
                           label="Nome completo"
-                          :rules="[this.required,this.short]"
+                          :rules="[this.required,this.short,this.isNomeSobrenome]"
                         >
                           <template #prepend>
                             <q-icon name="lock" />

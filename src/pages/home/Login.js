@@ -23,6 +23,16 @@ export default {
       return emailPattern.test(val) || "Por favor digite e-mail válido";
     },
     async login() {
+      this.$refs.email.validate()
+      this.$refs.password.validate()
+      if(this.$refs.email.hasError || this.$refs.password.hasError) {
+        this.formHasError = true
+        this.$q.dialog({
+          title: 'Atenção',
+          message: 'Login ou Senha preenchido incorretamente.'
+        })
+        return
+      }
       try {
         const responseLogin = await axios({
           method: "POST",

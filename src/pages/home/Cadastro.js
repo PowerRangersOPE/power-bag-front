@@ -22,9 +22,24 @@ export default {
       const emailPattern = /^(?=[a-zA-Z0-9@._%+-]{6,254}$)[a-zA-Z0-9._%+-]{1,64}@(?:[a-zA-Z0-9-]{1,63}\.){1,8}[a-zA-Z]{2,63}$/
       return emailPattern.test(val) || 'Por favor digite e-mail válido'
     },
+    isNomeSobrenome (val) {
+      const nomePattern = /^([a-zA-Z]{2,}\s[a-zA-Z]{1,}'?-?[a-zA-Z]{2,}\s?([a-zA-Z]{1,})?)/
+      return nomePattern.test(val) || 'Por favor digite o nome e sobrenome'
+    },
     async cadastrar () {
+      this.$refs.email.validate()
+      this.$refs.user.validate()
+      this.$refs.password.validate()
+      if(this.$refs.email.hasError || this.$refs.user.hasError || this.$refs.password.hasError) {
+        this.formHasError = true
+        this.$q.dialog({
+          title: 'Atenção',
+          message: 'Dados preenchidos incorretamente.'
+        })
+        return
+      }
       try {
-        const responseCadastro = await axios({
+       await axios({
           method: 'post',
           url: 'https://power-bag.herokuapp.com/cliente',
           data: {
