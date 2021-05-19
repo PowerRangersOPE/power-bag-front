@@ -66,10 +66,12 @@ export default {
   },
   methods: {
     card_hash() {
-      pagarme.client.connect({ encryption_key: 'SUA_ENCRYPTION_KEY' })
+      const cardArray = this.cardNumber.split(" ")
+      const cardSplit = `${cardArray[0]}-${cardArray[3]}`
+      pagarme.client.connect({ encryption_key: 'ek_test_8xw1zYHFb3ruE5QXrewbMSKKxjYjzz' })
       .then(client => {
         return client.security.encrypt({
-          card_number: this.cardNumber.slice(-4),
+          card_number: this.cardNumber,
           card_holder_name: this.cardName,
           card_expiration_date: this.cardMonth + this.cardYear,
           card_cvv: this.cardCvv,
@@ -81,7 +83,7 @@ export default {
           url: `${this.baseUrl}/cartao`,
           headers: { Authorization: `${this.token}` },
           data: {
-            numero: this.cardNumber,
+            numero: cardSplit,
             card_hash: card_hash
           }
       });

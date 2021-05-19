@@ -100,8 +100,6 @@ export default {
                 return false
             }
 
-
-
             axios({
                 method: "POST",
                 url: `${this.baseUrl}/bag`,
