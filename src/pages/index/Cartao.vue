@@ -10,7 +10,6 @@
                   <img
                   v-bind:src="'https://raw.githubusercontent.com/muhammederdem/credit-card-form/master/src/assets/images/' + currentCardBackground + '.jpeg'" class="card-item__bg">
                 </div>
-                
                 <div class="card-item__wrapper">
                   <div class="card-item__top">
                     <img src="https://raw.githubusercontent.com/muhammederdem/credit-card-form/master/src/assets/images/chip.png" class="card-item__chip">
@@ -151,14 +150,11 @@
                 </div>
               </div>
             </div>
-
             <button class="card-form__button" @click="card_hash()">
-              Validar
+              Salvar
             </button>
           </div>
         </div>
-        
-        
     </div>
   </div>
 </template>

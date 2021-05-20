@@ -99,7 +99,7 @@ export default {
       });
       console.log(response.data)
       const fullCardNumber = response.data.cartao.numero
-      this.cardNumber = "**** **** **** " + fullCardNumber.slice(-4)
+      this.cardNumber = fullCardNumber.slice(0, 4) + " **** **** " + fullCardNumber.slice(-4)
       this.cardName = "******** *******"
       this.cardCvv = "***"
     },
