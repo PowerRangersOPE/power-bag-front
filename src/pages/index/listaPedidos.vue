@@ -16,13 +16,13 @@
         :columns="columns"
         row-key="id"
         class="col"
-        :rows-per-page-options="[10]"
+        :rows-per-page-options="[20]"
       >
         <template v-slot:body-cell-action="props">
           <q-td :props="props">
             <div>
               <q-btn
-                v-if="props.row.status !== 'Recebido'"
+                v-if="props.row.status === 'Compra total' || props.row.status === 'Solicitada'"
                 icon="published_with_changes"
                 color="info"
                 size="sm"
@@ -185,7 +185,7 @@ export default {
     async buscarBags() {
       const response = await axios({
         method: "GET",
-        url: `${this.baseUrl}/bag/detail`,
+        url: `${this.baseUrl}/bag/all`,
         headers: {
           Authorization: `${this.token}`
         }

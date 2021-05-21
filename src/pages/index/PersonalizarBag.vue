@@ -6,19 +6,39 @@
     <div class="row q-mt-lg">
       <div class="col">
         <q-select
-          v-model="cadastroProduto.necessidade"
-          filled
           class="q-mr-lg"
-          :options="listaProdutoNecessidade"
-          label="Necessidade"
-        />
-      </div>
-      <div class="col">
-        <q-select
           v-model="cadastroProduto.genero"
           filled
           :options="listaProdutoGenero"
           label="Genero"
+        />
+      </div>
+      <div class="col">
+        <q-select
+          v-model="cadastroProduto.fx_etaria"
+          filled
+          :options="listaProdutoFaixaEtaria"
+          label="Faixa etária"
+        />
+      </div>
+    </div>
+
+    <div class="row q-mt-lg">
+      <div class="col">
+        <q-select
+          v-model="cadastroProduto.estacao_ano"
+          filled
+          class="q-mr-lg"
+          :options="listaProdutoEstacaoAno"
+          label="Estação do ano"
+        />
+      </div>
+      <div class="col">
+        <q-select
+          v-model="cadastroProduto.necessidade"
+          filled
+          :options="listaProdutoNecessidade"
+          label="Necessidade"
         />
       </div>
     </div>
@@ -28,9 +48,9 @@
         <q-select
           v-model="cadastroProduto.cor"
           filled
-          class="q-mr-lg"
           :options="listaProdutoCor"
           label="Cor"
+          class="q-mr-lg"
         />
       </div>
       <div class="col">
@@ -55,26 +75,6 @@
       </div>
       <div class="col">
         <q-select
-          v-model="cadastroProduto.tamanho_sapato"
-          filled
-          :options="listaProdutoTamanhoSapato"
-          label="Tamanho do sapato"
-        />
-      </div>
-    </div>
-
-    <div class="row q-mt-lg">
-      <div class="col">
-        <q-select
-          v-model="cadastroProduto.tamanho_calca"
-          filled
-          class="q-mr-lg"
-          :options="listaProdutoTamanhoCalca"
-          label="Tamanho da calça"
-        />
-      </div>
-      <div class="col">
-        <q-select
           v-model="cadastroProduto.tamanho_camisa"
           filled
           :options="listaProdutoTamanhoCamisa"
@@ -84,42 +84,40 @@
     </div>
 
     <div class="row q-mt-lg">
-      <div class="col">
-        <q-select
-          v-model="cadastroProduto.estacao_ano"
-          filled
-          class="q-mr-lg"
-          :options="listaProdutoEstacaoAno"
-          label="Estação do ano"
-        />
-      </div>
-      <div class="col">
-        <q-select
-          v-model="cadastroProduto.fx_etaria"
-          filled
-          :options="listaProdutoFaixaEtaria"
-          label="Faixa etária"
-        />
-      </div>
+        <div class="col">
+          <q-select
+            v-model="cadastroProduto.tamanho_sapato"
+            filled
+            :options="listaProdutoTamanhoSapato"
+            label="Tamanho do sapato"
+            class="q-mr-lg"
+          />
+        </div>
+        <div class="col">
+          <q-select
+            v-model="cadastroProduto.tipo_estilo"
+            filled
+            :options="listaProdutoTipoEstilo"
+            label="Tipo de estilo"
+          />
+        </div>
     </div>
 
     <div class="row q-mt-lg">
       <div class="col">
-        <q-input
-          v-model="cadastroProduto.n_quero"
+        <q-select
+          v-model="cadastroProduto.tamanho_calca"
           filled
+          :options="listaProdutoTamanhoCalca"
+          label="Tamanho da calça"
           class="q-mr-lg"
-          label="Não quero"
         />
       </div>
       <div class="col">
-        <q-input
-          v-model="cadastroProduto.observacoes"
-          filled
-          label="Observações"
-        />
+        <q-input filled v-model="cadastroProduto.observacoes" label="Observações" />
       </div>
     </div>
+
 
     <div class="col q-mt-xl">
       <q-btn color="black" label="Salvar" @click="confirmaSalvar()" />
@@ -143,14 +141,14 @@
 import axios from 'axios'
 
 const PRODUTOS_NECESSIDADE = [
-  "Escola",
-  "Passear",
-  "Sair a noite",
-  "Social",
-  "Banho"
+  "escola",
+  "passear",
+  "sair a noite",
+  "social",
+  "banho"
 ];
-const PRODUTOS_GENERO = ["Menino", "Menina"];
-const PRODUTOS_COR = ["Preta", "Vermelha"];
+const PRODUTOS_GENERO = ["menino", "menina"];
+const PRODUTOS_COR = ["branco", "vermelho", "azul", "rosa", "amarelo", "verde", "marrom", "laranja", "lilas"];
 const PRODUTO_TIPO_ESTAMPA = [
   "liso",
   "desenho",
@@ -159,25 +157,14 @@ const PRODUTO_TIPO_ESTAMPA = [
   "zebra",
   "onça",
   "poá",
-  "listrada",
-  "floral",
-  "Príncipe de Gales",
-  "geométricas"
+  "listrado",
+  "floral"
 ];
-const PRODUTO_TIPO_TENIS = ["esportivo", "sandalia", "sneaker"];
+const PRODUTO_TIPO_TENIS = ["esportivo", "casual", "sneaker", "sapatenis"];
+const PRODUTO_TIPO_ESTILO = [
+  "classico", "criativo", "elegante", "esportivo", "moderno", "romantico", "rock & punk", "geek"
+];
 const PRODUTO_TAMANHO_SAPATO = [
-  "1",
-  "2",
-  "3",
-  "4",
-  "5",
-  "6",
-  "7",
-  "8",
-  "9",
-  "10",
-  "11",
-  "12",
   "13",
   "14",
   "15",
@@ -193,7 +180,15 @@ const PRODUTO_TAMANHO_SAPATO = [
   "25",
   "26",
   "27",
-  "28"
+  "28",
+  "29",
+  "30",
+  "31",
+  "32",
+  "33",
+  "34",
+  "35",
+  "36"
 ];
 const PRODUTO_TAMANHO_TENIS = [
   "1",
@@ -226,14 +221,14 @@ const PRODUTO_TAMANHO_TENIS = [
   "28"
 ];
 const PRODUTO_TAMANHO_CALCA = ["P", "M", "G", "EG"];
-const PRODUTO_TAMANHO_CAMISA = ["PP", "P", "M", "G", "EG"];
-const PRODUTO_ESTACAO_ANO = ["Verão", "Inverno"];
+const PRODUTO_TAMANHO_CAMISA = ["PP", "P", "M", "G", "GG"];
+const PRODUTO_ESTACAO_ANO = ["verao", "inverno"];
 const PRODUTO_NAO_QUERO = [];
 const PRODUTO_FAIXA_ETARIA = [
   "bebe",
-  "criança",
+  "crianca",
   "adolescente",
-  "pré-adolescente"
+  "preAdolescente"
 ];
 const PRODUTOS = {
   necessidade: "",
@@ -241,7 +236,7 @@ const PRODUTOS = {
   cor: "",
   tipo_estampa: "",
   tipo_tenis: "",
-  tipo_estilo: "Não definido",
+  tipo_estilo: "",
   tamanho_sapato: "",
   tamanho_calca: "",
   tamanho_camisa: "",
@@ -261,6 +256,7 @@ export default {
       listaProdutoGenero: PRODUTOS_GENERO,
       listaProdutoCor: PRODUTOS_COR,
       listaProdutoTipoEstampa: PRODUTO_TIPO_ESTAMPA,
+      listaProdutoTipoEstilo: PRODUTO_TIPO_ESTILO,
       listaProdutoTipoTenis: PRODUTO_TIPO_TENIS,
       listaProdutoTamanhoSapato: PRODUTO_TAMANHO_SAPATO,
       listaProdutoTamanhoTenis: PRODUTO_TAMANHO_TENIS,
@@ -291,18 +287,17 @@ export default {
           Authorization: `${this.token}`
         },
         data: {
-          necessidade: this.cadastroProduto.necessidade,
           genero: this.cadastroProduto.genero,
+          fx_etaria: this.cadastroProduto.fx_etaria,
+          estacao_ano: this.cadastroProduto.estacao_ano,
+          necessidade: this.cadastroProduto.necessidade,
           cor: this.cadastroProduto.cor,
           tipo_estampa: this.cadastroProduto.tipo_estampa,
           tipo_tenis: this.cadastroProduto.tipo_tenis,
-          tamanho_sapato: this.cadastroProduto.tamanho_sapato,
-          tamanho_calca: this.cadastroProduto.tamanho_calca,
           tamanho_camisa: this.cadastroProduto.tamanho_camisa,
-          estacao_ano: this.cadastroProduto.estacao_ano,
-          frequencia: this.cadastroProduto.frequencia,
-          n_quero: this.cadastroProduto.n_quero,
-          fx_etaria: this.cadastroProduto.fx_etaria,
+          tamanho_sapato: this.cadastroProduto.tamanho_sapato,
+          tipo_estilo: this.cadastroProduto.tipo_estilo,
+          tamanho_calca: this.cadastroProduto.tamanho_calca,
           observacoes: this.cadastroProduto.observacoes
         }
       });

@@ -162,7 +162,6 @@
 <style lang="scss" scoped>
 @import url("https://fonts.googleapis.com/css?family=Source+Code+Pro:400,500,600,700|Source+Sans+Pro:400,600,700&display=swap");
 
-
 body {
   background: #ddeefc;
   font-family: "Source Sans Pro", sans-serif;

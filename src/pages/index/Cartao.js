@@ -66,14 +66,17 @@ export default {
   },
   methods: {
     card_hash() {
+      const novoCardyear = this.cardYear.toString().slice(2, 4)
+      const data = {
+        card_number: this.cardNumber.toString(),
+        card_holder_name: this.cardName.toString(),
+        card_expiration_date: this.cardMonth.toString() + "/" + novoCardyear,
+        card_cvv: this.cardCvv.toString(),
+      }
+      console.log(data)
       pagarme.client.connect({ encryption_key: 'ek_test_8xw1zYHFb3ruE5QXrewbMSKKxjYjzz' })
       .then(client => {
-        return client.security.encrypt({
-          card_number: this.cardNumber,
-          card_holder_name: this.cardName,
-          card_expiration_date: this.cardMonth + this.cardYear,
-          card_cvv: this.cardCvv,
-        })
+        return client.security.encrypt(data)
       }).then(card_hash => {
         if(this.cardNumber.slice(0,1) === "3") {
           axios({

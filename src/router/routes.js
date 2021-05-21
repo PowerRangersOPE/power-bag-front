@@ -49,6 +49,11 @@ const routes = [
         path: '/index/personalizar-bag',
         name: 'personalizar-bag',
         component: () => import("src/pages/index/PersonalizarBag.vue")
+      },
+      {
+        path: '/index/lista-pedidos',
+        name: 'lista-pedidos',
+        component: () => import("src/pages/index/ListaPedidos.vue")
       }
     ]
   },

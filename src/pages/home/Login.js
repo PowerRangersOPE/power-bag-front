@@ -8,6 +8,7 @@ export default {
     return {
       email: "",
       password: "",
+      admin: "",
       baseUrl: "https://power-bag.herokuapp.com",
     };
   },
@@ -56,11 +57,19 @@ export default {
   
           localStorage.setItem("nome", responseCliente.data.nome);
           localStorage.setItem("email", responseCliente.data.email);
-          
-        setTimeout(() => {
-          this.$router.push({ name: "minhas-bags" });
-        }, 500);  
-        
+          localStorage.setItem("admin", responseCliente.data.adm);
+
+          const admin = responseCliente.data.adm
+
+          if(admin === true) {
+            setTimeout(() => {
+              this.$router.push({ name: "lista-pedidos" });
+            }, 500);  
+          } else {
+            setTimeout(() => {
+              this.$router.push({ name: "minhas-bags" });
+            }, 500);  
+          }
       } catch (error) {
         if(error.response.data.error === "Senha didnt match") {
           console.log(error.response.data.error);
