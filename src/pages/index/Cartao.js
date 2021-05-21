@@ -66,8 +66,6 @@ export default {
   },
   methods: {
     card_hash() {
-      const cardArray = this.cardNumber.split(" ")
-      const cardSplit = `${cardArray[0]}-${cardArray[3]}`
       pagarme.client.connect({ encryption_key: 'ek_test_8xw1zYHFb3ruE5QXrewbMSKKxjYjzz' })
       .then(client => {
         return client.security.encrypt({
@@ -76,17 +74,35 @@ export default {
           card_expiration_date: this.cardMonth + this.cardYear,
           card_cvv: this.cardCvv,
         })
-      })
-      .then(card_hash => {
-        axios({
-          method: "POST",
-          url: `${this.baseUrl}/cartao`,
-          headers: { Authorization: `${this.token}` },
-          data: {
-            numero: cardSplit,
-            card_hash: card_hash
-          }
-      });
+      }).then(card_hash => {
+        if(this.cardNumber.slice(0,1) === "3") {
+          axios({
+            method: "POST",
+            url: `${this.baseUrl}/cartao`,
+            headers: { Authorization: `${this.token}` },
+            data: {
+              numero: this.cardNumber.slice(0, 4) + "-" + this.cardNumber.slice(14, 17),
+              card_hash: card_hash
+            }
+          });
+        } else {
+          axios({
+            method: "POST",
+            url: `${this.baseUrl}/cartao`,
+            headers: { Authorization: `${this.token}` },
+            data: {
+              numero: this.cardNumber.slice(0, 4) + "-" + this.cardNumber.slice(15, 19),
+              card_hash: card_hash
+            }
+          });
+        }
+
+      setTimeout(() => {
+        this.$q.dialog({
+            title: 'Parabéns!',
+            message: 'Dados salvo com sucesso!'
+        })
+        }, 500); 
       })
     },
     async buscarDados() {
@@ -97,11 +113,25 @@ export default {
             Authorization: `${this.token}`,
           }
       });
-      console.log(response.data)
-      const fullCardNumber = response.data.cartao.numero
-      this.cardNumber = fullCardNumber.slice(0, 4) + " **** **** " + fullCardNumber.slice(-4)
-      this.cardName = "******** *******"
-      this.cardCvv = "***"
+
+      const retornoCartao = response.data.cartao.numero
+
+      if(retornoCartao.slice(0, 1) === "3") {
+        const refatoraCartao = retornoCartao.slice(0, 4) + " ****** **" + retornoCartao.slice(5, 8)
+        this.cardNumber = refatoraCartao
+        this.cardName = "******** *******"
+        this.cardCvv = "***"
+      } else {
+        const refatoraCartao = retornoCartao.slice(0, 4) + " **** **** " + retornoCartao.slice(5, 9)
+        this.cardNumber = refatoraCartao
+        this.cardName = "******** *******"
+        this.cardCvv = "***"
+      }
+
+    },
+    buscaCartaoAmex() {
+      const refatoraCartao = retornoCartao.slice(0, 4) + " " + retornoCartao.slice(4, 10) + " " + retornoCartao.slice(10, 15)
+      this.cardNumber = refatoraCartao
     },
     flipCard (status) {
       this.isCardFlipped = status;
