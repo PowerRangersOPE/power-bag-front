@@ -1,14 +1,5 @@
 <template>
   <div>
-    <div>
-      <div class="col q-mb-sm">
-        <q-btn
-          color="green"
-          label="Solicitar nova Bag"
-          @click="confirmarPedido()"
-        />
-      </div>
-    </div>
     <div class="q-pa-md">
       <q-table
         dense
@@ -18,16 +9,15 @@
         class="col"
         :rows-per-page-options="[20]"
       >
-        <template v-slot:body-cell-action="props">
+        <template v-slot:body-cell-editarPedido="props">
           <q-td :props="props">
             <div>
               <q-btn
-                v-if="props.row.status === 'Compra total' || props.row.status === 'Solicitada'"
+                v-if="props.row.status === 'Cancelado' || props.row.status === 'Finalizado' || props.row.status === 'Compra total'"
                 icon="published_with_changes"
-                color="info"
+                color="negative"
                 size="sm"
                 dense
-                @click="abrirModalAlterarStatus(props.row.id)"
                 disable
               />
               <q-btn
@@ -36,7 +26,20 @@
                 color="info"
                 size="sm"
                 dense
-                @click="abrirModalAlterarStatus(props.row.id)"
+                @click="abrirModalAlterarStatus(props.row)"
+              />
+            </div>
+          </q-td>
+        </template>
+        <template v-slot:body-cell-info="props">
+          <q-td :props="props">
+            <div>
+              <q-btn
+                icon="person"
+                color="info"
+                size="sm"
+                dense
+                @click="abrirModalInfoCliente(props.row)"
               />
             </div>
           </q-td>
@@ -44,45 +47,60 @@
       </q-table>
     </div>
 
-    <q-dialog v-model="confirm" persistent>
-      <q-card>
-        <q-card-section class="row items-center">
-          <q-avatar icon="announcement" color="primary" text-color="white" />
-          <span class="q-ml-sm"
-            >Deseja continuar com a solicitação da Bag?
-          </span>
+    <q-dialog v-model="modalAlterarStatus">
+      <q-card style="width: 400px; max-width: 80vw;">
+        <q-card-section>
+          <div class="text-h6">Alterar Status ou Valor da Bag</div>
         </q-card-section>
+        <div class="q-pa-md">
+          <div class="q-gutter-y-md" style="max-width: 300px">
+            <q-select color="purple-12" v-model="novoStatusBag" :options="options" label="Escolha status" />
+          </div>
+          <div class="q-gutter-y-md q-mt-sm" style="max-width: 300px">
+            <q-input color="purple-12" v-model="novoValorBag" label="Valor Bag" />
+          </div>
+        </div>
         <q-card-actions align="right">
-          <q-btn
-            flat
-            label="Sim"
-            color="primary"
-            @click="solicitarBag()"
-            v-close-popup
-          />
-          <q-btn flat label="Não" color="primary" v-close-popup />
+          <q-btn flat label="Salvar" color="primary" @click="alterarBag()" v-close-popup />
+          <q-btn flat label="Cancelar" color="primary" v-close-popup />
         </q-card-actions>
       </q-card>
     </q-dialog>
 
-    <q-dialog v-model="modalAlterarStatus">
-      <q-card>
-        <q-card-section>
-          <div class="text-h6">Alterar Status da Bag</div>
-        </q-card-section>
-        <q-card-section class="q-pt-none">
-          <li>Compra total: Irá ficar com todos itens da Bag</li>
-          <br>
-          <li>Solicitado a retirada: Deseja devolver itens da Bag</li>
-        </q-card-section>
+    <q-dialog v-model="modalInfoCliente">
+      <q-card style="width: 600px; max-width: 80vw;">
         <div class="q-pa-md">
-          <div class="q-gutter-y-md column" style="max-width: 500px">
-            <q-select clearable filled color="purple-12" v-model="novoStatusBag" :options="options" label="Escolha status" />
+          <q-item-label class="text-h5">
+              Informações do cliente
+          </q-item-label>
+          <div class="row q-mt-lg">
+              <div class="col">
+                  <q-input v-model="cadastroPerfil.nome" filled class="q-mr-lg" label="Nome completo" />
+              </div>
+              <div class="col">
+                  <q-input v-model="cadastroPerfil.email" filled disable label="E-mail" />
+              </div>
+          </div>
+          <div class="row q-mt-lg">
+              <div class="col">
+                  <q-input v-model="cadastroPerfil.cpf" filled class="q-mr-lg" label="CPF" mask="###.###.###-##" />
+              </div>
+              <div class="col">
+                  <q-input v-model="cadastroPerfil.dat_nasc" filled class="" label="Data de nascimento" mask="##/##/####" />
+              </div>
+          </div>
+
+          <div class="row q-mt-lg">
+              <div class="col">
+                  <q-input v-model="cadastroPerfil.tel_cel1" filled class="q-mr-lg" label="Celular principal" mask="(##) ##### - ####" />
+              </div>
+              <div class="col">
+                  <q-input v-model="cadastroPerfil.tel_cel2" filled label="Celular secundário" mask="(##) ##### - ####" />
+              </div>
           </div>
         </div>
         <q-card-actions align="right">
-          <q-btn flat label="Salvar" color="primary" @click="alterarStatusBag()" v-close-popup />
-          <q-btn flat label="Cancelar" color="primary" v-close-popup />
+          <q-btn flat label="Fechar" color="primary" v-close-popup />
         </q-card-actions>
       </q-card>
     </q-dialog>
@@ -91,6 +109,18 @@
 
 <script>
 import axios from "axios";
+
+const DADOS_PERFIL = {
+    nome: "",
+    email: "",
+    cpf: "",
+    identificacao: "null",
+    tel_cel1: "",
+    tel_cel2: "",
+    dat_nasc: "",
+    status: "ativo",
+    pontuacao: "5"
+};
 
 export default {
   name: "minhasBags",
@@ -125,19 +155,29 @@ export default {
         headerClasses: "bg-primary text-white text-uppercase text-bold"
       },
       {
-        name: "action",
-        label: "Alterar Status da BAG",
+        name: "info",
+        label: "Info cliente",
+        align: "center",
+        headerClasses: "bg-primary text-white text-uppercase text-bold "
+      },
+      {
+        name: "editarPedido",
+        label: "Editar pedido",
         align: "center",
         headerClasses: "bg-primary text-white text-uppercase text-bold "
       }
     ],
     bag: [],
+    cadastroPerfil: DADOS_PERFIL,
     model: null,
-    options: ["Compra total", "Solicitado a retirada"],
+    options: ["Em separação", "Enviado", "Recebido", "Verificando peças", "Finalizado", "Compra total", "Cancelado"],
     selected: [],
     modalAlterarStatus: false,
+    modalInfoCliente: false,
     idBagAtual: null,
-    novoStatusBag: null
+    novoStatusBag: null,
+    novoValorBag: null,
+    clienteId: null
   }),
   mounted() {
     this.buscarBags();
@@ -145,42 +185,6 @@ export default {
   methods: {
     confirmarPedido() {
       this.confirm = true;
-    },
-    async solicitarBag() {
-      const cadastroPreenchido = await axios({
-        method: "GET",
-        url: `${this.baseUrl}/cliente/validate`,
-        headers: {
-          Authorization: `${this.token}`
-        }
-      });
-
-      if (!cadastroPreenchido.data.available) {
-        this.$q.dialog({
-          title: "Atenção!",
-          message:
-            "Para solicitar a Bag é necessário ter todos os cadastros preenchidos."
-        });
-        return false;
-      }
-
-      axios({
-        method: "POST",
-        url: `${this.baseUrl}/bag`,
-        headers: {
-          Authorization: `${this.token}`
-        }
-      }).then(response => {
-        localStorage.setItem("bag", JSON.stringify(response.data));
-      });
-
-      setTimeout(() => {
-        this.$q.dialog({
-          title: "Parabéns!!!",
-          message: "Sua bag foi solicitada com sucesso!"
-        });
-        this.buscarBags();
-      }, 500);
     },
     async buscarBags() {
       const response = await axios({
@@ -190,13 +194,32 @@ export default {
           Authorization: `${this.token}`
         }
       });
+      
       this.bag = Object.assign(response.data);
     },
-    abrirModalAlterarStatus(idPost) {
+    abrirModalAlterarStatus(props) {
       this.modalAlterarStatus = true
-      this.idBagAtual = idPost
+      this.idBagAtual = props.id
+      this.novoStatusBag = props.status
+      this.novoValorBag = props.valor
     },
-    alterarStatusBag() {
+    async abrirModalInfoCliente(props) {
+      console.log(props)
+      this.modalInfoCliente = true
+      this.clienteId = props.cliente_id
+      const response = await axios({
+        method: "GET",
+        url: `${this.baseUrl}/cliente/${this.clienteId}`,
+        headers: {
+          Authorization: `${this.token}`
+        }
+      });
+      
+      this.cadastroPerfil = Object.assign(response.data);
+      console.log(this.cadastroPerfil)
+
+    },
+    alterarBag() {
       axios({
         method: "PUT",
         url: `${this.baseUrl}/bag`,
@@ -204,6 +227,7 @@ export default {
           Authorization: `${this.token}`
         },
         data: {
+          valor: this.novoValorBag,
           status: this.novoStatusBag,
           id_bag: this.idBagAtual
         }
@@ -213,6 +237,9 @@ export default {
           title: "Atenção!",
           message: "O status da bag foi alterado com sucesso!"
         });
+        this.idBagAtual = ""
+        this.novoStatusBag = ""
+        this.novoValorBag = ""
         this.buscarBags();
       }, 500);
     }
