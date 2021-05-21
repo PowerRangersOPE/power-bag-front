@@ -2,7 +2,7 @@ import express from 'express'
 import serveStatic from 'serve-static'
 import history from 'connect-history-api-fallback'
 
-port = process.env.PORT || 5000
+port = process.env.PORT || 50
 
 const app = express()
 
