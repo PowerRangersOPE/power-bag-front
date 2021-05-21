@@ -1,25 +1,25 @@
 <template>
   <q-layout view="hHh Lpr fFf">
-    <q-header elevated>
+    <q-header>
       <q-toolbar class="q-pa-sm">
         <q-btn-group flat>
-          <q-btn to="/" size="lg" label="powerbag" color="primary" />
+          <q-btn to="/" size="lg" label="Elegant Kids" color="primary" />
         </q-btn-group>
-        <q-toolbar-title class="text-h4 text-center text-italic ">
-          Elegant Kids
+        <q-toolbar-title id="header-info" class="text-center">
+          Como funcionamos | Vantagens | Perguntas Frequentes
         </q-toolbar-title>
-        <q-btn-group rounded-borders flat>
+        <q-btn-group flat>
           <q-btn
             to="/cadastro"
-            size="lg"
+            size="md"
             label="cadastro"
-            color="accent"
+            color="black"
             class="border q-mr-sm"
-            style="border-radius: 20px"
+            style="border-radius: 5px"
           />
           <q-btn
             to="/login"
-            size="lg"
+            size="md"
             label="login"
             color="primary"
             icon-right="login"
@@ -58,3 +58,9 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+#header-info {
+  font-size: 16px;
+}
+</style>
