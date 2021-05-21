@@ -53,7 +53,7 @@ const routes = [
       {
         path: '/index/lista-pedidos',
         name: 'lista-pedidos',
-        component: () => import("src/pages/index/ListaPedidos.vue")
+        component: () => import("src/pages/index/listaPedidos.vue")
       }
     ]
   },
