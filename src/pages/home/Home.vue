@@ -52,7 +52,7 @@
               <q-icon name="format_list_bulleted" class="text-primary" style="font-size: 2em;"></q-icon>
             </div>
             <div class="col-6" align="left">
-              <div class="text-h7">Preencha algumas perguntas em nosso sistema para conhecermos suas necessidade</div>
+              <div class="text-h7">Preencha algumas perguntas em nosso sistema para conhecermos suas necessidades</div>
             </div>
           </div>
         </div>
@@ -62,7 +62,7 @@
               <q-icon name="quiz" class="text-primary" style="font-size: 2em;"></q-icon>
             </div>
             <div class="col-7" align="left">
-              <div class="text-h7">Após o preenchimento das perguntas entramos em contato via WhatsApp, para confirmar as peças/estilo que gostou e agendamos a entrega da sua Bag</div>
+              <div class="text-h7">Após o preenchimento das perguntas entramos em contato para confirmar as peças/estilo que gostou e agendarmos a entrega da sua Bag</div>
             </div>
           </div>
         </div>
@@ -72,7 +72,7 @@
               <q-icon name="local_mall" class="text-primary" style="font-size: 2em;"></q-icon>
             </div>
             <div class="col-6" align="left">
-              <div class="text-h7">Prontinho! Sua bag personalizada será entregue em até 24horas úteis após a aprovação do seu pedido</div>
+              <div class="text-h7">Prontinho! Sua bag personalizada será entregue em até 24 horas úteis após a aprovação do seu pedido</div>
             </div>
           </div>
         </div>
