@@ -8,10 +8,9 @@
   "scripts": {
     "lint": "eslint --ext .js,.vue ./",
     "test": "echo \"No test specified\" && exit 0",
-    "build": "npx quasar build",
+    "build": "quasar build",
     "start": "node server.js",
-    "installQuasar": "yarn global add @quasar/cli",
-    "heroku-postbuild": "yarn && yarn installQuasar && yarn build"
+    "heroku-postbuild": "yarn && yarn build"
   },
   "dependencies": {
     "@quasar/extras": "^1.0.0",
