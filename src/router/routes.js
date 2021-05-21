@@ -50,11 +50,11 @@ const routes = [
         name: 'personalizar-bag',
         component: () => import("src/pages/index/PersonalizarBag.vue")
       },
-      // {
-      //   path: '/index/lista-pedidos',
-      //   name: 'lista-pedidos',
-      //   component: () => import("src/pages/index/ListaPedidos.vue")
-      // }
+      {
+        path: '/index/lista-pedidos',
+        name: 'lista-pedidos',
+        component: () => import("src/pages/index/ListaPedidos.vue")
+      }
     ]
   },
   // Always leave this as last one,
