@@ -8,8 +8,6 @@ export default {
     ComponentFooter,
     ComponentNav
   },
-  created() {
-  },
   data() {
     return {
       name: "Index",
@@ -31,10 +29,18 @@ export default {
       }
     };
   },
+  mounted() {
+    this.usuarioLogado();
+  },
   methods: {
     limparLocalStorage() {
       localStorage.clear();
     },
-
+    usuarioLogado() {
+      const buscaLocalStorage = localStorage.getItem("token")
+      if (buscaLocalStorage === null || buscaLocalStorage === "") {
+        this.$router.push({ name: "home" })
+      } 
+    }
   }
 };

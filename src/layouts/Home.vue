@@ -6,7 +6,7 @@
           <q-btn to="/" size="lg" label="Elegant Kids" color="primary" />
         </q-btn-group>
         <q-toolbar-title id="header-info" class="text-center">
-          Como funcionamos | Vantagens | Perguntas Frequentes
+          Como funcionamos    |    Vantagens    |    Perguntas Frequentes
         </q-toolbar-title>
         <q-btn-group flat>
           <q-btn
