@@ -5,7 +5,7 @@
         O Melhor da moda infantil na sua casa
       </div>
       <div class="row items-center q-ma-md">
-        <div class="col-3 shadow-5">
+        <div class="col-12 col-md-3 shadow-5">
           <q-img
             src="https://cdn.pixabay.com/photo/2015/11/10/00/55/african-1036184_960_720.jpg"
             :ratio="4/3"
@@ -25,7 +25,7 @@
             <q-img id="centro" src="assets/Modelo de negócio.png" alt="Modelo de negócio" style="height: 50%; max-width: 50%"/>
           </div>
         </div>
-        <div class="col-3 shadow-5">
+        <div class="col-12 col-md-3 shadow-5">
           <q-img
             src="https://cdn.pixabay.com/photo/2016/07/02/23/07/kid-1493932_960_720.jpg"
             :ratio="4/3"
@@ -46,8 +46,8 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-4 text-center text-white text-h7 q-mb-xl">
-          <div class="row q-ml-xl">
+        <div class="col-12 col-md-4 text-center text-white text-h7 q-mb-md">
+          <div class="row">
             <div class="col-2">
               <q-icon name="format_list_bulleted" class="text-primary" style="font-size: 2em;"></q-icon>
             </div>
@@ -56,7 +56,7 @@
             </div>
           </div>
         </div>
-        <div class="col-4 text-center text-white text-h7 q-mb-md">
+        <div class="col-12 col-md-4 text-center text-white text-h7 q-mb-md">
           <div class="row">
             <div class="col-2">
               <q-icon name="quiz" class="text-primary" style="font-size: 2em;"></q-icon>
@@ -66,8 +66,8 @@
             </div>
           </div>
         </div>
-        <div class="col-4 text-center text-white text-h7 q-mb-md">
-          <div class="row q-ml-xl">
+        <div class="col-12 col-md-4 text-center text-white text-h7 q-mb-xl">
+          <div class="row">
             <div class="col-2">
               <q-icon name="local_mall" class="text-primary" style="font-size: 2em;"></q-icon>
             </div>

@@ -1,52 +1,49 @@
 <template>
   <q-layout view="hHh Lpr fFf">
-    <q-header>
-      <q-toolbar class="q-pa-sm">
-        <q-btn-group flat>
-          <q-btn to="/" size="lg" label="Elegant Kids" color="primary" />
-        </q-btn-group>
-        <q-toolbar-title id="header-info" class="text-center">
-          Como funcionamos    |    Vantagens    |    Perguntas Frequentes
-        </q-toolbar-title>
-        <q-btn-group flat>
-          <q-btn
-            to="/cadastro"
-            size="md"
-            label="cadastro"
-            color="black"
-            class="border q-mr-sm"
-            style="border-radius: 5px"
-          />
-          <q-btn
-            to="/login"
-            size="md"
-            label="login"
-            color="primary"
-            icon-right="login"
-          />
-        </q-btn-group>
-      </q-toolbar>
-    </q-header>
+    <div class="q-pa-sm bg-primary text-white">
+        <div class="row">
+          <div flat class="col-12 col-sm">
+            <q-btn unelevated dense to="/" size="lg" label="Elegant Kids" color="primary" style="border-radius: 5px" />
+          </div>
+          <div flat class="col-12 col-sm q-mt-sm text-right">
+            <q-btn
+              unelevated
+              to="/cadastro"
+              size="md"
+              label="cadastro"
+              color="black"
+              class="border q-mr-sm"
+              style="border-radius: 5px"
+            />
+            <q-btn
+              unelevated
+              to="/login"
+              size="md"
+              label="login"
+              color="primary"
+              icon-right="login"
+            />
+          </div>
+        </div>
+    </div>
     <q-page-container>
       <router-view />
     </q-page-container>
-    <div class="row">
       <q-footer>
-        <q-toolbar class="">
-          <q-toolbar-title class="">PowerBag</q-toolbar-title>
-          <p class="text-caption absolute-center">
+        <div class="row q-pa-sm">
+          <div class="col-12 col-md">
+            <q-btn unelevated dense size="lg" label="PowerBag" color="primary"/>
             Todos Direitos Reservados, Bags PowerBag
-          </p>
-          <div class="q-pa-md">
+          </div>
+          <div class="col-12 col-md text-right q-mt-sm">
             <div class="q-gutter-md">
               <q-icon size="md" name="call" />
               <q-icon size="md" name="email" />
               <q-icon size="md" name="facebook" />
             </div>
           </div>
-        </q-toolbar>
+        </div>
       </q-footer>
-    </div>
   </q-layout>
 </template>
 
