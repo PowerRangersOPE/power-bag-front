@@ -143,7 +143,6 @@ export default {
   },
   mounted() {
    this.admin = localStorage.getItem("admin")
-   console.log(typeof(this.admin))
   },
   methods: {
     limparLocalStorage() {
