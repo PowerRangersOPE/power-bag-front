@@ -266,7 +266,7 @@ export default {
       {
         name: "nome",
         label: "Nome do cliente",
-        field: "cliente",
+        field: "nomeCliente",
         sortable: true,
         align: "center",
         headerClasses: "bg-primary text-white text-uppercase text-bold "
@@ -309,7 +309,7 @@ export default {
       }
     ],
     bag: [],
-    clinte: [],
+    nomeCliente: "",
     cadastroPerfil: DADOS_PERFIL,
     cadastroEndereco: ENDERECO,
     model: null,
@@ -347,9 +347,7 @@ export default {
         }
       });
 
-      this.bag = Object.assign(response.data);
-      this.cliente = Object.assign(response.data);
-      console.log(this.cliente[0].cliente.nome)
+      this.bag = response.data.map( bag => Object.assign(bag, {nomeCliente: bag.cliente.nome, emailCliente: bag.cliente.email}) )
     },
     abrirModalAlterarStatus(props) {
       this.modalAlterarStatus = true;
