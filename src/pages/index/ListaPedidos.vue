@@ -7,7 +7,7 @@
         :columns="columns"
         row-key="id"
         class="col"
-        :rows-per-page-options="[20]"
+        :rows-per-page-options="[50]"
       >
         <template v-slot:body-cell-editarPedido="props">
           <q-td :props="props">
@@ -264,7 +264,15 @@ export default {
     modalCartao: false,
     columns: [
       {
-        name: "createdAt",
+        name: "nome",
+        label: "Nome do cliente",
+        field: "cliente",
+        sortable: true,
+        align: "center",
+        headerClasses: "bg-primary text-white text-uppercase text-bold "
+      },
+      {
+        name: "data",
         label: "Data",
         field: "createdAt",
         sortable: true,
@@ -301,6 +309,7 @@ export default {
       }
     ],
     bag: [],
+    clinte: [],
     cadastroPerfil: DADOS_PERFIL,
     cadastroEndereco: ENDERECO,
     model: null,
@@ -319,7 +328,8 @@ export default {
     idBagAtual: null,
     novoStatusBag: null,
     novoValorBag: null,
-    clienteId: null
+    clienteId: null,
+    nome: null
   }),
   mounted() {
     this.buscarBags();
@@ -338,6 +348,8 @@ export default {
       });
 
       this.bag = Object.assign(response.data);
+      this.cliente = Object.assign(response.data);
+      console.log(this.cliente[0].cliente.nome)
     },
     abrirModalAlterarStatus(props) {
       this.modalAlterarStatus = true;
@@ -355,11 +367,8 @@ export default {
           Authorization: `${this.token}`
         }
       });
-
       this.cadastroPerfil = Object.assign(response.data);
       this.cadastroEndereco = Object.assign(response.data.endereco)
-      console.log(response.data.endereco)
-
     },
     alterarBag() {
       axios({
