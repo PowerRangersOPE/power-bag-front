@@ -5,15 +5,15 @@
     </q-item-label>
     <div class="row q-mt-lg">
         <div class="col">
-            <q-input v-model="cadastroPerfil.nome" filled class="q-mr-lg" label="Nome completo" />
+            <q-input v-model="cadastroPerfil.nome" filled disable class="q-mr-lg" label="Nome completo" />
         </div>
         <div class="col">
-            <q-input v-model="cadastroPerfil.email" filled disable label="E-mail" />
+            <q-input v-model="cadastroPerfil.cpf" filled disable label="CPF" mask="###.###.###-##" />
         </div>
     </div>
     <div class="row q-mt-lg">
         <div class="col">
-            <q-input v-model="cadastroPerfil.cpf" filled class="q-mr-lg" label="CPF" mask="###.###.###-##" />
+            <q-input v-model="cadastroPerfil.email" filled class="q-mr-lg" label="E-mail" />
         </div>
         <div class="col">
             <q-input v-model="cadastroPerfil.dat_nasc" filled class="" label="Data de nascimento" mask="##/##/####" />

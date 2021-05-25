@@ -30,13 +30,13 @@
                     <q-card-section>
                       <q-form class="q-px-sm q-pt-xl q-pb-lg">
                         <q-input
-                          ref="email"
-                          v-model="email"
+                          ref="cpf"
+                          v-model="cpf"
                           square
                           clearable
-                          type="email"
-                          label="E-mail"
-                          :rules="[this.required,this.isEmail,this.short]"
+                          type="cpf"
+                          label="CPF"
+                          :rules="[this.required,this.isCpf,this.short]"
                         >
                           <template #prepend>
                             <q-icon name="email" />

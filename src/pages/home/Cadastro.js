@@ -6,7 +6,7 @@ export default {
   components: { ComponentFooter },
   data () {
     return {
-      email: '',
+      cpf: '',
       user: '',
       password: ''
     }
@@ -26,11 +26,44 @@ export default {
       const nomePattern = /^([a-zA-Z]{2,}\s[a-zA-Z]{1,}'?-?[a-zA-Z]{2,}\s?([a-zA-Z]{1,})?)/
       return nomePattern.test(val) || 'Por favor digite o nome e sobrenome'
     },
+    isCpf (cpf) {
+      if (typeof cpf !== "string") return 'CPF digitado é inválido'
+      cpf = cpf.replace(/[\s.-]*/igm, '')
+        if (
+          !cpf ||
+          cpf.length != 11 ||
+          cpf == "00000000000" ||
+          cpf == "11111111111" ||
+          cpf == "22222222222" ||
+          cpf == "33333333333" ||
+          cpf == "44444444444" ||
+          cpf == "55555555555" ||
+          cpf == "66666666666" ||
+          cpf == "77777777777" ||
+          cpf == "88888888888" ||
+          cpf == "99999999999" 
+        ) {
+            return 'CPF digitado é inválido'
+        }
+        var soma = 0
+        var resto
+        for (var i = 1; i <= 9; i++) 
+            soma = soma + parseInt(cpf.substring(i-1, i)) * (11 - i)
+        resto = (soma * 10) % 11
+        if ((resto == 10) || (resto == 11))  resto = 0
+        if (resto != parseInt(cpf.substring(9, 10)) ) return 'CPF digitado é inválido'
+        soma = 0
+        for (var i = 1; i <= 10; i++) 
+            soma = soma + parseInt(cpf.substring(i-1, i)) * (12 - i)
+        resto = (soma * 10) % 11
+        if ((resto == 10) || (resto == 11))  resto = 0
+        if (resto != parseInt(cpf.substring(10, 11) ) ) return 'CPF digitado é inválido'
+    },
     async cadastrar () {
-      this.$refs.email.validate()
+      this.$refs.cpf.validate()
       this.$refs.user.validate()
       this.$refs.password.validate()
-      if(this.$refs.email.hasError || this.$refs.user.hasError || this.$refs.password.hasError) {
+      if(this.$refs.cpf.hasError || this.$refs.user.hasError || this.$refs.password.hasError) {
         this.formHasError = true
         this.$q.dialog({
           title: 'Atenção',
@@ -43,7 +76,7 @@ export default {
           method: 'post',
           url: 'https://power-bag-back.herokuapp.com/cliente',
           data: {
-            email: this.email,
+            cpf: this.cpf,
             nome: this.user,
             senha: this.password
           }
@@ -56,12 +89,11 @@ export default {
           this.$router.push('/login')
         }, 500);
       } catch (error) {
-        console.log(error.response)
         this.$q.dialog({
           title: 'Atenção!',
           message: 'O E-mail ja possui cadastro, por gentileza utilze outro.'
         })
-        this.email = ''
+        this.cpf = ''
         this.user = ''
         this.password = ''
       }
