@@ -267,7 +267,7 @@ export default {
       listaProdutoFaixaEtaria: PRODUTO_FAIXA_ETARIA,
       cadastroProduto: PRODUTOS,
       confirm: false,
-      baseUrl: "https://power-bag.herokuapp.com",
+      baseUrl: "https://power-bag-back.herokuapp.com",
       token: localStorage.getItem("token"),
       clienteId: localStorage.getItem("clienteId")
     };
@@ -301,14 +301,14 @@ export default {
           observacoes: this.cadastroProduto.observacoes
         }
       });
-      
+
       setTimeout(() => {
           this.$q.dialog({
               title: 'Parabéns!',
               message: 'Dados salvo com sucesso!'
           })
           this.buscarDados()
-      }, 500); 
+      }, 500);
     },
     async buscarDados() {
       const response = await axios({

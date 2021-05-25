@@ -41,7 +41,7 @@ export default {
       try {
        await axios({
           method: 'post',
-          url: 'https://power-bag.herokuapp.com/cliente',
+          url: 'https://power-bag-back.herokuapp.com/cliente',
           data: {
             email: this.email,
             nome: this.user,
@@ -65,7 +65,7 @@ export default {
         this.user = ''
         this.password = ''
       }
-     
-    }  
+
+    }
   }
 }

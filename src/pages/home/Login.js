@@ -9,7 +9,7 @@ export default {
       email: "",
       password: "",
       admin: "",
-      baseUrl: "https://power-bag.herokuapp.com",
+      baseUrl: "https://power-bag-back.herokuapp.com",
     };
   },
   methods: {
@@ -37,7 +37,7 @@ export default {
       try {
         const responseLogin = await axios({
           method: "POST",
-          url: "https://power-bag.herokuapp.com/login",
+          url: "https://power-bag-back.herokuapp.com/login",
           data: {
             email: this.email,
             senha: this.password
@@ -45,16 +45,16 @@ export default {
         })
 
         localStorage.setItem("token", responseLogin.data.token);
-        localStorage.setItem("clienteId", responseLogin.data.clienteId); 
+        localStorage.setItem("clienteId", responseLogin.data.clienteId);
 
         let clienteId = localStorage.getItem("clienteId")
-        let token = localStorage.getItem("token")  
-  
+        let token = localStorage.getItem("token")
+
         const responseCliente = await axios
           .get(`${this.baseUrl}/cliente/${clienteId}`, {
             headers: { Authorization: `${token}` }
           })
-  
+
           localStorage.setItem("nome", responseCliente.data.nome);
           localStorage.setItem("email", responseCliente.data.email);
           localStorage.setItem("admin", responseCliente.data.adm);
@@ -64,11 +64,11 @@ export default {
           if(admin === true) {
             setTimeout(() => {
               this.$router.push({ name: "lista-pedidos" });
-            }, 500);  
+            }, 500);
           } else {
             setTimeout(() => {
               this.$router.push({ name: "minhas-bags" });
-            }, 500);  
+            }, 500);
           }
       } catch (error) {
         if(error.response.data.error === "Senha didnt match") {

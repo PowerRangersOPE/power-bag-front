@@ -101,14 +101,14 @@ export default {
   data() {
     return {
       cadastroEndereco: ENDERECO,
-      baseUrl: "https://power-bag.herokuapp.com",
+      baseUrl: "https://power-bag-back.herokuapp.com",
       token: localStorage.getItem("token"),
       clienteId: localStorage.getItem("clienteId"),
       confirm: false,
     };
   },
   mounted() {
-    this.buscarDados()  
+    this.buscarDados()
   },
   methods: {
     confirmaSalvar() {
@@ -168,7 +168,7 @@ export default {
           console.log(error);
         }
       }
-    }    
+    }
   }
 };
 </script>
