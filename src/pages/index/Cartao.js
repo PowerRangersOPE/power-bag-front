@@ -18,7 +18,7 @@ export default {
       isCardFlipped: false,
       focusElementStyle: null,
       isInputFocused: false,
-      baseUrl: "https://power-bag.herokuapp.com",
+      baseUrl: "https://power-bag-back.herokuapp.com",
       token: localStorage.getItem("token"),
       clienteId: localStorage.getItem("clienteId"),
       confirm: false,
@@ -43,7 +43,7 @@ export default {
 
       re = new RegExp("^6011");
       if (number.match(re) != null) return "discover";
-      
+
       re = new RegExp('^9792')
       if (number.match(re) != null) return 'troy'
 
@@ -105,7 +105,7 @@ export default {
             title: 'Parabéns!',
             message: 'Dados salvo com sucesso!'
         })
-        }, 500); 
+        }, 500);
       })
     },
     async buscarDados() {

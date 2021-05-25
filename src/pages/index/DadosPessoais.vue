@@ -66,7 +66,7 @@ export default {
   name: "ComponentDadosPessoais",
   data() {
       return {
-          baseUrl: "https://power-bag.herokuapp.com",
+          baseUrl: "https://power-bag-back.herokuapp.com",
           cadastroPerfil: DADOS_PERFIL,
           mostrarDadosPessoais: true,
           confirm: false,
@@ -104,7 +104,7 @@ export default {
                 message: 'Dados salvo com sucesso!'
             })
             this.buscardados()
-            }, 500); 
+            }, 500);
     },
     async buscardados() {
       this.cadastroPerfil.nome = localStorage.getItem("nome");

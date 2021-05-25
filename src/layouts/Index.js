@@ -14,7 +14,7 @@ export default {
     return {
       name: "Index",
       leftDrawerOpen: false,
-      baseUrl: "https://power-bag.herokuapp.com",
+      baseUrl: "https://power-bag-back.herokuapp.com",
       acaoCadastroPerfil: "",
       token: this.cliente ? this.cliente.token : localStorage.getItem("token"),
       clienteId: this.cliente

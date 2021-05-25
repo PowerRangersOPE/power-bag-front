@@ -96,7 +96,7 @@ export default {
   name: "minhasBags",
   data: () => ({
     token: localStorage.getItem("token"),
-    baseUrl: "https://power-bag.herokuapp.com",
+    baseUrl: "https://power-bag-back.herokuapp.com",
     confirm: false,
     modalCartao: false,
     columns: [
@@ -116,7 +116,7 @@ export default {
         field: "status",
         align: "center",
         headerClasses: "bg-primary text-white text-uppercase text-bold"
-      },      
+      },
       {
         name: "valor",
         label: "Valor",

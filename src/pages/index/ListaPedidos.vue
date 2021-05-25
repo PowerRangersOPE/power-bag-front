@@ -154,7 +154,7 @@
         <div class="q-pa-md">
           <q-item-label class="text-h6">
             Endereco
-          </q-item-label>  
+          </q-item-label>
           <div class="row">
             <div class="col">
               <q-input
@@ -259,7 +259,7 @@ export default {
   name: "minhasBags",
   data: () => ({
     token: localStorage.getItem("token"),
-    baseUrl: "https://power-bag.herokuapp.com",
+    baseUrl: "https://power-bag-back.herokuapp.com",
     confirm: false,
     modalCartao: false,
     columns: [
