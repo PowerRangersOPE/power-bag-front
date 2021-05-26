@@ -89,7 +89,6 @@ export default {
           })
 
           localStorage.setItem("nome", responseCliente.data.nome);
-          localStorage.setItem("email", responseCliente.data.cpf);
           localStorage.setItem("admin", responseCliente.data.adm);
 
           const admin = responseCliente.data.adm
@@ -105,7 +104,6 @@ export default {
           }
       } catch (error) {
         if(error.response.data.error === "Senha didnt match") {
-          console.log(error.response.data.error);
           this.$q.dialog({
             title: 'Atenção',
             message: 'Login ou Senha incorreta. Tente novamente.'
@@ -114,7 +112,6 @@ export default {
           this.password = ''
         }
         if(error.response.data.error === "Cliente not found") {
-          console.log(error.response.data.error);
           this.$q.dialog({
             title: 'Atenção',
             message: 'Login não localizado. Faça seu cadastro!'
