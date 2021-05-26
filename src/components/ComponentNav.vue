@@ -112,7 +112,7 @@
             clickable
             tag="a"
             rel=""
-            to="/index/minhas-bags"
+            to="/index/lista-pedidos"
             class="q-mb-sm"
           >
             <q-item-section avatar>
