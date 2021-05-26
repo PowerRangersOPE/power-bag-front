@@ -12,7 +12,7 @@
         <div>
           <q-page-container>
             <q-page
-              class="row justify-center items-center q-mt-xl"
+              class="row justify-center items-center q-mt-md"
               style="min-height: 300px;"
             >
               <div class="column">

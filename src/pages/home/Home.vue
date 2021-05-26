@@ -1,18 +1,18 @@
 <template>
   <q-layout view="lHh Lpr lFf">
-    <div class="q-ma-xl">
-      <div class="text-center text-h4 q-mb-xl">
+    <div class="q-ma-md">
+      <div class="text-center text-h4">
         O Melhor da moda infantil na sua casa
       </div>
-      <div class="row items-center q-ma-md">
-        <div class="col-12 col-md-3 shadow-5">
+      <div class="row items-center q-mt-md">
+        <div class="col-12 col-sm shadow-1 q-mr-md">
           <q-img
             src="https://cdn.pixabay.com/photo/2015/11/10/00/55/african-1036184_960_720.jpg"
             :ratio="4/3"
             style="border-radius: 10px"
           />
         </div>
-        <div class="col q-gutter-sm shadow-1 q-ma-xl" style="border-radius: 10px">
+        <div class="col-12 col-sm shadow-1 q-mt-md q-mb-md q-mr-md" style="border-radius: 10px">
           <div class="row">  
             <div class="col-12 text-center q-mt-md" style="height: 10%; width: 10%">
               <q-img id="centro-bolsa" class="" src="assets/bolsa.png" alt="Power BAG + SLOGAN"/> 
@@ -25,7 +25,7 @@
             <q-img id="centro" src="assets/Modelo de negócio.png" alt="Modelo de negócio" style="height: 50%; max-width: 50%"/>
           </div>
         </div>
-        <div class="col-12 col-md-3 shadow-5">
+        <div class="col-12 col-sm shadow-1">
           <q-img
             src="https://cdn.pixabay.com/photo/2016/07/02/23/07/kid-1493932_960_720.jpg"
             :ratio="4/3"
