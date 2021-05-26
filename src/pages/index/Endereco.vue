@@ -1,13 +1,12 @@
 <template>
-  <div class="q-ma-md col-7">
+  <div>
     <q-item-label class="text-h5" style="underline">
       Endereço
     </q-item-label>
     <div class="row q-mt-lg">
-      <div class="col">
+      <div class="col-12 col-sm">
         <q-input
           v-model="cadastroEndereco.cep"
-          filled
           class="q-mr-lg"
           label="CEP"
           mask="#####-###"
@@ -15,52 +14,48 @@
           @keyup="searchCep()"
         />
       </div>
-      <div class="col">
-        <q-input v-model="cadastroEndereco.uf" filled label="UF" />
+      <div class="col-12 col-sm">
+        <q-input v-model="cadastroEndereco.uf" label="UF" />
       </div>
     </div>
 
     <div class="row q-mt-lg">
-      <div class="col">
+      <div class="col-12 col-sm">
         <q-input
           v-model="cadastroEndereco.cidade"
-          filled
           class="q-mr-lg"
           label="Cidade"
         />
       </div>
-      <div class="col">
-        <q-input v-model="cadastroEndereco.bairro" filled label="Bairro" />
+      <div class="col-12 col-sm">
+        <q-input v-model="cadastroEndereco.bairro" label="Bairro" />
       </div>
     </div>
 
     <div class="row q-mt-lg">
-      <div class="col">
+      <div class="col-12 col-sm">
         <q-input
           v-model="cadastroEndereco.rua"
-          filled
           class="q-mr-lg"
           label="Rua"
         />
       </div>
-      <div class="col">
-        <q-input v-model="cadastroEndereco.numero" filled label="Número" />
+      <div class="col-12 col-sm">
+        <q-input v-model="cadastroEndereco.numero" label="Número" />
       </div>
     </div>
 
     <div class="row q-mt-lg">
-      <div class="col">
+      <div class="col-12 col-sm">
         <q-input
           v-model="cadastroEndereco.complemento"
-          filled
           class="q-mr-lg"
           label="Complemento"
         />
       </div>
-      <div class="col">
+      <div class="col-12 col-sm">
         <q-input
           v-model="cadastroEndereco.observacoes"
-          filled
           label="Observações"
         />
       </div>
