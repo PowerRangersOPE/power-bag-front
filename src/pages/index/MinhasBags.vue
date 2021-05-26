@@ -1,7 +1,7 @@
 <template>
   <div>
     <div>
-      <div class="col q-mb-sm">
+      <div class="col q-mb-md">
         <q-btn
           color="green"
           label="Solicitar nova Bag"
@@ -9,9 +9,9 @@
         />
       </div>
     </div>
-    <div class="q-pa-md">
+    <div>
       <q-table
-        dense
+        :dense="$q.screen.lt.lg"
         :data="bag"
         :columns="columns"
         row-key="id"
@@ -91,6 +91,7 @@
 
 <script>
 import axios from "axios";
+import { Screen } from 'quasar'
 
 export default {
   name: "minhasBags",
@@ -139,6 +140,13 @@ export default {
     idBagAtual: null,
     novoStatusBag: null
   }),
+  computed: {
+    buttonColor () {
+      return this.$q.screen.lt.md
+        ? 'primary'
+        : 'secondary'
+    }
+  },
   mounted() {
     this.buscarBags();
   },
@@ -155,11 +163,23 @@ export default {
         }
       });
 
-      if (!cadastroPreenchido.data.available) {
+      console.log(cadastroPreenchido.data.reason)
+      const retornoReason = cadastroPreenchido.data.reason
+
+      if(retornoReason === 'solicitacao em aberto') {
         this.$q.dialog({
           title: "Atenção!",
           message:
-            "Para solicitar a Bag é necessário ter todos os cadastros preenchidos."
+            "Para solicitar nova Bag é necessário é necessário aguardar a finalização do último pedido"
+        });
+        return false;
+      }
+
+      if(retornoReason === 'dados cadastrais') {
+        this.$q.dialog({
+          title: "Atenção!",
+          message:
+            "Para solicitar a Bag é necessário ter todos os cadastros preenchidos"
         });
         return false;
       }

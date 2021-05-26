@@ -1,22 +1,20 @@
 <template>
-  <div class="q-ma-md col-12">
+  <div class="col-12">
     <q-item-label class="text-h5">
       Perfil dos produtos
     </q-item-label>
     <div class="row q-mt-lg">
-      <div class="col">
+      <div class="col-12 col-sm">
         <q-select
           class="q-mr-lg"
           v-model="cadastroProduto.genero"
-          filled
           :options="listaProdutoGenero"
           label="Genero"
         />
       </div>
-      <div class="col">
+      <div class="col-12 col-sm">
         <q-select
           v-model="cadastroProduto.fx_etaria"
-          filled
           :options="listaProdutoFaixaEtaria"
           label="Faixa etária"
         />
@@ -24,19 +22,17 @@
     </div>
 
     <div class="row q-mt-lg">
-      <div class="col">
+      <div class="col-12 col-sm">
         <q-select
           v-model="cadastroProduto.estacao_ano"
-          filled
           class="q-mr-lg"
           :options="listaProdutoEstacaoAno"
           label="Estação do ano"
         />
       </div>
-      <div class="col">
+      <div class="col-12 col-sm">
         <q-select
           v-model="cadastroProduto.necessidade"
-          filled
           :options="listaProdutoNecessidade"
           label="Necessidade"
         />
@@ -44,19 +40,17 @@
     </div>
 
     <div class="row q-mt-lg">
-      <div class="col">
+      <div class="col-12 col-sm">
         <q-select
           v-model="cadastroProduto.cor"
-          filled
           :options="listaProdutoCor"
           label="Cor"
           class="q-mr-lg"
         />
       </div>
-      <div class="col">
+      <div class="col-12 col-sm">
         <q-select
           v-model="cadastroProduto.tipo_estampa"
-          filled
           :options="listaProdutoTipoEstampa"
           label="Tipo de estampa"
         />
@@ -64,19 +58,17 @@
     </div>
 
     <div class="row q-mt-lg">
-      <div class="col">
+      <div class="col-12 col-sm">
         <q-select
           v-model="cadastroProduto.tipo_tenis"
-          filled
           class="q-mr-lg"
           :options="listaProdutoTipoTenis"
           label="Tipo de calçado"
         />
       </div>
-      <div class="col">
+      <div class="col-12 col-sm">
         <q-select
           v-model="cadastroProduto.tamanho_camisa"
-          filled
           :options="listaProdutoTamanhoCamisa"
           label="Tamanho da camisa"
         />
@@ -84,19 +76,17 @@
     </div>
 
     <div class="row q-mt-lg">
-        <div class="col">
+        <div class="col-12 col-sm">
           <q-select
             v-model="cadastroProduto.tamanho_sapato"
-            filled
             :options="listaProdutoTamanhoSapato"
             label="Tamanho do sapato"
             class="q-mr-lg"
           />
         </div>
-        <div class="col">
+        <div class="col-12 col-sm">
           <q-select
             v-model="cadastroProduto.tipo_estilo"
-            filled
             :options="listaProdutoTipoEstilo"
             label="Tipo de estilo"
           />
@@ -104,35 +94,35 @@
     </div>
 
     <div class="row q-mt-lg">
-      <div class="col">
+      <div class="col-12 col-sm">
         <q-select
           v-model="cadastroProduto.tamanho_calca"
-          filled
           :options="listaProdutoTamanhoCalca"
           label="Tamanho da calça"
           class="q-mr-lg"
         />
       </div>
-      <div class="col">
-        <q-input filled v-model="cadastroProduto.observacoes" label="Observações" />
+      <div class="col-12 col-sm">
+        <q-input v-model="cadastroProduto.observacoes" label="Observações" />
       </div>
     </div>
 
 
-    <div class="col q-mt-xl">
+    <div class="col-12 col-sm q-mt-xl">
       <q-btn color="black" label="Salvar" @click="confirmaSalvar()" />
     </div>
-      <q-dialog v-model="confirm" persistent>
-        <q-card>
-            <q-card-section class="row items-center">
-                <q-avatar icon="announcement" color="primary" text-color="white" />
-                <span class="q-ml-sm">Deseja salvar os dados?</span>
-            </q-card-section>
-            <q-card-actions align="right">
-                <q-btn flat label="Sim" color="primary" @click="salvar()" v-close-popup />
-                <q-btn flat label="Não" color="primary" v-close-popup />
-            </q-card-actions>
-        </q-card>
+
+    <q-dialog v-model="confirm" persistent>
+      <q-card>
+          <q-card-section class="row items-center">
+              <q-avatar icon="announcement" color="primary" text-color="white" />
+              <span class="q-ml-sm">Deseja salvar os dados?</span>
+          </q-card-section>
+          <q-card-actions align="right">
+              <q-btn flat label="Sim" color="primary" @click="salvar()" v-close-popup />
+              <q-btn flat label="Não" color="primary" v-close-popup />
+          </q-card-actions>
+      </q-card>
     </q-dialog>
   </div>
 </template>
