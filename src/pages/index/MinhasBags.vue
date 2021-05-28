@@ -50,7 +50,7 @@
                 color="info"
                 size="sm"
                 dense
-                @click="abrirModalFeedback(props.row.id)"
+                @click="abrirModalFeedback(props.row.observacoes)"
                 
               />
               <q-btn
@@ -292,9 +292,10 @@ export default {
         this.buscarBags();
       }, 500);
     },
-    abrirModalFeedback(idPost) {
+    abrirModalFeedback(props) {
+      console.log(props)
       this.modalFeedback = true
-      this.idBagAtual = idPost
+      this.textFeedback = props
     },
     feedbackBag() {
       axios({
