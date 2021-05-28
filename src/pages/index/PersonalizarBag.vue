@@ -212,7 +212,7 @@ const PRODUTO_TAMANHO_TENIS = [
 ];
 const PRODUTO_TAMANHO_CALCA = ["P", "M", "G", "EG"];
 const PRODUTO_TAMANHO_CAMISA = ["PP", "P", "M", "G", "GG"];
-const PRODUTO_ESTACAO_ANO = ["verao", "inverno"];
+const PRODUTO_ESTACAO_ANO = ["primavera", "verao", "outono", "inverno"];
 const PRODUTO_NAO_QUERO = [];
 const PRODUTO_FAIXA_ETARIA = [
   "bebe",
