@@ -57,6 +57,7 @@ export default {
         if (resto != parseInt(cpf.substring(10, 11) ) ) return 'CPF digitado é inválido'
     },
     async login() {
+      this.$q.loading.show()
       this.$refs.cpf.validate()
       this.$refs.password.validate()
       if(this.$refs.cpf.hasError || this.$refs.password.hasError) {
@@ -120,6 +121,7 @@ export default {
           this.password = ''
         }
       }
+      this.$q.loading.hide()
     }
   }
 };
