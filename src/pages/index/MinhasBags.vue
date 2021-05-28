@@ -41,6 +41,29 @@
             </div>
           </q-td>
         </template>
+        <template v-slot:body-cell-feedback="props">
+          <q-td :props="props">
+            <div>
+              <q-btn
+                v-if="props.row.status === 'Compra total' || props.row.status === 'Finalizado'"
+                icon="chat"
+                color="info"
+                size="sm"
+                dense
+                @click="abrirModalFeedback(props.row.id)"
+                
+              />
+              <q-btn
+                v-else
+                icon="chat"
+                color="info"
+                size="sm"
+                dense
+                disable
+              />
+            </div>
+          </q-td>
+        </template>
       </q-table>
     </div>
 
@@ -86,12 +109,33 @@
         </q-card-actions>
       </q-card>
     </q-dialog>
+
+    <q-dialog v-model="modalFeedback">
+      <q-card>
+        <q-card-section>
+          <div class="text-h6">Deixe um Feedback para o nosso atendimento</div>
+        </q-card-section>
+        <div class="q-pa-md">
+          <q-input
+            v-model="textFeedback"
+            filled
+            clearable
+            type="textarea"
+            color="red-12"
+            label="Seu feedback"
+          />
+        </div>
+        <q-card-actions align="right">
+          <q-btn flat label="Salvar" color="primary" @click="feedbackBag()" v-close-popup />
+          <q-btn flat label="Cancelar" color="primary" v-close-popup />
+        </q-card-actions>
+      </q-card>
+    </q-dialog>
   </div>
 </template>
 
 <script>
 import axios from "axios";
-import { Screen } from 'quasar'
 
 export default {
   name: "minhasBags",
@@ -99,7 +143,6 @@ export default {
     token: localStorage.getItem("token"),
     baseUrl: "https://power-bag-back.herokuapp.com",
     confirm: false,
-    modalCartao: false,
     columns: [
       {
         name: "createdAt",
@@ -108,6 +151,7 @@ export default {
         sortable: true,
         type: "date",
         align: "center",
+        width: "auto",
         headerClasses: "bg-primary text-white text-uppercase",
         format: val => `${val.replace(/(\d*)-(\d*)-(\d*).*/, "$3-$2-$1")}`
       },
@@ -116,6 +160,7 @@ export default {
         label: "Status",
         field: "status",
         align: "center",
+        width: "auto",
         headerClasses: "bg-primary text-white text-uppercase text-bold"
       },
       {
@@ -123,12 +168,21 @@ export default {
         label: "Valor",
         field: "valor",
         align: "center",
+        width: "auto",
         headerClasses: "bg-primary text-white text-uppercase text-bold"
       },
       {
         name: "action",
         label: "Alterar Status da BAG",
         align: "center",
+        width: "auto",
+        headerClasses: "bg-primary text-white text-uppercase text-bold "
+      },
+      {
+        name: "feedback",
+        label: "Feedback",
+        align: "center",
+        width: "auto",
         headerClasses: "bg-primary text-white text-uppercase text-bold "
       }
     ],
@@ -136,9 +190,12 @@ export default {
     model: null,
     options: ["Compra total", "Solicitado a retirada"],
     selected: [],
+    modalCartao: false,
     modalAlterarStatus: false,
+    modalFeedback: false,
     idBagAtual: null,
-    novoStatusBag: null
+    novoStatusBag: null,
+    textFeedback: ""
   }),
   computed: {
     buttonColor () {
@@ -163,7 +220,6 @@ export default {
         }
       });
 
-      console.log(cadastroPreenchido.data.reason)
       const retornoReason = cadastroPreenchido.data.reason
 
       if(retornoReason === 'solicitacao em aberto') {
@@ -235,7 +291,31 @@ export default {
         });
         this.buscarBags();
       }, 500);
-    }
+    },
+    abrirModalFeedback(idPost) {
+      this.modalFeedback = true
+      this.idBagAtual = idPost
+    },
+    feedbackBag() {
+      axios({
+        method: "PUT",
+        url: `${this.baseUrl}/bag`,
+        headers: {
+          Authorization: `${this.token}`
+        },
+        data: {
+          observacoes: this.textFeedback,
+          id_bag: this.idBagAtual
+        }
+      })
+      setTimeout(() => {
+        this.$q.dialog({
+          title: "Atenção!",
+          message: "O seu feedback foi inserido com sucesso!"
+        });
+        this.buscarBags();
+      }, 500);
+    },
   }
 };
 </script>
