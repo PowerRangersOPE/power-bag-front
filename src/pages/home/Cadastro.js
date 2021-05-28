@@ -60,6 +60,7 @@ export default {
         if (resto != parseInt(cpf.substring(10, 11) ) ) return 'CPF digitado é inválido'
     },
     async cadastrar () {
+      this.$q.loading.show()
       this.$refs.cpf.validate()
       this.$refs.user.validate()
       this.$refs.password.validate()
@@ -85,6 +86,7 @@ export default {
           title: 'Bem Vindo ao PowerBag!',
           message: 'Cadastro realizado com sucesso! Faça seu login!'
         })
+        this.$q.loading.hide()
         setTimeout(() => {
           this.$router.push('/login')
         }, 500);
