@@ -81,6 +81,21 @@
             </div>
           </q-td>
         </template>
+        <template v-slot:body-cell-itensBag="props">
+          <q-td :props="props">
+            <div>
+              <q-btn
+                icon="work"
+                color="white"
+                size="sm"
+                dense
+                class="text-red"
+                @click="itensBag(props.row)"
+              > 
+              </q-btn>
+            </div>
+          </q-td>
+        </template>
       </q-table>
     </div>
 
@@ -362,6 +377,12 @@ export default {
         headerClasses: "bg-primary text-white text-uppercase text-bold "
       },
       {
+        name: "itensBag",
+        label: "Itens Bag",
+        align: "center",
+        headerClasses: "bg-primary text-white text-uppercase text-bold "
+      },
+      {
         name: "feedback",
         label: "Feedback",
         align: "center",
@@ -471,6 +492,12 @@ export default {
       this.textFeedback = filterBag[0].observacoes
        
     },
+    itensBag(props) {
+      this.idBagAtual = props.id
+      console.log(props)
+      let router =  `${this.baseUrl}/bag/${this.idBagAtual}/itens` 
+      window.open(router, '_blank');
+    }
   }
 };
 </script>
