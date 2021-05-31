@@ -111,6 +111,7 @@ export default {
           })
           this.cpf = ''
           this.password = ''
+          this.$q.loading.hide()
         }
         if(error.response.data.error === "Cliente not found") {
           this.$q.dialog({
@@ -119,6 +120,7 @@ export default {
           })
           this.cpf = ''
           this.password = ''
+          this.$q.loading.hide()
         }
       }
       this.$q.loading.hide()

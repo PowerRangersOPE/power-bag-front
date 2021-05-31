@@ -494,7 +494,6 @@ export default {
     },
     itensBag(props) {
       this.idBagAtual = props.id
-      console.log(props)
       let router =  `${this.baseUrl}/bag/${this.idBagAtual}/itens` 
       window.open(router, '_blank');
     }
