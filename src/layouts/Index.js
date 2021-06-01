@@ -25,20 +25,22 @@ export default {
         identificacao: "",
         tel_cel1: "",
         tel_cel2: "",
-        dat_nasc: ""
+        dat_nasc: "",
+        usuarioLogado: null
       }
     };
   },
   mounted() {
-    this.usuarioLogado();
+    this.confirmarUsuarioAdmin();
   },
   methods: {
     limparLocalStorage() {
       localStorage.clear();
     },
-    usuarioLogado() {
-      const buscaLocalStorage = localStorage.getItem("token")
-      if (buscaLocalStorage === null || buscaLocalStorage === "") {
+    confirmarUsuarioAdmin() {
+      let usuarioLogado = localStorage.getItem("clienteId")
+      if (usuarioLogado === "" || usuarioLogado === null ) {
+        localStorage.clear();
         this.$router.push({ name: "home" })
       } 
     }
