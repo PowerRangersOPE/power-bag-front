@@ -66,6 +66,7 @@ export default {
           title: 'Atenção',
           message: 'Login ou Senha preenchido incorretamente.'
         })
+        this.$q.loading.hide()
         return
       }
       try {
