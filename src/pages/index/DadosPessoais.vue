@@ -171,6 +171,13 @@ export default {
       });
       const busca = Object.assign(this.cadastroPerfil, response.data);
       this.cadastroPerfil.email = busca.email;
+    },
+    confirmarUsuarioAdmin() {
+      let usuarioLogado = localStorage.getItem("admin")
+      if (usuarioLogado === "true") {
+        localStorage.clear();
+        this.$router.push({ name: "home" })
+      } 
     }
   }
 };

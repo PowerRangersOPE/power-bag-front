@@ -28,6 +28,7 @@ export default {
     this.cardNumberTemp = this.otherCardMask;
     document.getElementById("cardNumber").focus();
     this.buscarDados();
+    this.confirmarUsuarioAdmin()
   },
   computed: {
     getCardType () {
@@ -157,6 +158,13 @@ export default {
         }
       }, 300);
       vm.isInputFocused = false;
+    },
+    confirmarUsuarioAdmin() {
+      let usuarioLogado = localStorage.getItem("admin")
+      if (usuarioLogado === "true") {
+        localStorage.clear();
+        this.$router.push({ name: "home" })
+      } 
     }
   }
 }

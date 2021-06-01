@@ -413,10 +413,12 @@ export default {
     novoValorBag: null,
     clienteId: null,
     nome: null,
-    textFeedback: ""
+    textFeedback: "",
+    usuarioLogado: null
   }),
   mounted() {
     this.buscarBags();
+    this.confirmarUsuarioAdmin();
   },
   methods: {
     confirmarPedido() {
@@ -496,6 +498,18 @@ export default {
       this.idBagAtual = props.id
       let router =  `${this.baseUrl}/bag/${this.idBagAtual}/itens` 
       window.open(router, '_blank');
+    },
+    confirmarUsuarioAdmin() {
+      this.usuarioLogado = localStorage.getItem("admin")
+      console.log(this.usuarioLogado)
+      if (this.usuarioLogado === "false") {
+        this.$q.dialog({
+          title: 'Atenção',
+          message: 'Usuário não possui permissão para pagina!'
+        })
+        localStorage.clear();
+        this.$router.push({ name: "home" })
+      } 
     }
   }
 };
