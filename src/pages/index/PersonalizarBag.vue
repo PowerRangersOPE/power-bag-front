@@ -264,6 +264,7 @@ export default {
   },
   mounted() {
     this.buscarDados()
+    this.confirmarUsuarioAdmin()
   },
   methods: {
     confirmaSalvar() {
@@ -310,6 +311,13 @@ export default {
       });
       const busca = Object.assign(this.cadastroProduto, response.data)
       this.cadastroProduto = busca
+    },
+    confirmarUsuarioAdmin() {
+      let usuarioLogado = localStorage.getItem("admin")
+      if (usuarioLogado === "true") {
+        localStorage.clear();
+        this.$router.push({ name: "home" })
+      } 
     }
   }
 };

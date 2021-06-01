@@ -11,7 +11,7 @@
     </div>
     <div>
       <q-table
-        :dense="$q.screen.lt.lg"
+        dense
         :data="bag"
         :columns="columns"
         row-key="id"
@@ -24,10 +24,9 @@
               <q-btn
                 v-if="props.row.status !== 'Recebido'"
                 icon="published_with_changes"
-                color="info"
+                color="grey"
                 size="sm"
                 dense
-                @click="abrirModalAlterarStatus(props.row.id)"
                 disable
               />
               <q-btn
@@ -37,7 +36,11 @@
                 size="sm"
                 dense
                 @click="abrirModalAlterarStatus(props.row.id)"
-              />
+              >
+                <q-tooltip anchor="center left" self="center right">
+                  Alterar status da minha Bag
+                </q-tooltip>
+              </q-btn>
             </div>
           </q-td>
         </template>
@@ -51,12 +54,15 @@
                 size="sm"
                 dense
                 @click="abrirModalFeedback(props.row.observacoes)"
-                
-              />
+                >
+                  <q-tooltip anchor="center left" self="center right">
+                    Deixe o seu feedback do atendimento
+                  </q-tooltip>
+                </q-btn>
               <q-btn
                 v-else
                 icon="chat"
-                color="info"
+                color="grey"
                 size="sm"
                 dense
                 disable
@@ -89,14 +95,16 @@
     </q-dialog>
 
     <q-dialog v-model="modalAlterarStatus">
-      <q-card>
+      <q-card style="width: 600px; max-width: 80vw;">
         <q-card-section>
-          <div class="text-h6">Alterar Status da Bag</div>
+          <div class="text-h6">O que vai fazer com a sua bag?</div>
         </q-card-section>
         <q-card-section class="q-pt-none">
-          <li>Compra total: Irá ficar com todos itens da Bag</li>
+          <li>A opção <u><b>Compra Total</b></u> você irá ficar com todos as peças de roupa da sua bag (inclusive a bag). O valor cobrado será o que já foi debitado do seu cartão.</li>
           <br>
-          <li>Solicitado a retirada: Deseja devolver itens da Bag</li>
+          <br>
+          <li>A opção <u><b>Solicitado a Retirada</b></u>, você já escolheu quais peças que irá ficar da Bag e precisa solicar a retirada das restantes. Após alterar o status iremos recolher a mesma com os itens restantes, assim será realizado o estorno do valor correspondente. </li>
+          <p></p>
         </q-card-section>
         <div class="q-pa-md">
           <div class="q-gutter-y-md column" style="max-width: 500px">
@@ -153,7 +161,7 @@ export default {
         align: "center",
         width: "auto",
         headerClasses: "bg-primary text-white text-uppercase",
-        format: val => `${val.replace(/(\d*)-(\d*)-(\d*).*/, "$3-$2-$1")}`
+        format: val => `${val.replace(/(\d*)-(\d*)-(\d*).*/, "$3/$2/$1")}`
       },
       {
         name: "status",
@@ -169,7 +177,8 @@ export default {
         field: "valor",
         align: "center",
         width: "auto",
-        headerClasses: "bg-primary text-white text-uppercase text-bold"
+        headerClasses: "bg-primary text-white text-uppercase text-bold",
+        format: val => "R$ " + val.toString().replace(".", ",")
       },
       {
         name: "action",
@@ -206,6 +215,7 @@ export default {
   },
   mounted() {
     this.buscarBags();
+    this.confirmarUsuarioAdmin();
   },
   methods: {
     confirmarPedido() {
@@ -317,6 +327,13 @@ export default {
         this.buscarBags();
       }, 500);
     },
+    confirmarUsuarioAdmin() {
+      let usuarioLogado = localStorage.getItem("admin")
+      if (usuarioLogado === "true") {
+        localStorage.clear();
+        this.$router.push({ name: "home" })
+      } 
+    }
   }
 };
 </script>

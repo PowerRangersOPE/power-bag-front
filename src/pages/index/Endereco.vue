@@ -104,6 +104,7 @@ export default {
   },
   mounted() {
     this.buscarDados()
+    this.confirmarUsuarioAdmin()
   },
   methods: {
     confirmaSalvar() {
@@ -163,6 +164,13 @@ export default {
           console.log(error);
         }
       }
+    },
+    confirmarUsuarioAdmin() {
+      let usuarioLogado = localStorage.getItem("admin")
+      if (usuarioLogado === "true") {
+        localStorage.clear();
+        this.$router.push({ name: "home" })
+      } 
     }
   }
 };
