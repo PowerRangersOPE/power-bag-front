@@ -10,16 +10,31 @@
         <div class="col-12 col-md text-right q-mt-md">
           <div class="q-gutter-md">
             <a href="tel:+5511942692333">
-              <q-icon size="md" name="call" />
+              <q-icon size="md" name="call" 
+              >
+                <q-tooltip anchor="center left" self="center right">
+                  Realizar ligação para PowerBag
+                </q-tooltip>
+              </q-icon>
             </a>
             <a href="mailto:powerbag.contato@hotmail.com">
-              <q-icon size="md" name="email" />
+              <q-icon size="md" name="email"
+              >
+                <q-tooltip anchor="center left" self="center right">
+                  Eviar e-mail para PowerBag
+                </q-tooltip>
+              </q-icon>
             </a>
             <a
               href="https://www.instagram.com/powerbagcontato/"
               target="_blank"
             >
-              <q-icon size="md" name="fab fa-instagram" />
+              <q-icon size="md" name="fab fa-instagram" 
+              >
+                <q-tooltip anchor="center left" self="center right">
+                  Acessar Instagram da PowerBag
+                </q-tooltip>
+              </q-icon>
             </a>
           </div>
         </div>

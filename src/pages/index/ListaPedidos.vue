@@ -19,7 +19,7 @@
                     props.row.status === 'Compra total'
                 "
                 icon="published_with_changes"
-                color="negative"
+                color="grey"
                 size="sm"
                 dense
                 disable
@@ -31,7 +31,11 @@
                 size="sm"
                 dense
                 @click="abrirModalAlterarStatus(props.row)"
-              />
+              >
+                <q-tooltip anchor="center left" self="center right">
+                  Editar pedido do cliente
+                </q-tooltip>
+              </q-btn>
             </div>
           </q-td>
         </template>
@@ -44,7 +48,11 @@
                 size="sm"
                 dense
                 @click="abrirModalInfoCliente(props.row)"
-              />
+              >
+                <q-tooltip anchor="center left" self="center right">
+                  Informações do cliente
+                </q-tooltip>
+              </q-btn>
             </div>
           </q-td>
         </template>
@@ -69,15 +77,11 @@
               <q-btn
                 v-else
                 icon="chat"
-                color="warning"
+                color="grey"
                 size="sm"
                 dense
-                @click="abrirModalFeedback(props.row.id)"
-              >
-                <q-tooltip anchor="center left" self="center right">
-                  Pendente de feedback
-                </q-tooltip>
-              </q-btn>
+                disable
+              />
             </div>
           </q-td>
         </template>
@@ -92,6 +96,9 @@
                 class="text-red"
                 @click="itensBag(props.row)"
               > 
+                <q-tooltip anchor="center left" self="center right">
+                  Itens da Bag do cliente
+                </q-tooltip>
               </q-btn>
             </div>
           </q-td>
