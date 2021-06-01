@@ -88,8 +88,8 @@ const ENDERECO = {
   cidade: "",
   uf: "",
   cep: "",
-  complemento: "",
-  observacoes: ""
+  complemento: "n/a",
+  observacoes: "n/a"
 };
 export default {
   name: "endereco",
