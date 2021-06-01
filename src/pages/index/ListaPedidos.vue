@@ -361,6 +361,7 @@ export default {
         name: "status",
         label: "Status",
         field: "status",
+        sortable: true,
         align: "center",
         headerClasses: "bg-primary text-white text-uppercase text-bold"
       },
@@ -368,6 +369,7 @@ export default {
         name: "valor",
         label: "Valor",
         field: "valor",
+        sortable: true,
         align: "center",
         headerClasses: "bg-primary text-white text-uppercase text-bold"
       },
