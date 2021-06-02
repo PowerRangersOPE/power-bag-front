@@ -39,7 +39,8 @@
                           :rules="[this.required,this.isCpf,this.short]"
                         >
                           <template #prepend>
-                            <q-icon name="email" />
+                            <q-icon name="badge
+                            " />
                           </template>
                         </q-input>
                         <q-input
