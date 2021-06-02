@@ -6,17 +6,21 @@
     <div class="row q-mt-lg">
       <div class="col-12 col-sm">
         <q-select
+          ref="genero"
           class="q-mr-lg"
           v-model="cadastroProduto.genero"
           :options="listaProdutoGenero"
           label="Genero"
+          :rules="[requiredSelect]"
         />
       </div>
       <div class="col-12 col-sm">
         <q-select
+          ref="fxEtaria"
           v-model="cadastroProduto.fx_etaria"
           :options="listaProdutoFaixaEtaria"
           label="Faixa etária"
+          :rules="[requiredSelect]"
         />
       </div>
     </div>
@@ -24,17 +28,21 @@
     <div class="row q-mt-lg">
       <div class="col-12 col-sm">
         <q-select
+          ref="estacaoAno"
           v-model="cadastroProduto.estacao_ano"
           class="q-mr-lg"
           :options="listaProdutoEstacaoAno"
           label="Estação do ano"
+          :rules="[requiredSelect]"
         />
       </div>
       <div class="col-12 col-sm">
         <q-select
+          ref="necessidade"
           v-model="cadastroProduto.necessidade"
           :options="listaProdutoNecessidade"
           label="Necessidade"
+          :rules="[requiredSelect]"
         />
       </div>
     </div>
@@ -42,17 +50,21 @@
     <div class="row q-mt-lg">
       <div class="col-12 col-sm">
         <q-select
+          ref="cor"
           v-model="cadastroProduto.cor"
           :options="listaProdutoCor"
           label="Cor"
           class="q-mr-lg"
+          :rules="[requiredSelect]"
         />
       </div>
       <div class="col-12 col-sm">
         <q-select
+          ref="tipoEstampa"
           v-model="cadastroProduto.tipo_estampa"
           :options="listaProdutoTipoEstampa"
           label="Tipo de estampa"
+          :rules="[requiredSelect]"
         />
       </div>
     </div>
@@ -60,17 +72,21 @@
     <div class="row q-mt-lg">
       <div class="col-12 col-sm">
         <q-select
+          ref="tipoTenis"
           v-model="cadastroProduto.tipo_tenis"
           class="q-mr-lg"
           :options="listaProdutoTipoTenis"
           label="Tipo de calçado"
+          :rules="[requiredSelect]"
         />
       </div>
       <div class="col-12 col-sm">
         <q-select
+          ref="tamanhoCamisa"
           v-model="cadastroProduto.tamanho_camisa"
           :options="listaProdutoTamanhoCamisa"
           label="Tamanho da camisa"
+          :rules="[requiredSelect]"
         />
       </div>
     </div>
@@ -78,17 +94,21 @@
     <div class="row q-mt-lg">
         <div class="col-12 col-sm">
           <q-select
+            ref="tamanhoSapato"
             v-model="cadastroProduto.tamanho_sapato"
             :options="listaProdutoTamanhoSapato"
             label="Tamanho do sapato"
             class="q-mr-lg"
+            :rules="[requiredSelect]"
           />
         </div>
         <div class="col-12 col-sm">
           <q-select
+            ref="tipoEstilo"
             v-model="cadastroProduto.tipo_estilo"
             :options="listaProdutoTipoEstilo"
             label="Tipo de estilo"
+            :rules="[requiredSelect]"
           />
         </div>
     </div>
@@ -96,17 +116,23 @@
     <div class="row q-mt-lg">
       <div class="col-12 col-sm">
         <q-select
+          ref="tamanhoCalca"
           v-model="cadastroProduto.tamanho_calca"
           :options="listaProdutoTamanhoCalca"
           label="Tamanho da calça"
           class="q-mr-lg"
+          :rules="[requiredSelect]"
         />
       </div>
       <div class="col-12 col-sm">
-        <q-input v-model="cadastroProduto.observacoes" label="Observações" />
+        <q-input 
+          ref="observacoes" 
+          v-model="cadastroProduto.observacoes" 
+          label="Observações" 
+          :rules="[required]"
+        />
       </div>
     </div>
-
 
     <div class="col-12 col-sm q-mt-xl">
       <q-btn color="black" label="Salvar" @click="confirmaSalvar()" />
@@ -267,11 +293,48 @@ export default {
     this.confirmarUsuarioAdmin()
   },
   methods: {
+    requiredSelect(val) {
+      return (val && val.length != "") || "O campo deve ser preenchido";
+    },
+    required(val) {
+      return (val && val.length > 0) || "O campo deve ser preenchido";
+    },
     confirmaSalvar() {
       this.confirm = true
     },
     salvar() {
-      axios({
+      this.$q.loading.show()
+      this.$refs.genero.validate()
+      this.$refs.fxEtaria.validate() 
+      this.$refs.estacaoAno.validate()
+      this.$refs.necessidade.validate() 
+      this.$refs.cor.validate() 
+      this.$refs.tipoEstampa.validate() 
+      this.$refs.tipoTenis.validate() 
+      this.$refs.tamanhoCamisa.validate() 
+      this.$refs.tamanhoSapato.validate() 
+      this.$refs.tipoEstilo.validate() 
+      this.$refs.tamanhoCalca.validate() 
+      this.$refs.observacoes.validate() 
+
+      if(
+        this.$refs.genero.hasError || this.$refs.fxEtaria.hasError ||
+        this.$refs.estacaoAno.hasError || this.$refs.necessidade.hasError ||
+        this.$refs.cor.hasError || this.$refs.tipoEstampa.hasError ||
+        this.$refs.tipoTenis.hasError || this.$refs.tamanhoCamisa.hasError ||
+        this.$refs.tamanhoSapato.hasError || this.$refs.tipoEstilo.hasError ||
+        this.$refs.tamanhoCalca.hasError || this.$refs.observacoes.hasError 
+      ) {
+        this.$q.dialog({
+          title: 'Atenção',
+          message: 'Dados preenchidos incorretamente.'
+        })
+        this.$q.loading.hide()
+        return
+      }
+
+      try {
+        axios({
         method: 'POST',
         url: `${this.baseUrl}/perfil`,
         headers: {
@@ -291,15 +354,23 @@ export default {
           tamanho_calca: this.cadastroProduto.tamanho_calca,
           observacoes: this.cadastroProduto.observacoes
         }
-      });
+        });
 
-      setTimeout(() => {
-          this.$q.dialog({
-              title: 'Parabéns!',
-              message: 'Dados salvo com sucesso!'
-          })
-          this.buscarDados()
-      }, 500);
+        setTimeout(() => {
+            this.$q.dialog({
+                title: 'Parabéns!',
+                message: 'Dados salvo com sucesso!'
+            })
+            this.$q.loading.hide()
+            this.buscarDados()
+        }, 500);
+      } catch (error) {
+        this.$q.dialog({
+          title: 'Atenção',
+          message: 'Erro ao tentar salvar.'
+        })
+        this.$q.loading.hide()
+      }
     },
     async buscarDados() {
       const response = await axios({
