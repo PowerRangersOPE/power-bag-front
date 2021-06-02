@@ -6,11 +6,12 @@
     <div class="row q-mt-lg">
       <div class="col-12 col-sm">
         <q-input
+          ref="cep"
           v-model="cadastroEndereco.cep"
           class="q-mr-lg"
           label="CEP"
           mask="#####-###"
-          pattern="[a-zA-Z0-9]+"
+          :rules="[this.isCep, this.required]"
           @keyup="searchCep()"
         />
       </div>
@@ -41,7 +42,12 @@
         />
       </div>
       <div class="col-12 col-sm">
-        <q-input v-model="cadastroEndereco.numero" label="Número" />
+        <q-input 
+          ref="numero"
+          v-model="cadastroEndereco.numero" 
+          label="Número" 
+          :rules="[this.required]"
+        />
       </div>
     </div>
 
@@ -55,8 +61,10 @@
       </div>
       <div class="col-12 col-sm">
         <q-input
+          ref="observacoes"
           v-model="cadastroEndereco.observacoes"
           label="Observações"
+          :rules="[this.required]"
         />
       </div>
     </div>
@@ -107,35 +115,73 @@ export default {
     this.confirmarUsuarioAdmin()
   },
   methods: {
+    required(val) {
+      return (val && val.length > 0) || "O campo deve ser preenchido";
+    },
+    short(val) {
+      return (val && val.length > 3) || "Mínimo 4 caracters";
+    },
+    isCep(val) {
+      return (val && val.length > 3) || "Por favor digite cep válido";
+    },
     confirmaSalvar() {
       this.confirm = true
     },
     salvar() {
-      let token = localStorage.getItem("token");
-      axios({
-        method: 'POST',
-        url: `${this.baseUrl}/endereco`,
-        headers: {
-          Authorization: `${token}`
-        },
-        data: {
-          rua: this.cadastroEndereco.rua,
-          numero: this.cadastroEndereco.numero,
-          bairro: this.cadastroEndereco.bairro,
-          cidade: this.cadastroEndereco.cidade,
-          uf: this.cadastroEndereco.uf,
-          cep: this.cadastroEndereco.cep,
-          complemento: this.cadastroEndereco.complemento,
-          observacoes: this.cadastroEndereco.observacoes
-        }
-      })
-      setTimeout(() => {
+      this.$q.loading.show()
+      this.$refs.cep.validate()
+      this.$refs.numero.validate()
+      this.$refs.observacoes.validate()
+
+      if(
+       this.$refs.cep.hasError ||
+       this.$refs.numero.hasError ||
+       this.$refs.observacoes.hasError
+       ) {
         this.$q.dialog({
-            title: 'Parabéns!',
-            message: 'Dados salvo com sucesso!'
+          title: 'Atenção',
+          message: 'Dados preenchidos incorretamente.'
         })
-        this.buscarDados();
+        this.$q.loading.hide()
+        return
+      }
+
+      let token = localStorage.getItem("token");
+
+      try {
+        axios({
+          method: 'POST',
+          url: `${this.baseUrl}/endereco`,
+          headers: {
+            Authorization: `${token}`
+          },
+          data: {
+            rua: this.cadastroEndereco.rua,
+            numero: this.cadastroEndereco.numero,
+            bairro: this.cadastroEndereco.bairro,
+            cidade: this.cadastroEndereco.cidade,
+            uf: this.cadastroEndereco.uf,
+            cep: this.cadastroEndereco.cep,
+            complemento: this.cadastroEndereco.complemento,
+            observacoes: this.cadastroEndereco.observacoes
+          }
+        })
+        setTimeout(() => {
+          this.$q.dialog({
+              title: 'Parabéns!',
+              message: 'Dados salvo com sucesso!'
+          })
+          this.$q.loading.hide()
+          this.buscarDados();
       }, 500);
+      } catch (error) {
+        this.$q.dialog({
+          title: 'Atenção',
+          message: 'Erro ao tentar salvar.'
+        })
+        this.$q.loading.hide()
+      }
+     
     },
     async buscarDados() {
       const response = await axios({
