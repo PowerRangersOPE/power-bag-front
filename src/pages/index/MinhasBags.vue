@@ -103,7 +103,7 @@
           <li>A opção <u><b>Compra Total</b></u> você irá ficar com todos as peças de roupa da sua bag (inclusive a bag). O valor cobrado será o que já foi debitado do seu cartão.</li>
           <br>
           <br>
-          <li>A opção <u><b>Solicitado a Retirada</b></u>, você já escolheu quais peças que irá ficar da Bag e precisa solicar a retirada das restantes. Após alterar o status iremos recolher a mesma com os itens restantes, assim será realizado o estorno do valor correspondente. </li>
+          <li>A opção <u><b>Solicitado a Retirada</b></u>, você já escolheu quais peças que irá ficar da Bag e precisa solicar a retirada das restantes. Após alterar o status iremos recolher a Bag com os itens restantes, assim será realizado o estorno do valor correspondente. </li>
           <p></p>
         </q-card-section>
         <div class="q-pa-md">

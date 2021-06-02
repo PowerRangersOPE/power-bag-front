@@ -32,7 +32,7 @@
               <q-icon size="md" name="fab fa-instagram" 
               >
                 <q-tooltip anchor="center left" self="center right">
-                  Acessar Instagram da PowerBag
+                  Acessar Instagram do PowerBag
                 </q-tooltip>
               </q-icon>
             </a>
