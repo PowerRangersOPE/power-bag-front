@@ -67,47 +67,73 @@ export default {
   },
   methods: {
     card_hash() {
-      const novoCardyear = this.cardYear.toString().slice(2, 4)
-      const data = {
-        card_number: this.cardNumber.toString(),
-        card_holder_name: this.cardName.toString(),
-        card_expiration_date: this.cardMonth.toString() + "/" + novoCardyear,
-        card_cvv: this.cardCvv.toString(),
-      }
-      console.log(data)
-      pagarme.client.connect({ encryption_key: 'ek_test_8xw1zYHFb3ruE5QXrewbMSKKxjYjzz' })
-      .then(client => {
-        return client.security.encrypt(data)
-      }).then(card_hash => {
-        if(this.cardNumber.slice(0,1) === "3") {
-          axios({
-            method: "POST",
-            url: `${this.baseUrl}/cartao`,
-            headers: { Authorization: `${this.token}` },
-            data: {
-              numero: this.cardNumber.slice(0, 4) + "-" + this.cardNumber.slice(14, 17),
-              card_hash: card_hash
-            }
-          });
-        } else {
-          axios({
-            method: "POST",
-            url: `${this.baseUrl}/cartao`,
-            headers: { Authorization: `${this.token}` },
-            data: {
-              numero: this.cardNumber.slice(0, 4) + "-" + this.cardNumber.slice(15, 19),
-              card_hash: card_hash
-            }
-          });
+      this.$q.loading.show()
+      let cardLength = this.cardNumber.replace(/\s+/g, '');
+
+      if(
+        this.cardNumber === "" || this.cardName === "" ||
+        this.cardMonth === "" || this.cardCvv === "" || 
+        cardLength.length <=14 || cardLength.length >= 17 
+        ) {
+         this.$q.dialog({
+           title: 'Atenção',
+           message: 'Dados preenchidos incorretamente.'
+         })
+         this.$q.loading.hide()
+         return
         }
 
-      setTimeout(() => {
-        this.$q.dialog({
-            title: 'Parabéns!',
-            message: 'Dados salvo com sucesso!'
+      try {
+        const novoCardyear = this.cardYear.toString().slice(2, 4)
+        const data = {
+          card_number: this.cardNumber.toString(),
+          card_holder_name: this.cardName.toString(),
+          card_expiration_date: this.cardMonth.toString() + "/" + novoCardyear,
+          card_cvv: this.cardCvv.toString(),
+        }
+        pagarme.client.connect({ encryption_key: 'ek_test_8xw1zYHFb3ruE5QXrewbMSKKxjYjzz' })
+        .then(client => {
+          return client.security.encrypt(data)
+        }).then(card_hash => {
+          if(this.cardNumber.slice(0,1) === "3") {
+            axios({
+              method: "POST",
+              url: `${this.baseUrl}/cartao`,
+              headers: { Authorization: `${this.token}` },
+              data: {
+                numero: this.cardNumber.slice(0, 4) + "-" + this.cardNumber.slice(14, 17),
+                card_hash: card_hash
+              }
+            });
+          } else {
+            axios({
+              method: "POST",
+              url: `${this.baseUrl}/cartao`,
+              headers: { Authorization: `${this.token}` },
+              data: {
+                numero: this.cardNumber.slice(0, 4) + "-" + this.cardNumber.slice(15, 19),
+                card_hash: card_hash
+              }
+            });
+          }
+
+        setTimeout(() => {
+          this.$q.dialog({
+              title: 'Parabéns!',
+              message: 'Dados salvo com sucesso!'
+          })
+          this.$q.loading.hide()
+          }, 500);
         })
-        }, 500);
-      })
+      } catch (error) {
+        this.$q.dialog({
+          title: 'Atenção',
+          message: 'Erro ao tentar salvar.'
+        })
+        this.$q.loading.hide()
+      }
+
+      
     },
     async buscarDados() {
       const response = await axios({
