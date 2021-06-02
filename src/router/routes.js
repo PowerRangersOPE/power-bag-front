@@ -51,6 +51,11 @@ const routes = [
         component: () => import("src/pages/index/PersonalizarBag.vue")
       },
       {
+        path: '/index/tutorial',
+        name: 'tutorial',
+        component: () => import("src/pages/index/tutorial.vue")
+      },
+      {
         path: '/index/lista-pedidos',
         name: 'lista-pedidos',
         component: () => import("src/pages/index/listaPedidos.vue")
