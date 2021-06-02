@@ -523,9 +523,30 @@ export default {
       
     },
     async abrirModalFeedback(props) {
+      this.$q.loading.show()
       this.modalFeedback = true
       this.clienteId = props.cliente_id;
       this.idBagAtual = props
+      try { 
+        const response = await axios({
+        method: "GET",
+        url: `${this.baseUrl}/bag/all`,
+        headers: {
+          Authorization: `${this.token}`
+        }
+      });
+      const responseBag = Object.assign(response.data);
+      const filterBag = responseBag.filter(bag => bag.id == props)
+      this.textFeedback = filterBag[0].observacoes
+      this.$q.loading.hide()
+      } catch (error) {
+        this.$q.dialog({
+          title: 'Atenção',
+          message: 'Erro ao acessar Feedback.'
+        })
+        this.$q.loading.hide()
+      }
+
       const response = await axios({
         method: "GET",
         url: `${this.baseUrl}/bag/all`,
