@@ -58,7 +58,12 @@ const routes = [
       {
         path: '/index/lista-pedidos',
         name: 'lista-pedidos',
-        component: () => import("src/pages/index/listaPedidos.vue")
+        component: () => import("src/pages/index/admin/listaPedidos.vue")
+      },
+      {
+        path: '/index/clientes',
+        name: 'clientes',
+        component: () => import("src/pages/index/admin/clientes.vue")
       }
     ]
   },

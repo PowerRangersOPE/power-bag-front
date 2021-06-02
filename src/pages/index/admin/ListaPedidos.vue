@@ -354,14 +354,15 @@ export default {
         headerClasses: "bg-primary text-white text-uppercase text-bold "
       },
       {
-        name: "data",
+        name: "createdAt",
         label: "Data",
         field: "createdAt",
         sortable: true,
         type: "date",
         align: "center",
+        width: "auto",
         headerClasses: "bg-primary text-white text-uppercase",
-        format: val => `${val.replace(/(\d*)-(\d*)-(\d*).*/, "$3-$2-$1")}`
+        format: val => val.replace(/(\d*)-(\d*)-(\d*).*/, "$3/$2/$1")
       },
       {
         name: "status",
@@ -375,9 +376,10 @@ export default {
         name: "valor",
         label: "Valor",
         field: "valor",
-        sortable: true,
         align: "center",
-        headerClasses: "bg-primary text-white text-uppercase text-bold"
+        width: "auto",
+        headerClasses: "bg-primary text-white text-uppercase text-bold",
+        format: val => "R$ " + (val.toString().replace(".", ","))
       },
       {
         name: "info",
@@ -457,7 +459,9 @@ export default {
 
       this.idBagAtual = props.id;
 
-      this.valorBagAtual = props.valor;
+      const editarValor = props.valor
+      this.valorBagAtual = editarValor.toString().replace(/,/g, '.')
+
       this.statusAtualBag = props.status;
 
       this.novoStatusBag = props.status;
