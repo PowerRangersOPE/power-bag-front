@@ -184,7 +184,7 @@ export default {
       } catch (error) {
         this.$q.dialog({
           title: 'Atenção',
-          message: 'Erro ao tentar salvar. Entre em contato com Administrador'
+          message: 'Erro ao tentar salvar.'
         })
         this.$q.loading.hide()
       }
