@@ -22,8 +22,11 @@
                 color="grey"
                 size="sm"
                 dense
-                disable
-              />
+              >
+                <q-tooltip anchor="center left" self="center right">
+                  Não é possível a edição
+                </q-tooltip>
+              </q-btn>
               <q-btn
                 v-else
                 icon="published_with_changes"
@@ -71,7 +74,7 @@
                 @click="abrirModalFeedback(props.row.id)"
               > 
                 <q-tooltip anchor="center left" self="center right">
-                  Possui feedback do cliente
+                  Possui Feedback do cliente
                 </q-tooltip>
               </q-btn>
               <q-btn
@@ -80,8 +83,11 @@
                 color="grey"
                 size="sm"
                 dense
-                disable
-              />
+              > 
+                <q-tooltip anchor="center left" self="center right">
+                  Sem Feedback
+                </q-tooltip>
+              </q-btn>
             </div>
           </q-td>
         </template>
