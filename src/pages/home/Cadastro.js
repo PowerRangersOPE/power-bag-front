@@ -70,6 +70,7 @@ export default {
           title: 'Atenção',
           message: 'Dados preenchidos incorretamente.'
         })
+        this.$q.loading.hide()
         return
       }
       try {
@@ -95,6 +96,7 @@ export default {
           title: 'Atenção!',
           message: 'O E-mail ja possui cadastro, por gentileza utilze outro.'
         })
+        this.$q.loading.hide()
         this.cpf = ''
         this.user = ''
         this.password = ''
