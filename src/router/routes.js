@@ -53,17 +53,17 @@ const routes = [
       {
         path: '/index/tutorial',
         name: 'tutorial',
-        component: () => import("src/pages/index/tutorial.vue")
+        component: () => import("src/pages/index/Tutorial.vue")
       },
       {
         path: '/index/lista-pedidos',
         name: 'lista-pedidos',
-        component: () => import("src/pages/index/admin/listaPedidos.vue")
+        component: () => import("src/pages/index/admin/ListaPedidos.vue")
       },
       {
         path: '/index/clientes',
         name: 'clientes',
-        component: () => import("src/pages/index/admin/clientes.vue")
+        component: () => import("src/pages/index/admin/Clientes.vue")
       }
     ]
   },
