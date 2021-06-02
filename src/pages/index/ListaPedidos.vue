@@ -425,6 +425,8 @@ export default {
     modalFeedback: false,
     idBagAtual: null,
     novoStatusBag: null,
+    statusAtualBag: null,
+    valorBagAtual: null,
     novoValorBag: null,
     clienteId: null,
     nome: null,
@@ -452,7 +454,12 @@ export default {
     },
     abrirModalAlterarStatus(props) {
       this.modalAlterarStatus = true;
+
       this.idBagAtual = props.id;
+
+      this.valorBagAtual = props.valor;
+      this.statusAtualBag = props.status;
+
       this.novoStatusBag = props.status;
       this.novoValorBag = props.valor;
     },
@@ -470,7 +477,19 @@ export default {
       this.cadastroEndereco = Object.assign(response.data.endereco)
     },
     alterarBag() {
-      axios({
+      this.$q.loading.show()
+
+      if (this.novoValorBag < 0 || this.valorBagAtual < this.novoValorBag ||
+      this.novoStatusBag === this.statusAtualBag) {
+        this.$q.dialog({
+          title: 'Atenção',
+          message: 'Dados preenchidos incorretamente.'
+        })
+        this.$q.loading.hide()
+        return
+      }
+      try {
+        axios({
         method: "PUT",
         url: `${this.baseUrl}/bag`,
         headers: {
@@ -487,11 +506,21 @@ export default {
           title: "Atenção!",
           message: "O status da bag foi alterado com sucesso!"
         });
+        this.$q.loading.hide()
         this.idBagAtual = "";
         this.novoStatusBag = "";
         this.novoValorBag = "";
+        this.valorBagAtual = ""
         this.buscarBags();
       }, 500);
+      } catch (error) {
+        this.$q.dialog({
+          title: 'Atenção',
+          message: 'Erro ao tentar salvar.'
+        })
+        this.$q.loading.hide()
+      }
+      
     },
     async abrirModalFeedback(props) {
       this.modalFeedback = true
