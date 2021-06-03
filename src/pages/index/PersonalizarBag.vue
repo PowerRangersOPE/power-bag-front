@@ -125,17 +125,17 @@
         />
       </div>
       <div class="col-12 col-sm">
-        <q-input 
-          ref="observacoes" 
-          v-model="cadastroProduto.observacoes" 
+        <q-input
+          ref="observacoes"
+          v-model="cadastroProduto.observacoes"
           label="Observações"
         />
       </div>
     </div>
 
     <div class="col-12 col-sm q-mt-xl">
-      <q-btn color="black" label="Salvar" @click="confirmaSalvar()" />
-      <q-btn class="q-ml-md" color="green-5" label="próximo" to="cartao" />
+      <q-btn color="green-5" label="Salvar" @click="confirmaSalvar()" />
+      <q-btn class="q-ml-md" color="black" label="próximo" to="cartao" />
     </div>
 
     <q-dialog v-model="confirm" persistent>
@@ -305,16 +305,16 @@ export default {
     salvar() {
       this.$q.loading.show()
       this.$refs.genero.validate()
-      this.$refs.fxEtaria.validate() 
+      this.$refs.fxEtaria.validate()
       this.$refs.estacaoAno.validate()
-      this.$refs.necessidade.validate() 
-      this.$refs.cor.validate() 
-      this.$refs.tipoEstampa.validate() 
-      this.$refs.tipoTenis.validate() 
-      this.$refs.tamanhoCamisa.validate() 
-      this.$refs.tamanhoSapato.validate() 
-      this.$refs.tipoEstilo.validate() 
-      this.$refs.tamanhoCalca.validate() 
+      this.$refs.necessidade.validate()
+      this.$refs.cor.validate()
+      this.$refs.tipoEstampa.validate()
+      this.$refs.tipoTenis.validate()
+      this.$refs.tamanhoCamisa.validate()
+      this.$refs.tamanhoSapato.validate()
+      this.$refs.tipoEstilo.validate()
+      this.$refs.tamanhoCalca.validate()
 
       if(
         this.$refs.genero.hasError || this.$refs.fxEtaria.hasError ||
@@ -387,7 +387,7 @@ export default {
       if (usuarioLogado === "true") {
         localStorage.clear();
         this.$router.push({ name: "home" })
-      } 
+      }
     }
   }
 };

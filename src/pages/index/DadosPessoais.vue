@@ -68,8 +68,8 @@
     </div>
 
     <div class="col q-mt-xl">
-      <q-btn color="black" label="Salvar" @click="confirmaSalvar()" />
-      <q-btn class="q-ml-md" color="green-5" label="próximo" to="endereco" />
+      <q-btn color="green-5" label="Salvar" @click="confirmaSalvar()" />
+      <q-btn class="q-ml-md" color="black" label="próximo" to="endereco" />
     </div>
     <q-dialog v-model="confirm" persistent>
       <q-card>
@@ -152,9 +152,9 @@ export default {
       this.$refs.tel_cel1.validate()
 
       if(
-       this.$refs.email.hasError || 
-       this.$refs.tel_cel1.hasError || 
-       this.$refs.dat_nasc.hasError 
+       this.$refs.email.hasError ||
+       this.$refs.tel_cel1.hasError ||
+       this.$refs.dat_nasc.hasError
        ) {
         this.$q.dialog({
           title: 'Atenção',
@@ -208,7 +208,7 @@ export default {
       if (usuarioLogado === "true") {
         localStorage.clear();
         this.$router.push({ name: "home" })
-      } 
+      }
     }
   }
 };

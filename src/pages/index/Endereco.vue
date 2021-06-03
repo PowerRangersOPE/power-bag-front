@@ -16,10 +16,10 @@
         />
       </div>
       <div class="col-12 col-sm">
-        <q-input 
+        <q-input
           ref="uf"
-          v-model="cadastroEndereco.uf" 
-          label="UF" 
+          v-model="cadastroEndereco.uf"
+          label="UF"
           :rules="[this.isUF, this.required]"
         />
       </div>
@@ -38,8 +38,8 @@
       <div class="col-12 col-sm">
         <q-input
           ref="bairro"
-          v-model="cadastroEndereco.bairro" 
-          label="Bairro" 
+          v-model="cadastroEndereco.bairro"
+          label="Bairro"
           :rules="[this.required]"
           />
       </div>
@@ -56,10 +56,10 @@
         />
       </div>
       <div class="col-12 col-sm">
-        <q-input 
+        <q-input
           ref="numero"
-          v-model="cadastroEndereco.numero" 
-          label="Número" 
+          v-model="cadastroEndereco.numero"
+          label="Número"
           :rules="[this.required]"
         />
       </div>
@@ -83,8 +83,8 @@
       </div>
     </div>
     <div class="col q-mt-xl">
-      <q-btn color="black" label="Salvar" @click="confirmaSalvar()" />
-      <q-btn class="q-ml-md" color="green-5" label="próximo" to="personalizar-bag" />
+      <q-btn color="green-5" label="Salvar" @click="confirmaSalvar()" />
+      <q-btn class="q-ml-md" color="black" label="próximo" to="personalizar-bag" />
     </div>
       <q-dialog v-model="confirm" persistent>
         <q-card>
@@ -143,7 +143,7 @@ export default {
       const listaUF = ["AC", "AL", "AP", "AM", "BA", "CE", "DF", "GO", "ES", "MA",
       "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN",
       "RS", "RO", "RR", "SP", "SC", "SE", "TO"]
-      
+
       return listaUF.includes(val) || "Por favor digite UF válido"
     },
     confirmaSalvar() {
@@ -209,7 +209,7 @@ export default {
         })
         this.$q.loading.hide()
       }
-     
+
     },
     async buscarDados() {
       const response = await axios({
@@ -244,7 +244,7 @@ export default {
       if (usuarioLogado === "true") {
         localStorage.clear();
         this.$router.push({ name: "home" })
-      } 
+      }
     }
   }
 };

@@ -151,9 +151,9 @@
           </div>
         </div>
 
-        <button class="card-form__button" @click="card_hash()">
-              Salvar
-            </button>
+        <q-btn color="green-5" class="card-form__button" @click="card_hash()">
+            Salvar
+        </q-btn >
       </div>
     </div>
   </div>
