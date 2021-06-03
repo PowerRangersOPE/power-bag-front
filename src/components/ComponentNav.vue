@@ -95,14 +95,6 @@
               <q-item-label>Cartão</q-item-label>
             </q-item-section>
           </q-item>
-          <q-item clickable tag="a" rel="" to="/index/tutorial" class="q-mb-sm">
-            <q-item-section avatar>
-              <q-icon name="help_outline" color="primary" size="lg" />
-            </q-item-section>
-            <q-item-section>
-              <q-item-label>Tutorial</q-item-label>
-            </q-item-section>
-          </q-item>
         </q-list>
 
         <q-list v-else>
