@@ -249,6 +249,7 @@ export default {
         align: "center",
         width: "auto",
         headerClasses: "bg-primary text-white text-uppercase",
+        format: val => val.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, "$1.$2.$3-$4")
       },
       {
         name: "scoreCliente",
