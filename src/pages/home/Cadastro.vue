@@ -37,6 +37,7 @@
                           type="number"
                           label="CPF"
                           :rules="[this.required,this.isCpf,this.short]"
+                          @keyup.enter="cadastrar"
                         >
                           <template #prepend>
                             <q-icon name="badge
@@ -51,6 +52,7 @@
                           type="text"
                           label="Nome completo"
                           :rules="[this.required,this.short,this.isNomeSobrenome]"
+                          @keyup.enter="cadastrar"
                         >
                           <template #prepend>
                             <q-icon name="lock" />
@@ -64,6 +66,7 @@
                           type="password"
                           label="Senha"
                           :rules="[this.required, this.short]"
+                          @keyup.enter="cadastrar"
                         >
                           <template #prepend>
                             <q-icon name="lock" />

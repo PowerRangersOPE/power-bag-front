@@ -34,9 +34,9 @@
                           v-model="cpf"
                           square
                           clearable
-                          type="number"
                           label="CPF"
                           :rules="[this.required,this.isCpf,this.short]"
+                          @keyup.enter="login" 
                         >
                           <template #prepend>
                             <q-icon name="badge" />
@@ -50,7 +50,7 @@
                           type="password"
                           label="Senha"
                           :rules="[this.required, this.short]"
-                          @keyup.enter="login" 
+                          @keyup.enter="login"
                         >
                           <template #prepend>
                             <q-icon name="lock" />
