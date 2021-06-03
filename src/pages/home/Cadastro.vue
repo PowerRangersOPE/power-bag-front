@@ -7,7 +7,7 @@
       </div>
       <div class="row-10">
         <div class="text-center text-h4">
-          O Melhor da moda infantil na sua casa 
+          O Melhor da moda infantil na sua casa
         </div>
         <div>
           <q-page-container>
@@ -34,7 +34,6 @@
                           v-model="cpf"
                           square
                           clearable
-                          type="number"
                           label="CPF"
                           :rules="[this.required,this.isCpf,this.short]"
                           @keyup.enter="cadastrar"
