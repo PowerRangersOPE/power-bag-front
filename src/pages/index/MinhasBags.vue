@@ -226,7 +226,8 @@ export default {
       this.confirm = true;
     },
     async solicitarBag() {
-      const cadastroPreenchido = await axios({
+      try {
+const cadastroPreenchido = await axios({
         method: "GET",
         url: `${this.baseUrl}/cliente/validate`,
         headers: {
@@ -254,15 +255,15 @@ export default {
         return false;
       }
 
-      axios({
+      const response = await axios({
         method: "POST",
         url: `${this.baseUrl}/bag`,
         headers: {
           Authorization: `${this.token}`
         }
-      }).then(response => {
-        localStorage.setItem("bag", JSON.stringify(response.data));
-      });
+      })
+
+      localStorage.setItem("bag", JSON.stringify(response.data));
 
       setTimeout(() => {
         this.$q.dialog({
@@ -271,6 +272,12 @@ export default {
         });
         this.buscarBags();
       }, 500);
+      } catch(error) {
+        this.$q.dialog({
+          title: "Error!!!",
+          message: " Erro na solicitação da sua bag ! "
+        });
+      }
     },
     async buscarBags() {
       const response = await axios({
