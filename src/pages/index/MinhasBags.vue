@@ -78,12 +78,12 @@
         <q-card-section class="row items-center">
           <q-avatar icon="announcement" color="primary" text-color="white" />
           <span class="text-h6 q-ml-sm"
-            >Deseja continuar com a solicitação da Bag?
+            >Deseja continuar com a solicitação da Bag?<span class="text-red" >*</span>
           </span>
         </q-card-section>
         <div class="q-pa-md q-gutter-sm">
-          <q-banner rounded class="bg-blue-4 text-white">
-            Não esqueça de revisar o Perfil de sua Bag.
+          <q-banner rounded class="text-red ">
+          <b>*Não esqueça de revisar o seu perfil antes de solicitar uma nova bag !</b>
           </q-banner>
         </div>
         <q-card-actions align="right">
@@ -336,7 +336,7 @@ export default {
       if (usuarioLogado === "true") {
         localStorage.clear();
         this.$router.push({ name: "home" })
-      } 
+      }
     }
   }
 };
