@@ -118,11 +118,6 @@
           </div>
           <q-item
             clickable
-<<<<<<< HEAD
-            tag="a"
-            rel=""
-=======
->>>>>>> 611910c2e13043540c64d38c93b9a831105fe862
             to="/index/lista-pedidos"
             class="q-mb-sm"
           >
