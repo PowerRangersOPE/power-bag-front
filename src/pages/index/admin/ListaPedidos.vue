@@ -117,7 +117,7 @@
         <q-card-section>
           <div class="text-h6">Alterar Status ou Valor da Bag</div>
         </q-card-section>
-        <div class="q-pa-md">
+        <div class="q-pa-lg">
           <div class="q-gutter-y-md" style="max-width: 300px">
             <q-select
               color="purple-12"
@@ -483,8 +483,7 @@ export default {
     alterarBag() {
       this.$q.loading.show()
 
-      if (this.novoValorBag < 0 || this.valorBagAtual < this.novoValorBag ||
-      this.novoStatusBag === this.statusAtualBag) {
+      if (this.novoValorBag < 0 || this.valorBagAtual < this.novoValorBag) {
         this.$q.dialog({
           title: 'Atenção',
           message: 'Dados preenchidos incorretamente.'
