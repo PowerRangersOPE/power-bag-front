@@ -34,7 +34,7 @@
                           v-model="cpf"
                           square
                           clearable
-                          type="cpf"
+                          type="number"
                           label="CPF"
                           :rules="[this.required,this.isCpf,this.short]"
                         >
@@ -48,7 +48,7 @@
                           v-model="user"
                           square
                           clearable
-                          type="user"
+                          type="text"
                           label="Nome completo"
                           :rules="[this.required,this.short,this.isNomeSobrenome]"
                         >

@@ -24,6 +24,7 @@
     <div class="row q-mt-lg">
       <div class="col-12 col-sm">
         <q-input
+          type="email"
           ref="email"
           v-model="cadastroPerfil.email"
           class="q-mr-lg"
@@ -33,6 +34,7 @@
       </div>
       <div class="col-12 col-sm">
         <q-input
+          type="text"
           ref="dat_nasc"
           v-model="cadastroPerfil.dat_nasc"
           class=""
@@ -46,6 +48,7 @@
     <div class="row q-mt-lg">
       <div class="col-12 col-sm">
         <q-input
+          type="tel"
           ref="tel_cel1"
           v-model="cadastroPerfil.tel_cel1"
           class="q-mr-lg"

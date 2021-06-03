@@ -16,29 +16,43 @@
         />
       </div>
       <div class="col-12 col-sm">
-        <q-input v-model="cadastroEndereco.uf" label="UF" />
+        <q-input 
+          ref="uf"
+          v-model="cadastroEndereco.uf" 
+          label="UF" 
+          :rules="[this.isUF, this.required]"
+        />
       </div>
     </div>
 
     <div class="row q-mt-lg">
       <div class="col-12 col-sm">
         <q-input
+          ref="cidade"
           v-model="cadastroEndereco.cidade"
           class="q-mr-lg"
           label="Cidade"
+          :rules="[this.required]"
         />
       </div>
       <div class="col-12 col-sm">
-        <q-input v-model="cadastroEndereco.bairro" label="Bairro" />
+        <q-input
+          ref="bairro"
+          v-model="cadastroEndereco.bairro" 
+          label="Bairro" 
+          :rules="[this.required]"
+          />
       </div>
     </div>
 
     <div class="row q-mt-lg">
       <div class="col-12 col-sm">
         <q-input
+          ref="rua"
           v-model="cadastroEndereco.rua"
           class="q-mr-lg"
           label="Rua"
+          :rules="[this.required]"
         />
       </div>
       <div class="col-12 col-sm">
@@ -54,9 +68,11 @@
     <div class="row q-mt-lg">
       <div class="col-12 col-sm">
         <q-input
+          ref="complemento"
           v-model="cadastroEndereco.complemento"
           class="q-mr-lg"
           label="Complemento"
+          :rules="[this.required]"
         />
       </div>
       <div class="col-12 col-sm">
@@ -124,18 +140,35 @@ export default {
     isCep(val) {
       return (val && val.length > 3) || "Por favor digite cep válido";
     },
+    isUF(val) {
+      const listaUF = ["AC", "AL", "AP", "AM", "BA", "CE", "DF", "GO", "ES", "MA",
+      "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN",
+      "RS", "RO", "RR", "SP", "SC", "SE", "TO"]
+      
+      return listaUF.includes(val) || "Por favor digite UF válido"
+    },
     confirmaSalvar() {
       this.confirm = true
     },
     salvar() {
       this.$q.loading.show()
       this.$refs.cep.validate()
+      this.$refs.uf.validate()
+      this.$refs.cidade.validate()
+      this.$refs.bairro.validate()
+      this.$refs.rua.validate()
       this.$refs.numero.validate()
+      this.$refs.complemento.validate()
       this.$refs.observacoes.validate()
 
       if(
        this.$refs.cep.hasError ||
+       this.$refs.uf.hasError ||
+       this.$refs.cidade.hasError ||
+       this.$refs.bairro.hasError ||
+       this.$refs.rua.hasError ||
        this.$refs.numero.hasError ||
+       this.$refs.complemento.hasError ||
        this.$refs.observacoes.hasError
        ) {
         this.$q.dialog({

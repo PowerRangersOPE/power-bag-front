@@ -119,7 +119,7 @@
           <div class="card-form__inner">
             <div class="card-input">
               <label for="cardNumber" class="card-input__label"></label>Numero do Cartão
-              <input type="text" id="cardNumber" class="card-input__input" :v-mask="generateCardNumberMask" v-model="cardNumber" v-on:focus="focusInput" v-on:blur="blurInput" data-ref="cardNumber" autocomplete="off" ref="cardNumber">
+              <input type="number" id="cardNumber" class="card-input__input" :v-mask="generateCardNumberMask" v-model="cardNumber" v-on:focus="focusInput" v-on:blur="blurInput" data-ref="cardNumber" autocomplete="off" ref="cardNumber">
             </div>
             <div class="card-input">
               <label for="cardName" class="card-input__label">Nome Impresso no Cartão</label>
