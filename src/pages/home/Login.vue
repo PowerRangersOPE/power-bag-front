@@ -34,7 +34,7 @@
                           v-model="cpf"
                           square
                           clearable
-                          type="cpf"
+                          type="number"
                           label="CPF"
                           :rules="[this.required,this.isCpf,this.short]"
                         >
