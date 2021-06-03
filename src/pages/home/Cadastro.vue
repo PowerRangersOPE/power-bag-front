@@ -7,7 +7,7 @@
       </div>
       <div class="row-10">
         <div class="text-center text-h4">
-          O Melhor da moda infantil na sua casa
+          O Melhor da moda infantil na sua casa 
         </div>
         <div>
           <q-page-container>
