@@ -53,7 +53,7 @@
                 color="info"
                 size="sm"
                 dense
-                @click="abrirModalFeedback(props.row.observacoes)"
+                @click="abrirModalFeedback(props.row)"
                 >
                   <q-tooltip anchor="center left" self="center right">
                     Deixe o seu feedback do atendimento
@@ -128,11 +128,10 @@
         <q-card-section>
           <div class="text-h6">Deixe um Feedback para o nosso atendimento</div>
         </q-card-section>
-        <div class="q-pa-md">
+        <div class="q-pa-lg">
           <q-input
             v-model="textFeedback"
             filled
-            clearable
             type="textarea"
             color="red-12"
             label="Seu feedback"
@@ -308,9 +307,9 @@ export default {
       }, 500);
     },
     abrirModalFeedback(props) {
-      console.log(props)
       this.modalFeedback = true
-      this.textFeedback = props
+      this.idBagAtual = props.id
+      this.textFeedback = props.observacoes
     },
     feedbackBag() {
       axios({
