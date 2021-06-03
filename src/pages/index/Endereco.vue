@@ -72,7 +72,6 @@
           v-model="cadastroEndereco.complemento"
           class="q-mr-lg"
           label="Complemento"
-          :rules="[this.required]"
         />
       </div>
       <div class="col-12 col-sm">
@@ -80,7 +79,6 @@
           ref="observacoes"
           v-model="cadastroEndereco.observacoes"
           label="Observações"
-          :rules="[this.required]"
         />
       </div>
     </div>
@@ -113,8 +111,8 @@ const ENDERECO = {
   cidade: "",
   uf: "",
   cep: "",
-  complemento: "n/a",
-  observacoes: "n/a"
+  complemento: "",
+  observacoes: ""
 };
 export default {
   name: "endereco",
@@ -159,8 +157,6 @@ export default {
       this.$refs.bairro.validate()
       this.$refs.rua.validate()
       this.$refs.numero.validate()
-      this.$refs.complemento.validate()
-      this.$refs.observacoes.validate()
 
       if(
        this.$refs.cep.hasError ||
@@ -168,9 +164,7 @@ export default {
        this.$refs.cidade.hasError ||
        this.$refs.bairro.hasError ||
        this.$refs.rua.hasError ||
-       this.$refs.numero.hasError ||
-       this.$refs.complemento.hasError ||
-       this.$refs.observacoes.hasError
+       this.$refs.numero.hasError
        ) {
         this.$q.dialog({
           title: 'Atenção',

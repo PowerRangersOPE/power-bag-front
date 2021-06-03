@@ -77,10 +77,15 @@
       <q-card>
         <q-card-section class="row items-center">
           <q-avatar icon="announcement" color="primary" text-color="white" />
-          <span class="q-ml-sm"
+          <span class="text-h6 q-ml-sm"
             >Deseja continuar com a solicitação da Bag?
           </span>
         </q-card-section>
+        <div class="q-pa-md q-gutter-sm">
+          <q-banner rounded class="bg-blue-4 text-white">
+            Não esqueça de revisar o Perfil de sua Bag.
+          </q-banner>
+        </div>
         <q-card-actions align="right">
           <q-btn
             flat

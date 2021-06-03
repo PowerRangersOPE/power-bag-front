@@ -85,7 +85,7 @@
           ref="tamanhoCamisa"
           v-model="cadastroProduto.tamanho_camisa"
           :options="listaProdutoTamanhoCamisa"
-          label="Tamanho da camisa"
+          label="Tamanho da blusa"
           :rules="[requiredSelect]"
         />
       </div>
@@ -128,8 +128,7 @@
         <q-input 
           ref="observacoes" 
           v-model="cadastroProduto.observacoes" 
-          label="Observações" 
-          :rules="[required]"
+          label="Observações"
         />
       </div>
     </div>
@@ -237,7 +236,7 @@ const PRODUTO_TAMANHO_TENIS = [
   "27",
   "28"
 ];
-const PRODUTO_TAMANHO_CALCA = ["P", "M", "G", "EG"];
+const PRODUTO_TAMANHO_CALCA = ["PP", "P", "M", "G", "GG"];
 const PRODUTO_TAMANHO_CAMISA = ["PP", "P", "M", "G", "GG"];
 const PRODUTO_ESTACAO_ANO = ["primavera", "verao", "outono", "inverno"];
 const PRODUTO_NAO_QUERO = [];
@@ -316,7 +315,6 @@ export default {
       this.$refs.tamanhoSapato.validate() 
       this.$refs.tipoEstilo.validate() 
       this.$refs.tamanhoCalca.validate() 
-      this.$refs.observacoes.validate() 
 
       if(
         this.$refs.genero.hasError || this.$refs.fxEtaria.hasError ||
@@ -324,7 +322,7 @@ export default {
         this.$refs.cor.hasError || this.$refs.tipoEstampa.hasError ||
         this.$refs.tipoTenis.hasError || this.$refs.tamanhoCamisa.hasError ||
         this.$refs.tamanhoSapato.hasError || this.$refs.tipoEstilo.hasError ||
-        this.$refs.tamanhoCalca.hasError || this.$refs.observacoes.hasError 
+        this.$refs.tamanhoCalca.hasError
       ) {
         this.$q.dialog({
           title: 'Atenção',
