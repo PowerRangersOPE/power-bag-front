@@ -477,7 +477,7 @@ export default {
       this.cadastroPerfil = Object.assign(response.data);
       this.cadastroEndereco = Object.assign(response.data.endereco)
     },
-    alterarBag() {
+    async alterarBag() {
       this.$q.loading.show()
 
       if (this.valorBag === this.salvarValorBag && this.statusBag === this.salvarStatusBag) {
@@ -518,7 +518,7 @@ export default {
       }
 
       try {
-        axios({
+        await axios({
         method: "PUT",
         url: `${this.baseUrl}/bag`,
         headers: {
@@ -529,7 +529,7 @@ export default {
           status: this.statusBag,
           id_bag: this.idBagAtual
         }
-      });
+      })
       setTimeout(() => {
         this.$q.dialog({
           title: "Atenção!",
@@ -544,12 +544,11 @@ export default {
       }, 500);
       } catch (error) {
         this.$q.dialog({
-          title: 'Atenção',
-          message: 'Erro ao tentar salvar.'
+          title: 'Erro!',
+          message: `Erro ao tentar está ação.`
         })
         this.$q.loading.hide()
       }
-      
     },
     async abrirModalFeedback(props) {
       this.$q.loading.show()
