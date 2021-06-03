@@ -50,6 +50,7 @@
                           type="password"
                           label="Senha"
                           :rules="[this.required, this.short]"
+                          @keyup.enter="login" 
                         >
                           <template #prepend>
                             <q-icon name="lock" />
