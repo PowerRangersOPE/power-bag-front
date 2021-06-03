@@ -118,8 +118,11 @@
           </div>
           <q-item
             clickable
+<<<<<<< HEAD
             tag="a"
             rel=""
+=======
+>>>>>>> 611910c2e13043540c64d38c93b9a831105fe862
             to="/index/lista-pedidos"
             class="q-mb-sm"
           >
@@ -128,6 +131,18 @@
             </q-item-section>
             <q-item-section>
               <q-item-label>Lista de Pedidos</q-item-label>
+            </q-item-section>
+          </q-item>
+          <q-item
+            clickable
+            to="/index/clientes"
+            class="q-mb-sm"
+          >
+            <q-item-section avatar>
+              <q-icon name="person_outline" color="primary" size="lg" />
+            </q-item-section>
+            <q-item-section>
+              <q-item-label>Clientes</q-item-label>
             </q-item-section>
           </q-item>
         </q-list>
