@@ -121,7 +121,7 @@
           <div class="q-gutter-y-md" style="max-width: 300px">
             <q-select
               color="purple-12"
-              v-model="novoStatusBag"
+              v-model="statusBag"
               :options="options"
               label="Escolha status"
             />
@@ -129,7 +129,7 @@
           <div class="q-gutter-y-md q-mt-sm" style="max-width: 300px">
             <q-input
               color="purple-12"
-              v-model="novoValorBag"
+              v-model="valorBag"
               label="Valor Bag"
             />
           </div>
@@ -426,10 +426,10 @@ export default {
     modalInfoCliente: false,
     modalFeedback: false,
     idBagAtual: null,
-    novoStatusBag: null,
-    statusAtualBag: null,
-    valorBagAtual: null,
-    novoValorBag: null,
+    statusBag: "",
+    salvarStatusBag: null,
+    valorBag: null,
+    salvarValorBag: null,
     clienteId: null,
     nome: null,
     textFeedback: "",
@@ -458,14 +458,11 @@ export default {
       this.modalAlterarStatus = true;
 
       this.idBagAtual = props.id;
+      this.statusBag = props.status;
+      this.valorBag = props.valor;
 
-      const editarValor = props.valor
-      this.valorBagAtual = editarValor.toString().replace(/,/g, '.')
-
-      this.statusAtualBag = props.status;
-
-      this.novoStatusBag = props.status;
-      this.novoValorBag = props.valor;
+      this.salvarStatusBag = props.status
+      this.salvarValorBag = props.valor
     },
     async abrirModalInfoCliente(props) {
       this.modalInfoCliente = true;
@@ -483,14 +480,43 @@ export default {
     alterarBag() {
       this.$q.loading.show()
 
-      if (this.novoValorBag < 0 || this.valorBagAtual < this.novoValorBag) {
+      if (this.valorBag === this.salvarValorBag && this.statusBag === this.salvarStatusBag) {
         this.$q.dialog({
           title: 'Atenção',
-          message: 'Dados preenchidos incorretamente.'
+          message: 'Para salvar é necessário realizar alguma alteração na Bag.'
+        })
+        this.$q.loading.hide()
+        this.abrirModalAlterarStatus()
+        return
+      }
+
+      if (this.valorBag < 0 || this.salvarValorBag < this.valorBag) {
+        this.$q.dialog({
+          title: 'Atenção',
+          message: 'Valor da Bag não permitido.'
         })
         this.$q.loading.hide()
         return
       }
+
+      if(this.valorBag !== this.salvarValorBag && this.statusBag !== "Finalizado") {
+        this.$q.dialog({
+          title: 'Atenção',
+          message: 'Somente com o status "Finalizado" é permitido alterar o valor da Bag.'
+        })
+        this.$q.loading.hide()
+        return
+      }
+
+      if(this.valorBag === this.salvarValorBag && this.statusBag === "Finalizado") {
+        this.$q.dialog({
+          title: 'Atenção',
+          message: 'Alterar o Status para "Compra Total".'
+        })
+        this.$q.loading.hide()
+        return
+      }
+
       try {
         axios({
         method: "PUT",
@@ -499,8 +525,8 @@ export default {
           Authorization: `${this.token}`
         },
         data: {
-          valor: this.novoValorBag,
-          status: this.novoStatusBag,
+          valor: this.valorBag,
+          status: this.statusBag,
           id_bag: this.idBagAtual
         }
       });
