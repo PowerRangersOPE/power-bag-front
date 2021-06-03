@@ -1,8 +1,10 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import VueMask from 'v-mask'
 
 import routes from './routes'
 
+Vue.use(VueMask)
 Vue.use(VueRouter)
 
 /*

@@ -42,12 +42,6 @@ export default {
       re = new RegExp("^5[1-5]");
       if (number.match(re) != null) return "mastercard";
 
-      re = new RegExp("^6011");
-      if (number.match(re) != null) return "discover";
-
-      re = new RegExp('^9792')
-      if (number.match(re) != null) return 'troy'
-
       return "visa"; // default type
     },
 		generateCardNumberMask () {
@@ -72,8 +66,8 @@ export default {
 
       if(
         this.cardNumber === "" || this.cardName === "" ||
-        this.cardMonth === "" || this.cardCvv === "" || 
-        cardLength.length <=14 || cardLength.length >= 17 
+        this.cardMonth === "" || this.cardCvv === "" ||
+        cardLength.length <=14 || cardLength.length >= 17
         ) {
          this.$q.dialog({
            title: 'Atenção',
@@ -91,6 +85,7 @@ export default {
           card_expiration_date: this.cardMonth.toString() + "/" + novoCardyear,
           card_cvv: this.cardCvv.toString(),
         }
+        console.log(data)
         pagarme.client.connect({ encryption_key: 'ek_test_8xw1zYHFb3ruE5QXrewbMSKKxjYjzz' })
         .then(client => {
           return client.security.encrypt(data)
@@ -133,7 +128,7 @@ export default {
         this.$q.loading.hide()
       }
 
-      
+
     },
     async buscarDados() {
       const response = await axios({
@@ -147,15 +142,15 @@ export default {
       const retornoCartao = response.data.cartao.numero
 
       if(retornoCartao.slice(0, 1) === "3") {
-        const refatoraCartao = retornoCartao.slice(0, 4) + " ****** **" + retornoCartao.slice(5, 8)
+        const refatoraCartao = retornoCartao.slice(0, 4) + " 000000 00" + retornoCartao.slice(5, 8)
         this.cardNumber = refatoraCartao
-        this.cardName = "******** *******"
-        this.cardCvv = "***"
+        this.cardName = " "
+        this.cardCvv = " "
       } else {
-        const refatoraCartao = retornoCartao.slice(0, 4) + " **** **** " + retornoCartao.slice(5, 9)
+        const refatoraCartao = retornoCartao.slice(0, 4) + " 0000 0000 " + retornoCartao.slice(5, 9)
         this.cardNumber = refatoraCartao
-        this.cardName = "******** *******"
-        this.cardCvv = "***"
+        this.cardName = " "
+        this.cardCvv = " "
       }
 
     },
@@ -190,7 +185,7 @@ export default {
       if (usuarioLogado === "true") {
         localStorage.clear();
         this.$router.push({ name: "home" })
-      } 
+      }
     }
   }
 }

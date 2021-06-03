@@ -54,6 +54,7 @@ module.exports = {
   // add your custom rules here
   rules: {
     'prefer-promise-reject-errors': 'off',
+    'no-use-v-if-with-v-for': 'off',
 
 
     // allow debugger during development only
