@@ -79,14 +79,6 @@
               <q-item-label>Endereço</q-item-label>
             </q-item-section>
           </q-item>
-          <q-item clickable tag="a" rel="" to="/index/cartao" class="q-mb-sm">
-            <q-item-section avatar>
-              <q-icon name="credit_card" color="primary" size="lg" />
-            </q-item-section>
-            <q-item-section>
-              <q-item-label>Cartão</q-item-label>
-            </q-item-section>
-          </q-item>
            <q-item clickable tag="a" rel="" to="/index/personalizar-bag" class="q-mb-sm">
               <q-item-section avatar>
                   <q-icon name="checkroom" color="primary" size="lg" />
@@ -94,6 +86,14 @@
               <q-item-section>
                   <q-item-label>Personalizar Bag</q-item-label>
               </q-item-section>
+          </q-item>
+          <q-item clickable tag="a" rel="" to="/index/cartao" class="q-mb-sm">
+            <q-item-section avatar>
+              <q-icon name="credit_card" color="primary" size="lg" />
+            </q-item-section>
+            <q-item-section>
+              <q-item-label>Cartão</q-item-label>
+            </q-item-section>
           </q-item>
           <q-item clickable tag="a" rel="" to="/index/tutorial" class="q-mb-sm">
             <q-item-section avatar>

@@ -100,10 +100,10 @@
           <div class="text-h6">O que vai fazer com a sua bag?</div>
         </q-card-section>
         <q-card-section class="q-pt-none">
-          <li>A opção <u><b>Compra Total</b></u> você irá ficar com todos as peças de roupa da sua bag (inclusive a bag). O valor cobrado será o que já foi debitado do seu cartão.</li>
+          <li>Na opção <u><b>Compra Total</b></u> você ficará com todos as peças da sua bag (inclusive a bag). O valor cobrado é o mesmo já debitado do seu cartão.</li>
           <br>
           <br>
-          <li>A opção <u><b>Solicitado a Retirada</b></u>, você já escolheu quais peças que irá ficar da Bag e precisa solicar a retirada das restantes. Após alterar o status iremos recolher a Bag com os itens restantes, assim será realizado o estorno do valor correspondente. </li>
+          <li>Na opção<u><b>Solicitado a Retirada</b></u>, você ja escolheu suas peças e quer devolver as outras. Vamos retirar a bag com os itens restantes e realizar o estorno do valor correspondente. Você também escolhe essa opção se quiser devolver a bag completa.</li>
           <p></p>
         </q-card-section>
         <div class="q-pa-md">

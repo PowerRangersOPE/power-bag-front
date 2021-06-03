@@ -70,6 +70,7 @@
 
     <div class="col q-mt-xl">
       <q-btn color="black" label="Salvar" @click="confirmaSalvar()" />
+      <q-btn class="q-ml-md" color="green-5" label="próximo" to="endereco" />
     </div>
     <q-dialog v-model="confirm" persistent>
       <q-card>

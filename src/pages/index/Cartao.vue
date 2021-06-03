@@ -1,9 +1,5 @@
-/* eslint-disable vue/no-use-v-if-with-v-for */
-/* eslint-disable vue/no-use-v-if-with-v-for */
-/* eslint-disable vue/no-use-v-if-with-v-for */
 <template>
-  <div class="q-ma-md col-7">
-      <div class="wrapper" id="app">
+  <div class="wrapper" id="app">
     <div class="card-form">
       <div class="card-list">
         <div class="card-item" v-bind:class="{ '-active' : isCardFlipped }">
@@ -160,9 +156,6 @@
             </button>
       </div>
     </div>
-
-
-  </div>
   </div>
 </template>
 
@@ -183,7 +176,7 @@ body {
 .wrapper {
   min-height: 50vh;
   display: flex;
-  padding: 50px 15px;
+  padding: 5px 5px;
   @media screen and (max-width: 700px), (max-height: 500px) {
     flex-wrap: wrap;
     flex-direction: column;
