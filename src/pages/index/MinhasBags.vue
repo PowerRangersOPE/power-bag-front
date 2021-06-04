@@ -108,7 +108,7 @@
           <li>Na opção <u><b>Compra Total</b></u> você ficará com todos as peças da sua bag (inclusive a bag). O valor cobrado é o mesmo já debitado do seu cartão.</li>
           <br>
           <br>
-          <li>Na opção<u><b>Solicitado a Retirada</b></u>, você ja escolheu suas peças e quer devolver as outras. Vamos retirar a bag com os itens restantes e realizar o estorno do valor correspondente. Você também escolhe essa opção se quiser devolver a bag completa.</li>
+          <li>Na opção <u><b>Solicitado a Retirada</b></u>, você ja escolheu suas peças e quer devolver as outras. Vamos retirar a bag com os itens restantes e realizar o estorno do valor correspondente. Você também escolhe essa opção se quiser devolver a bag completa.</li>
           <p></p>
         </q-card-section>
         <div class="q-pa-md">
