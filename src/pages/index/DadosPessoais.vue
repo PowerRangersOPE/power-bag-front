@@ -61,8 +61,9 @@
         <q-input
           ref="tel_cel2"
           v-model="cadastroPerfil.tel_cel2"
-          label="Telefone secundário"
+          label="Celular secundário"
           mask="(##) ##### - ####"
+          :rules="[this.required, this.isCellPhone]"
         />
       </div>
     </div>
@@ -150,10 +151,12 @@ export default {
       this.$refs.email.validate()
       this.$refs.dat_nasc.validate()
       this.$refs.tel_cel1.validate()
+      this.$refs.tel_cel2.validate()
 
       if(
        this.$refs.email.hasError ||
        this.$refs.tel_cel1.hasError ||
+       this.$refs.tel_cel2.hasError ||
        this.$refs.dat_nasc.hasError
        ) {
         this.$q.dialog({
