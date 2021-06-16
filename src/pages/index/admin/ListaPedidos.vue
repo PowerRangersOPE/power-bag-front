@@ -131,6 +131,7 @@
               color="purple-12"
               v-model="valorBag"
               label="Valor Bag"
+              prefix="R$"
             />
           </div>
         </div>
@@ -438,6 +439,8 @@ export default {
   mounted() {
     this.buscarBags();
     this.confirmarUsuarioAdmin();
+    const editarValorBag = "R$ " +  (this.valorBag.toFixed(2)).replace(".", ",")
+    this.valorBag = editarValorBag
   },
   methods: {
     confirmarPedido() {
