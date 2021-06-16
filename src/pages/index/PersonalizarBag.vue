@@ -53,7 +53,7 @@
           ref="cor"
           v-model="cadastroProduto.cor"
           :options="listaProdutoCor"
-          label="Cor"
+          label="Cor preferida"
           class="q-mr-lg"
           :rules="[requiredSelect]"
         />
