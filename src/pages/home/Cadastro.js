@@ -94,7 +94,7 @@ export default {
       } catch (error) {
         this.$q.dialog({
           title: 'Atenção!',
-          message: 'O E-mail ja possui cadastro, por gentileza utilze outro.'
+          message: 'O CPF já possui cadastro.'
         })
         this.$q.loading.hide()
         this.cpf = ''
