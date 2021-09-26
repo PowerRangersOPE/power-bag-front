@@ -8,7 +8,7 @@
   "scripts": {
     "lint": "eslint --ext .js,.vue ./",
     "test": "echo \"No test specified\" && exit 0",
-    "build": "quasar build",
+    "build": "npx quasar build",
     "start": "node server.js",
     "heroku-postbuild": "yarn && yarn build"
   },
@@ -24,7 +24,7 @@
     "v-mask": "^2.2.4"
   },
   "devDependencies": {
-    "@quasar/app": "^3.1.0",
+    "@quasar/app": "^2.0.0",
     "babel-eslint": "^10.0.1",
     "eslint": "^7.21.0",
     "eslint-config-prettier": "^8.1.0",
