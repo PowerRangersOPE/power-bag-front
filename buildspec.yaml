@@ -1,0 +1,17 @@
+version: 0.2
+phases:
+  pre_build:
+    commands:
+    - npm ci
+  build:
+    commands:
+      - echo Build started on `date`
+      - echo Compiling
+      - npm run build
+  post_build:
+    commands:
+      - echo Build completed on `date`
+antifacts:
+  files:
+    - '**/*'
+  base-directory: dist/spa
