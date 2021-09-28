@@ -7,16 +7,16 @@
       <div class="row items-center q-mt-md">
         <div class="col-12 col-sm shadow-1 q-mr-md">
           <q-img
-            src="https://cdn.pixabay.com/photo/2015/11/10/00/55/african-1036184_960_720.jpg"
+            src="https://source.unsplash.com/collection/535863/960x720"
             :ratio="4/3"
             style="border-radius: 10px"
           />
         </div>
         <div class="col-12 col-sm shadow-1 q-mt-md q-mb-md q-mr-md" style="border-radius: 10px">
-          <div class="row">  
+          <div class="row">
             <div class="col-12 text-center q-mt-md" style="height: 10%; width: 10%">
-              <q-img id="centro-bolsa" class="" src="assets/bolsa.png" alt="Power BAG + SLOGAN"/> 
-            </div> 
+              <q-img id="centro-bolsa" class="" src="assets/bolsa.png" alt="Power BAG + SLOGAN"/>
+            </div>
             <div class="col-12 text-center text-dark text-h7">
               <p class="text-bold">Compre sem sair de casa</p>
             </div>
@@ -27,7 +27,7 @@
         </div>
         <div class="col-12 col-sm shadow-1">
           <q-img
-            src="https://cdn.pixabay.com/photo/2016/07/02/23/07/kid-1493932_960_720.jpg"
+            src="https://source.unsplash.com/collection/8724612/960x720"
             :ratio="4/3"
             style="border-radius: 10px"
           />
