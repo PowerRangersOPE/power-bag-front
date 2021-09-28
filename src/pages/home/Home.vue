@@ -2,7 +2,7 @@
   <q-layout view="lHh Lpr lFf">
     <div class="q-ma-md">
       <div class="text-center text-h4 text-bold">
-        O Melhor da moda infantil na sua casa
+        O Melhor da moda infantil na sua casa está aqui
       </div>
       <div class="row items-center q-mt-md">
         <div class="col-12 col-sm shadow-1 q-mr-md">
