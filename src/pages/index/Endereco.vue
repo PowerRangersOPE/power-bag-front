@@ -119,7 +119,7 @@ export default {
   data() {
     return {
       cadastroEndereco: ENDERECO,
-      baseUrl: "https://power-bag-back.herokuapp.com",
+      baseUrl: "http://powerbag-api-dev.us-east-1.elasticbeanstalk.com",
       token: localStorage.getItem("token"),
       clienteId: localStorage.getItem("clienteId"),
       confirm: false,

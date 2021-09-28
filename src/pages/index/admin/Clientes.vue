@@ -191,7 +191,7 @@
             </div>
           </div>
 
-        </div>        
+        </div>
         <q-card-actions align="right">
           <q-btn flat label="Salvar" color="primary" @click="alterarScore()" />
           <q-btn flat label="Fechar" color="primary" v-close-popup />
@@ -230,7 +230,7 @@ export default {
   name: "minhasBags",
   data: () => ({
     token: localStorage.getItem("token"),
-    baseUrl: "https://power-bag-back.herokuapp.com",
+    baseUrl: "http://powerbag-api-dev.us-east-1.elasticbeanstalk.com",
     confirm: false,
     columns: [
       {
@@ -307,7 +307,7 @@ export default {
         })
         localStorage.clear();
         this.$router.push({ name: "home" })
-      } 
+      }
     },
     async abrirModalDadosCLiente(props) {
       this.modalDadosCLiente = true;

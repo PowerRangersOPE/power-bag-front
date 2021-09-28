@@ -64,7 +64,7 @@
             <div>
               <q-btn
                 v-if="
-                  props.row.observacoes !== '' && 
+                  props.row.observacoes !== '' &&
                   props.row.status === 'Compra total' || props.row.status === 'Finalizado'
                 "
                 icon="chat"
@@ -72,7 +72,7 @@
                 size="sm"
                 dense
                 @click="abrirModalFeedback(props.row.id)"
-              > 
+              >
                 <q-tooltip anchor="center left" self="center right">
                   Possui Feedback do cliente
                 </q-tooltip>
@@ -83,7 +83,7 @@
                 color="grey"
                 size="sm"
                 dense
-              > 
+              >
                 <q-tooltip anchor="center left" self="center right">
                   Sem Feedback
                 </q-tooltip>
@@ -101,7 +101,7 @@
                 dense
                 class="text-red"
                 @click="itensBag(props.row)"
-              > 
+              >
                 <q-tooltip anchor="center left" self="center right">
                   Itens da Bag do cliente
                 </q-tooltip>
@@ -341,7 +341,7 @@ export default {
   name: "minhasBags",
   data: () => ({
     token: localStorage.getItem("token"),
-    baseUrl: "https://power-bag-back.herokuapp.com",
+    baseUrl: "http://powerbag-api-dev.us-east-1.elasticbeanstalk.com",
     confirm: false,
     modalCartao: false,
     columns: [
@@ -555,7 +555,7 @@ export default {
       this.modalFeedback = true
       this.clienteId = props.cliente_id;
       this.idBagAtual = props
-      try { 
+      try {
         const response = await axios({
         method: "GET",
         url: `${this.baseUrl}/bag/all`,
@@ -585,11 +585,11 @@ export default {
       const responseBag = Object.assign(response.data);
       const filterBag = responseBag.filter(bag => bag.id == props)
       this.textFeedback = filterBag[0].observacoes
-       
+
     },
     itensBag(props) {
       this.idBagAtual = props.id
-      let router =  `${this.baseUrl}/bag/${this.idBagAtual}/itens` 
+      let router =  `${this.baseUrl}/bag/${this.idBagAtual}/itens`
       window.open(router, '_blank');
     },
     confirmarUsuarioAdmin() {
@@ -602,7 +602,7 @@ export default {
         })
         localStorage.clear();
         this.$router.push({ name: "home" })
-      } 
+      }
     }
   }
 };

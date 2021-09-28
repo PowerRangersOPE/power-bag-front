@@ -9,7 +9,7 @@ export default {
       cpf: "",
       password: "",
       admin: "",
-      baseUrl: "https://power-bag-back.herokuapp.com",
+      baseUrl: "http://powerbag-api-dev.us-east-1.elasticbeanstalk.com",
     };
   },
   methods: {
@@ -38,19 +38,19 @@ export default {
           cpf == "66666666666" ||
           cpf == "77777777777" ||
           cpf == "88888888888" ||
-          cpf == "99999999999" 
+          cpf == "99999999999"
         ) {
             return 'CPF digitado é inválido'
         }
         var soma = 0
         var resto
-        for (var i = 1; i <= 9; i++) 
+        for (var i = 1; i <= 9; i++)
             soma = soma + parseInt(cpf.substring(i-1, i)) * (11 - i)
         resto = (soma * 10) % 11
         if ((resto == 10) || (resto == 11))  resto = 0
         if (resto != parseInt(cpf.substring(9, 10)) ) return 'CPF digitado é inválido'
         soma = 0
-        for (var i = 1; i <= 10; i++) 
+        for (var i = 1; i <= 10; i++)
             soma = soma + parseInt(cpf.substring(i-1, i)) * (12 - i)
         resto = (soma * 10) % 11
         if ((resto == 10) || (resto == 11))  resto = 0
@@ -72,7 +72,7 @@ export default {
       try {
         const responseLogin = await axios({
           method: "POST",
-          url: "https://power-bag-back.herokuapp.com/login",
+          url: "http://powerbag-api-dev.us-east-1.elasticbeanstalk.com/login",
           data: {
             cpf: this.cpf,
             senha: this.password
