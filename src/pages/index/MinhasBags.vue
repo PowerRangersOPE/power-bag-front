@@ -227,10 +227,10 @@ export default {
     },
     async solicitarBag() {
       try {
-const cadastroPreenchido = await axios({
-        method: "GET",
-        url: `${this.baseUrl}/cliente/validate`,
-        headers: {
+        const cadastroPreenchido = await axios({
+          method: "GET",
+          url: `${this.baseUrl}/cliente/validate`,
+          headers: {
           Authorization: `${this.token}`
         }
       });
