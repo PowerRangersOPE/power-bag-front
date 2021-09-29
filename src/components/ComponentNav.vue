@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="">
     <q-header elevated>
       <q-toolbar>
         <q-btn
@@ -79,7 +79,7 @@
               <q-item-label>Endereço</q-item-label>
             </q-item-section>
           </q-item>
-           <q-item clickable tag="a" rel="" to="/index/personalizar-bag" class="q-mb-sm">
+          <q-item clickable tag="a" rel="" to="/index/personalizar-bag" class="q-mb-sm">
               <q-item-section avatar>
                   <q-icon name="checkroom" color="primary" size="lg" />
               </q-item-section>
@@ -95,6 +95,37 @@
               <q-item-label>Cartão</q-item-label>
             </q-item-section>
           </q-item>
+
+
+        <!-- btn to exclude client -->
+
+          <q-item class="q-mt-xl q-ml-lg">
+            <q-btn class="" color="red" outline style="color:red" icon="far fa-frown" label="Excluir Conta" no-caps @click="confirmarExcluir()"/>
+          </q-item>
+          <q-dialog v-model="confirm" persistent>
+            <q-card>
+              <q-banner rounded class="bg-primary text-white">
+              <template v-slot:avatar>
+                <q-avatar icon="far fa-sad-cry" size="120px" color="white" text-color="primary"></q-avatar>
+              </template>
+
+              <p class="text-body1" align="justify">Esse é um processo irreversivel. Todos seus dados serão excluidos da nossa plataforma e para acessar novamente você precisará criar uma nova conta.
+              Tem certeza que deseja excluir sua conta?</p>
+              </q-banner>
+
+            <q-card-actions align="right">
+              <q-btn
+                flat
+                label="Sim"
+                color="negative"
+                @click="excluirConta()"
+                v-close-popup
+              />
+              <q-btn flat label="Não" color="positive" v-close-popup />
+            </q-card-actions>
+          </q-card>
+          </q-dialog>
+          <!-- btn to exclude client -->
         </q-list>
 
         <q-list v-else>
@@ -140,24 +171,69 @@
 </template>
 
 <script>
-export default {
-  name: "ComponentNav",
-  data() {
-    return {
-      leftDrawerOpen: false,
-      teste: false,
-      nome: localStorage.getItem("nome"),
-      clienteId: localStorage.getItem("clienteId"),
-      admin: null
-    };
-  },
-  mounted() {
-   this.admin = localStorage.getItem("admin")
-  },
-  methods: {
-    limparLocalStorage() {
-      localStorage.clear();
+
+  import axios from "axios";
+
+  export default {
+    name: "ComponentNav",
+    data() {
+      return {
+        leftDrawerOpen: false,
+        teste: false,
+        nome: localStorage.getItem("nome"),
+        clienteId: localStorage.getItem("clienteId"),
+        admin: null,
+        confirm: false
+      };
+    },
+    mounted() {
+    this.admin = localStorage.getItem("admin")
+    },
+    methods: {
+      limparLocalStorage() {
+        localStorage.clear()
+      }
+      ,
+      confirmarExcluir() {
+        this.confirm = true
+      },
+
+      excluirConta() {
+      try {
+        axios({
+          method: "DELETE",
+          url: `${this.baseUrl}/cliente/${this.clienteId}`,
+        });
+        setTimeout(() => {
+          this.$q.dialog({
+            title: "Sua conta foi excluida!",
+            message: "Esperamos vê-lo novamente em breve. :("
+          });
+          this.$q.loading.hide();
+          limparLocalStorage();
+        }, 500);
+      } catch (error) {
+        if(error.response){
+          this.$q.dialog({
+            title: 'Não conseguimos excluir sua conta!',
+            message: error.response.data
+          })
+            this.$q.loading.hide()
+        }else if(error.request){
+          this.$q.dialog({
+            title: 'Não conseguimos excluir sua conta!',
+            message: error.request.data
+          })
+            this.$q.loading.hide()
+        }else{
+        this.$q.dialog({
+          title: 'Não conseguimos excluir sua conta!',
+          message: error.message
+        })
+          this.$q.loading.hide()
+        }
+      }
+      }
     }
   }
-};
 </script>

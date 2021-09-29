@@ -154,11 +154,11 @@ export default {
       this.$refs.tel_cel2.validate()
 
       if(
-       this.$refs.email.hasError ||
-       this.$refs.tel_cel1.hasError ||
-       this.$refs.tel_cel2.hasError ||
-       this.$refs.dat_nasc.hasError
-       ) {
+        this.$refs.email.hasError ||
+        this.$refs.tel_cel1.hasError ||
+        this.$refs.tel_cel2.hasError ||
+        this.$refs.dat_nasc.hasError
+      ) {
         this.$q.dialog({
           title: 'Atenção',
           message: 'Dados preenchidos incorretamente.'
@@ -170,12 +170,6 @@ export default {
         axios({
           method: "PUT",
           url: `${this.baseUrl}/cliente/${this.clienteId}`,
-          data: {
-            email: this.cadastroPerfil.email,
-            tel_cel1: this.cadastroPerfil.tel_cel1,
-            tel_cel2: this.cadastroPerfil.tel_cel2,
-            dat_nasc: this.cadastroPerfil.dat_nasc
-          }
         });
         setTimeout(() => {
           this.$q.dialog({
