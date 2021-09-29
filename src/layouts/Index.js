@@ -12,7 +12,7 @@ export default {
     return {
       name: "Index",
       leftDrawerOpen: false,
-      baseUrl: "https://power-bag-back.herokuapp.com",
+      baseUrl: "http://powerbag-api-dev.us-east-1.elasticbeanstalk.com",
       acaoCadastroPerfil: "",
       token: this.cliente ? this.cliente.token : localStorage.getItem("token"),
       clienteId: this.cliente
@@ -42,7 +42,7 @@ export default {
       if (usuarioLogado === "" || usuarioLogado === null ) {
         localStorage.clear();
         this.$router.push({ name: "home" })
-      } 
+      }
     }
   }
 };

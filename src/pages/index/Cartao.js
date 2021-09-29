@@ -18,7 +18,7 @@ export default {
       isCardFlipped: false,
       focusElementStyle: null,
       isInputFocused: false,
-      baseUrl: "https://power-bag-back.herokuapp.com",
+      baseUrl: "http://powerbag-api-dev.us-east-1.elasticbeanstalk.com",
       token: localStorage.getItem("token"),
       clienteId: localStorage.getItem("clienteId"),
       confirm: false,

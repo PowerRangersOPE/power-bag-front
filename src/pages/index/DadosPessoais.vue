@@ -111,7 +111,7 @@ export default {
   name: "ComponentDadosPessoais",
   data() {
     return {
-      baseUrl: "https://power-bag-back.herokuapp.com",
+      baseUrl: "http://powerbag-api-dev.us-east-1.elasticbeanstalk.com",
       cadastroPerfil: DADOS_PERFIL,
       mostrarDadosPessoais: true,
       confirm: false,

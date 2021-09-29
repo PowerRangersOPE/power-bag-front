@@ -153,7 +153,7 @@ export default {
   name: "minhasBags",
   data: () => ({
     token: localStorage.getItem("token"),
-    baseUrl: "https://power-bag-back.herokuapp.com",
+    baseUrl: "http://powerbag-api-dev.us-east-1.elasticbeanstalk.com",
     confirm: false,
     columns: [
       {
