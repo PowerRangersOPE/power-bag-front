@@ -178,12 +178,14 @@
     name: "ComponentNav",
     data() {
       return {
+        token: localStorage.getItem("token"),
         leftDrawerOpen: false,
         teste: false,
         nome: localStorage.getItem("nome"),
         clienteId: localStorage.getItem("clienteId"),
         admin: null,
-        confirm: false
+        confirm: false,
+        baseUrl: "http://powerbag-api-dev.us-east-1.elasticbeanstalk.com"
       };
     },
     mounted() {
@@ -203,6 +205,9 @@
         axios({
           method: "DELETE",
           url: `${this.baseUrl}/cliente/${this.clienteId}`,
+          headers: {
+          Authorization: `${this.token}`
+        }
         });
         setTimeout(() => {
           this.$q.dialog({
@@ -210,7 +215,8 @@
             message: "Esperamos vê-lo novamente em breve. :("
           });
           this.$q.loading.hide();
-          limparLocalStorage();
+          this.limparLocalStorage();
+          this.$router.push({ name: "home" })
         }, 500);
       } catch (error) {
         if(error.response){
