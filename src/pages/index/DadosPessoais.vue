@@ -170,6 +170,12 @@ export default {
         axios({
           method: "PUT",
           url: `${this.baseUrl}/cliente/${this.clienteId}`,
+          data: {
+            email: this.cadastroPerfil.email,
+            tel_cel1: this.cadastroPerfil.tel_cel1,
+            tel_cel2: this.cadastroPerfil.tel_cel2,
+            dat_nasc: this.cadastroPerfil.dat_nasc
+          }
         });
         setTimeout(() => {
           this.$q.dialog({
