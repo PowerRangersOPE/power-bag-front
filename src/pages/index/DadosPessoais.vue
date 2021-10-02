@@ -29,7 +29,7 @@
           v-model="cadastroPerfil.email"
           class="q-mr-lg"
           label="E-mail"
-          :rules="[this.required, this.short, this.isEmail]"
+          :rules="[this.required, this.isEmail]"
         />
       </div>
       <div class="col-12 col-sm">

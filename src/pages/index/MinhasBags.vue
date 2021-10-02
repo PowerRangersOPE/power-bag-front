@@ -182,7 +182,7 @@ export default {
         align: "center",
         width: "auto",
         headerClasses: "bg-primary text-white text-uppercase text-bold",
-        format: val => "R$ " + val.toString().replace(".", ",")
+        format: val => "R$ " + (val.toFixed(2)).replace(".", ",")
       },
       {
         name: "action",

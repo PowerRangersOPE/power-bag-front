@@ -14,6 +14,7 @@
             <div>
               <q-rating
                 v-model="props.row.pontuacao"
+                readonly
                 size="2.5em"
                 color="yellow-5"
                 icon="star_rate"

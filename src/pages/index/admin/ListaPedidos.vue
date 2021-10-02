@@ -131,6 +131,7 @@
               color="purple-12"
               v-model="valorBag"
               label="Valor Bag"
+              prefix="R$"
             />
           </div>
         </div>
@@ -379,7 +380,7 @@ export default {
         align: "center",
         width: "auto",
         headerClasses: "bg-primary text-white text-uppercase text-bold",
-        format: val => "R$ " + (val.toString().replace(".", ","))
+        format: val => "R$ " +  (val.toFixed(2)).replace(".", ",")
       },
       {
         name: "info",
@@ -438,6 +439,8 @@ export default {
   mounted() {
     this.buscarBags();
     this.confirmarUsuarioAdmin();
+    const editarValorBag = "R$ " +  (this.valorBag.toFixed(2)).replace(".", ",")
+    this.valorBag = editarValorBag
   },
   methods: {
     confirmarPedido() {
