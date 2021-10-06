@@ -40,7 +40,7 @@
             <div class="col-12 col-md text-right q-mt-md q-mr-sm">
               <div class="q-gutter-md">
                 <a
-                  :href="footerInstagramLink"
+                  :href="this.footerInstagramLink"
                   target="_blank"
                 >
                   <q-icon size="md" name="fab fa-instagram"
@@ -64,6 +64,15 @@
       </q-footer>
   </q-layout>
 </template>
+
+<script src="./Home.js">
+
+
+export default {
+  name: "MainLayout",
+
+};
+</script>
 
 <style scoped>
 #header-info {

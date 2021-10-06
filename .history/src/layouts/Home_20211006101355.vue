@@ -65,6 +65,47 @@
   </q-layout>
 </template>
 
+<script>
+const {head, body:{footer}} = JSON.parse(sessionStorage.getItem("home"))
+export default {
+  name: "MainLayout",
+  data() {
+    return {
+      homeHeadSloganTextTitle: head.slogan.homeHeadSloganTextTitle,
+      homeHeadSloganTextColor: head.slogan.homeHeadSloganTextColor,
+      homeHeadSloganTextSize: head.slogan.homeHeadSloganTextSize,
+      homeHeadSloganTextFont: head.slogan.homeHeadSloganTextFont,
+
+      homeBtnRegistrationColor: head.btn.homeBtnRegistrationColor,
+      homeBtnLoginColor: head.btn.homeBtnLoginColor,
+
+      footerRightReservedText: footer.footerRightReservedText,
+      footerBgColor: footer.footerBgColor,
+      footerFontText:footer.footerFontText,
+      footerInstagramLink:footer.footerInstagramLink,
+      footerRedirectEmail:footer.footerRedirectEmail,
+
+
+    };
+  },
+    methods: {
+    async loadingCustomPage () {
+      const shopCliente = "elegantkids"
+      const {data: { shopStyles: { home, profile } }} =  await axios({
+        method: "GET",
+        url: `${this.baseUrl}/shop/${shopCliente}`,
+      });
+      console.log(home);
+      sessionStorage.setItem('home', JSON.stringify(home));
+      sessionStorage.setItem('profile', JSON.stringify(profile));
+    }
+  },
+    mounted() {
+    this.loadingCustomPage();
+  },
+};
+</script>
+
 <style scoped>
 #header-info {
   font-size: 16px;
@@ -74,5 +115,3 @@ color: #ffffff;
 text-decoration: none;
 }
 </style>
-
-<script src="./Home.js">

@@ -8,7 +8,7 @@ export default {
   components: { ComponentFooter },
   props: ['shop'],
   data () {
-    console.log(this.shop)
+    console.log(`TESTE THIS SHOP ${this.shop}`)
 
   //   for (let i in homeStyleMOCK.home.head){
   //     for(let j in homeStyleMOCK.home.head[i]){
@@ -17,7 +17,9 @@ export default {
   //   }
   // }
     if (this.shop === 'error') this.$router.push({ name: "error" })
-
+    const {head, body:{footer}} = JSON.parse(sessionStorage.getItem("home"))
+    console.log(head)
+    console.log(footer)
     return {
       baseUrl: "http://powerbag-api-dev.us-east-1.elasticbeanstalk.com",
       padding: true,
@@ -36,7 +38,21 @@ export default {
       slide: 'style',
       texto01: 'Preencha algumas perguntas para conhecermos suas necessidades',
       texto02: 'Entraremos em contato para confirmar as peças e estilo que gostou',
-      texto03: 'Prontinho! Sua bag personalizada será entregue em até 24 horas após a aprovação do pedido'
+      texto03: 'Prontinho! Sua bag personalizada será entregue em até 24 horas após a aprovação do pedido',
+
+      homeHeadSloganTextTitle: head.slogan.homeHeadSloganTextTitle,
+      homeHeadSloganTextColor: head.slogan.homeHeadSloganTextColor,
+      homeHeadSloganTextSize: head.slogan.homeHeadSloganTextSize,
+      homeHeadSloganTextFont: head.slogan.homeHeadSloganTextFont,
+
+      homeBtnRegistrationColor: head.btn.homeBtnRegistrationColor,
+      homeBtnLoginColor: head.btn.homeBtnLoginColor,
+
+      footerRightReservedText: footer.footerRightReservedText,
+      footerBgColor: footer.footerBgColor,
+      footerFontText:footer.footerFontText,
+      footerInstagramLink:footer.footerInstagramLink,
+      footerRedirectEmail:footer.footerRedirectEmail,
     }
   },
   mounted() {
@@ -56,7 +72,6 @@ export default {
         method: "GET",
         url: `${this.baseUrl}/shop/${shopCliente}`,
       });
-      console.log(`TESTE HOME.JS ${home}`);
       sessionStorage.setItem('home', JSON.stringify(home));
       sessionStorage.setItem('profile', JSON.stringify(profile));
     }

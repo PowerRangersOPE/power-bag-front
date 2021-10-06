@@ -1,0 +1,155 @@
+{
+    "home": {
+        "head": {
+            "slogan": {
+                "homeHeadSloganTextColor": "blue",
+                "homeHeadSloganTextSize": "red",
+                "homeHeadSloganTextStyle": "green"
+            },
+            "btn": {
+                "homeBtnRegistrationColor": "pix",
+                "homeBtnLoginColor": "lower"
+            }
+        },
+        "body": {
+            "firstSection": {
+                "mainTitle": {
+                    "homeMainTextTitle": "",
+                    "homeMainColorTitle": "",
+                    "homeMainFontTitle": "",
+                    "homeMainSizeTitle": ""
+                },
+                "img": {
+                    "homeImgLeft": "",
+                    "homeImgRight": ""
+                },
+                "middle": {
+                    "homeSloganImgCenter": "",
+                    "homeTextCenterSlogan": "",
+                    "homeColorCenterSlogan": "",
+                    "homeSizeTextSlogan": ""
+                }
+            },
+            "secondSection": {
+                "mainTitle": {
+                    "secondSectionMainTextTitle": "",
+                    "secondSectionMainColorTitle": "",
+                    "secondSectionMainFontTitle": "",
+                    "secondSectionMainSizeTitle": ""
+                },
+                "subTitle": {
+                    "secondSectionSubTitleTextTitle": "",
+                    "secondSectionSubTitleColorTitle": "",
+                    "secondSectionSubTitleFontTitle": "",
+                    "secondSectionSubTitleSizeTitle": ""
+                },
+                "msgLeft": {
+                    "secondSectionMsgLeftTextTitle": "",
+                    "secondSectionMsgLeftColorTitle": "",
+                    "secondSectionMsgLeftFontTitle": "",
+                    "secondSectionMsgLeftSizeTitle": ""
+                },
+                "msgCenter": {
+                    "secondSectionMsgCenterTextTitle": "",
+                    "secondSectionMsgCenterColorTitle": "",
+                    "secondSectionMsgCenterFontTitle": "",
+                    "secondSectionMsgCenterSizeTitle": ""
+                },
+                "msgRight": {
+                    "secondSectionMsgRightTextTitle": "",
+                    "secondSectionMsgRightColorTitle": "",
+                    "secondSectionMsgRightFontTitle": "",
+                    "secondSectionMsgRightSizeTitle": ""
+                }
+            },
+            "thirdSection": {
+                "mainTitle": {
+                    "homeMainTextTitle": "",
+                    "homeMainColorTitle": "",
+                    "homeMainFontTitle": "",
+                    "homeMainSizeTitle": ""
+                },
+                "items": [
+                    {
+                        "sectionSectionItemTitleText": "",
+                        "sectionSectionItemTitleFont": "",
+                        "sectionSectionItemTitleSize": "",
+                        "sectionSectionItemTitleColor": "",
+                        "sectionSectionItemParagraphText": "",
+                        "sectionSectionItemParagraphFont": "",
+                        "sectionSectionItemParagraphSize": "",
+                        "sectionSectionItemParagraphColor": "",
+                        "sectionSectionItemIcon": ""
+                    },
+                    {
+                        "sectionSectionItemTitleText": "",
+                        "sectionSectionItemTitleFont": "",
+                        "sectionSectionItemTitleSize": "",
+                        "sectionSectionItemTitleColor": "",
+                        "sectionSectionItemParagraphText": "",
+                        "sectionSectionItemParagraphFont": "",
+                        "sectionSectionItemParagraphSize": "",
+                        "sectionSectionItemParagraphColor": "",
+                        "sectionSectionItemIcon": ""
+                    },
+                    {
+                        "sectionSectionItemTitleText": "",
+                        "sectionSectionItemTitleFont": "",
+                        "sectionSectionItemTitleSize": "",
+                        "sectionSectionItemTitleColor": "",
+                        "sectionSectionItemParagraphText": "",
+                        "sectionSectionItemParagraphFont": "",
+                        "sectionSectionItemParagraphSize": "",
+                        "sectionSectionItemParagraphColor": "",
+                        "sectionSectionItemIcon": ""
+                    },
+                    {
+                        "sectionSectionItemTitleText": "",
+                        "sectionSectionItemTitleFont": "",
+                        "sectionSectionItemTitleSize": "",
+                        "sectionSectionItemTitleColor": "",
+                        "sectionSectionItemParagraphText": "",
+                        "sectionSectionItemParagraphFont": "",
+                        "sectionSectionItemParagraphSize": "",
+                        "sectionSectionItemParagraphColor": "",
+                        "sectionSectionItemIcon": ""
+                    },
+                    {
+                        "sectionSectionItemTitleText": "",
+                        "sectionSectionItemTitleFont": "",
+                        "sectionSectionItemTitleSize": "",
+                        "sectionSectionItemTitleColor": "",
+                        "sectionSectionItemParagraphText": "",
+                        "sectionSectionItemParagraphFont": "",
+                        "sectionSectionItemParagraphSize": "",
+                        "sectionSectionItemParagraphColor": "",
+                        "sectionSectionItemIcon": ""
+                    },
+                    {
+                        "sectionSectionItemTitleText": "",
+                        "sectionSectionItemTitleFont": "",
+                        "sectionSectionItemTitleSize": "",
+                        "sectionSectionItemTitleColor": "",
+                        "sectionSectionItemParagraphText": "",
+                        "sectionSectionItemParagraphFont": "",
+                        "sectionSectionItemParagraphSize": "",
+                        "sectionSectionItemParagraphColor": "",
+                        "sectionSectionItemIcon": ""
+                    }
+                ]
+            }
+        },
+        "footer": [{
+            "footerBgColor": "",
+            "footerRightReservedText": "",
+            "footerSizeText": "",
+            "footerFontText": "",
+            "footerInstagramLink": "",
+            "footerRedirectEmail": ""
+        }]
+    }
+}
+
+
+
+

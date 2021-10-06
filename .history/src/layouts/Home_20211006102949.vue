@@ -65,6 +65,15 @@
   </q-layout>
 </template>
 
+<script src="./Home.js">
+
+
+export default {
+  name: "MainLayout",
+
+};
+</script>
+
 <style scoped>
 #header-info {
   font-size: 16px;

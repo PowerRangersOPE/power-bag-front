@@ -1,0 +1,261 @@
+{
+    "home": {
+        "head": {
+            "slogan": {
+                "homeHeadSloganTextTitle": "Elegant Kids",
+                "homeHeadSloganTextColor": "primary",
+                "homeHeadSloganTextSize": "lg",
+                "homeHeadSloganTextFont": "roboto-font’"
+            },
+            "btn": {
+                "homeBtnRegistrationColor": "black",
+                "homeBtnLoginColor": "#0FA3B1"
+            }
+        },
+        "body": {
+            "firstSection": {
+                "mainTitle": {
+                    "homeMainTextTitle": "Text here",
+                    "homeMainColorTitle": "#B5E2FA",
+                    "homeMainFontTitle": "roboto-font",
+                    "homeMainSizeTitle": "36"
+                },
+                "img": {
+                    "homeImgLeft": "https://unsplash.com/photos/PlO6EYgbKmQ",
+                    "homeImgRight": "https://unsplash.com/photos/n9R0MN3XGvY"
+                },
+                "middle": {
+                    "homeSloganImgCenter": "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.wallstreetmojo.com%2Fshort-position%2F&psig=AOvVaw2KfAV26aJPtev1BUyQVhug&ust=1633529541038000&source=images&cd=vfe&ved=0CAsQjRxqFwoTCPD3l_O5s_MCFQAAAAAdAAAAABAT",
+                    "homeTextCenterSlogan": "Text here",
+                    "homeColorCenterSlogan": "#F7A072",
+                    "homeSizeTextSlogan": "24"
+                }
+            },
+            "secondSection": {
+                "mainTitle": {
+                    "secondSectionMainTextTitle": "Text here",
+                    "secondSectionMainColorTitle": "#EDDEA4",
+                    "secondSectionMainFontTitle": "24",
+                    "secondSectionMainSizeTitle": "24"
+                },
+                "subTitle": {
+                    "secondSectionSubTitleTextTitle": "Sub title here",
+                    "secondSectionSubTitleColorTitle": "#f7a072",
+                    "secondSectionSubTitleFontTitle": "Roboto",
+                    "secondSectionSubTitleSizeTitle": "18"
+                },
+                "msgLeft": {
+                    "secondSectionMsgLeftTextTitle": "Message left here",
+                    "secondSectionMsgLeftColorTitle": "#b5e2fa",
+                    "secondSectionMsgLeftFontTitle": "Roboto",
+                    "secondSectionMsgLeftSizeTitle": "18"
+                },
+                "msgCenter": {
+                    "secondSectionMsgCenterTextTitle": "Message center here",
+                    "secondSectionMsgCenterColorTitle": "#b5e2fa",
+                    "secondSectionMsgCenterFontTitle": "Roboto",
+                    "secondSectionMsgCenterSizeTitle": "18"
+                },
+                "msgRight": {
+                    "secondSectionMsgRightTextTitle": "Message right here",
+                    "secondSectionMsgRightColorTitle": "#b5e2fa",
+                    "secondSectionMsgRightFontTitle": "Roboto",
+                    "secondSectionMsgRightSizeTitle": "18"
+                }
+            },
+            "thirdSection": {
+                "mainTitle": {
+                    "homeMainTextTitle": "Title here",
+                    "homeMainColorTitle": "#f7a072",
+                    "homeMainFontTitle": "Roboto",
+                    "homeMainSizeTitle": "32"
+                },
+                "items": [
+                    {
+                        "sectionSectionItemTitleText": "Item title here",
+                        "sectionSectionItemTitleFont": "Roboto",
+                        "sectionSectionItemTitleSize": "22",
+                        "sectionSectionItemTitleColor": "#0fa3b1",
+                        "sectionSectionItemParagraphText": "Item here",
+                        "sectionSectionItemParagraphFont": "Roboto",
+                        "sectionSectionItemParagraphSize": "18",
+                        "sectionSectionItemParagraphColor": "#B5E2FA",
+                        "sectionSectionItemIcon": ""
+                    },
+                    {
+                        "sectionSectionItemTitleText": "Item title here",
+                        "sectionSectionItemTitleFont": "Roboto",
+                        "sectionSectionItemTitleSize": "22",
+                        "sectionSectionItemTitleColor": "#0fa3b1",
+                        "sectionSectionItemParagraphText": "Item here",
+                        "sectionSectionItemParagraphFont": "Roboto",
+                        "sectionSectionItemParagraphSize": "18",
+                        "sectionSectionItemParagraphColor": "#B5E2FA",
+                        "sectionSectionItemIcon": ""
+                    },
+                    {
+                        "sectionSectionItemTitleText": "Item title here",
+                        "sectionSectionItemTitleFont": "Roboto",
+                        "sectionSectionItemTitleSize": "22",
+                        "sectionSectionItemTitleColor": "#0fa3b1",
+                        "sectionSectionItemParagraphText": "Item here",
+                        "sectionSectionItemParagraphFont": "roboto-font",
+                        "sectionSectionItemParagraphSize": "18",
+                        "sectionSectionItemParagraphColor": "#B5E2FA",
+                        "sectionSectionItemIcon": ""
+                    }
+                ]
+            },
+            "footer": {
+                "footerBgColor": "",
+                "footerRightReservedText": "Todos Direitos Reservados, Bags PowerBag",
+                "footerSizeText": "",
+                "footerFontText": "roboto-font",
+                "footerInstagramLink": "https://www.instagram.com/powerbagcontato/",
+                "footerRedirectEmail": "mailto:powerbag.contato@hotmail.com"
+            }
+        }
+    },
+    "profile": {
+        "fieldOptions": [
+            {
+                "hasOptions": true,
+                "title": "Gênero",
+                "options": [
+                    "Masculino",
+                    "Feminino"
+                ]
+            },
+            {
+                "hasOptions": true,
+                "title": "Estação do ano",
+                "options": [
+                    "Primavera",
+                    "Verão",
+                    "Outono",
+                    "Inverno"
+                ]
+            },
+            {
+                "hasOptions": true,
+                "title": "Faixa etária",
+                "options": [
+                    "Bebê",
+                    "Adolescente",
+                    "Criança",
+                    "Pré Adolescente"
+                ]
+            },
+            {
+                "hasOptions": true,
+                "title": "Necessidade",
+                "options": [
+                    "Escola",
+                    "Passear",
+                    "Sair a noite",
+                    "Social",
+                    "Piscina"
+                ]
+            },
+            {
+                "hasOptions": true,
+                "title": "Cor preferida",
+                "options": [
+                    "Branco",
+                    "Vermelho",
+                    "Azul",
+                    "Rosa",
+                    "Amarelo",
+                    "Verde",
+                    "Marrom",
+                    "Laranja",
+                    "Lilás"
+                ]
+            },
+            {
+                "hasOptions": true,
+                "title": "Estampa preferida",
+                "options": [
+                    "Liso",
+                    "Desenho animado",
+                    "Tropical",
+                    "Tie Dye",
+                    "Zebra",
+                    "Onça",
+                    "Poá",
+                    "Listrado",
+                    "Floral"
+                ]
+            },
+            {
+                "hasOptions": true,
+                "title": "Tipo de calçado",
+                "options": [
+                    "Esportivo",
+                    "Casual",
+                    "Sneaker",
+                    "Sapatenis"
+                ]
+            },
+            {
+                "hasOptions": true,
+                "title": "Tamanho da blusa",
+                "options": [
+                    "PP",
+                    "P",
+                    "M",
+                    "G",
+                    "GG"
+                ]
+            },
+            {
+                "hasOptions": true,
+                "title": "Preferência de estilo",
+                "options": [
+                    "Clássico",
+                    "Criativo",
+                    "Elegante",
+                    "Esportivo",
+                    "Moderno",
+                    "Romantico",
+                    "Rock&Punk"
+                ]
+            },
+            {
+                "hasOptions": true,
+                "title": "Tamanho do sapato",
+                "options": [
+                    "13",
+                    "14",
+                    "15",
+                    "16",
+                    "17",
+                    "18",
+                    "19",
+                    "20",
+                    "21",
+                    "22",
+                    "23",
+                    "24",
+                    "25",
+                    "26",
+                    "27",
+                    "28",
+                    "29",
+                    "30",
+                    "31",
+                    "32",
+                    "33",
+                    "34",
+                    "35",
+                    "36"
+                ]
+            },
+            {
+                "hasOptions": false,
+                "title": "Observações"
+            }
+        ]
+    },
+    "id": "cfd81049-6642-488b-b43f-a69afa7db6d8"
+}

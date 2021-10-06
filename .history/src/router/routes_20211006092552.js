@@ -2,12 +2,12 @@ import validateShops from "./validate";
 
 const routes = [
   {
-    path: "/",
+    path: "/:shop",
     component: () => import("src/layouts/Home.vue"),
     children: [
       {
-        path: '/',
-        name: 'home',
+        path: "/",
+        name: "home",
         props: routes => ({ shop: validateShops(routes.query.shop) }),
         component: () => import("src/pages/home/Home.vue")
       },

@@ -65,6 +65,35 @@
   </q-layout>
 </template>
 
+<script src="./Home.js">
+const {head, body:{footer}} = JSON.parse(sessionStorage.getItem("home"))
+console.log(head)
+console.log(footer)
+
+export default {
+  name: "MainLayout",
+  data() {
+    return {
+      homeHeadSloganTextTitle: head.slogan.homeHeadSloganTextTitle,
+      homeHeadSloganTextColor: head.slogan.homeHeadSloganTextColor,
+      homeHeadSloganTextSize: head.slogan.homeHeadSloganTextSize,
+      homeHeadSloganTextFont: head.slogan.homeHeadSloganTextFont,
+
+      homeBtnRegistrationColor: head.btn.homeBtnRegistrationColor,
+      homeBtnLoginColor: head.btn.homeBtnLoginColor,
+
+      footerRightReservedText: footer.footerRightReservedText,
+      footerBgColor: footer.footerBgColor,
+      footerFontText:footer.footerFontText,
+      footerInstagramLink:footer.footerInstagramLink,
+      footerRedirectEmail:footer.footerRedirectEmail,
+
+
+    };
+  }
+};
+</script>
+
 <style scoped>
 #header-info {
   font-size: 16px;

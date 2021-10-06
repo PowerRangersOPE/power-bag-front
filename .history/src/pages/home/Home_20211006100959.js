@@ -56,7 +56,7 @@ export default {
         method: "GET",
         url: `${this.baseUrl}/shop/${shopCliente}`,
       });
-      console.log(`TESTE HOME.JS ${home}`);
+      console.log(home);
       sessionStorage.setItem('home', JSON.stringify(home));
       sessionStorage.setItem('profile', JSON.stringify(profile));
     }

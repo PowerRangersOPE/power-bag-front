@@ -37,7 +37,6 @@ export default {
 
   mounted() {
     this.confirmarUsuarioAdmin();
-    this.loadingCustomPage();
   },
   methods: {
     limparLocalStorage() {
@@ -49,16 +48,6 @@ export default {
         localStorage.clear();
         this.$router.push({ name: "home" })
       }
-    },
-    async loadingCustomPage () {
-      const shopCliente = "elegantkids"
-      const {data: { shopStyles: { home, profile } }} =  await axios({
-        method: "GET",
-        url: `${this.baseUrl}/shop/${shopCliente}`,
-      });
-      console.log(home);
-      sessionStorage.setItem('home', JSON.stringify(home));
-      sessionStorage.setItem('profile', JSON.stringify(profile));
     }
   }
 };

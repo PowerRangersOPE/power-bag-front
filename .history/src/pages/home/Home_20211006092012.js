@@ -8,7 +8,6 @@ export default {
   components: { ComponentFooter },
   props: ['shop'],
   data () {
-    console.log(this.shop)
 
   //   for (let i in homeStyleMOCK.home.head){
   //     for(let j in homeStyleMOCK.home.head[i]){
@@ -56,7 +55,7 @@ export default {
         method: "GET",
         url: `${this.baseUrl}/shop/${shopCliente}`,
       });
-      console.log(`TESTE HOME.JS ${home}`);
+      console.log(home);
       sessionStorage.setItem('home', JSON.stringify(home));
       sessionStorage.setItem('profile', JSON.stringify(profile));
     }

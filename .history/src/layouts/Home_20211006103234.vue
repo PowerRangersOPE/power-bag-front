@@ -65,6 +65,12 @@
   </q-layout>
 </template>
 
+export default {
+  name: "MainLayout",
+
+};
+</script>
+
 <style scoped>
 #header-info {
   font-size: 16px;
